@@ -1,0 +1,54 @@
+# Pré-visualização no GitHub Pages, para mostrar aos clientes enquanto faltam
+# dados. Exceção à regra dos TODO aprovada só para esta pré-visualização.
+#
+# - Publica só os ficheiros do site (nada de docs/, content/, formulario/,
+#   ferramentas/ nem material/).
+# - Acrescenta <meta name="robots" content="noindex, nofollow"> às três páginas
+#   no momento da publicação. Os ficheiros do repositório ficam sem noindex,
+#   prontos para o lançamento.
+# - No lançamento (domínio próprio): apagar o passo «noindex», acrescentar o
+#   CNAME e o sitemap.xml/robots.txt à lista de ficheiros. Ver README.md.
+#
+# Antes da primeira publicação: Settings › Pages › Build and deployment ›
+# Source: «GitHub Actions».
+name: Pré-visualização (noindex)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacao.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Juntar os ficheiros do site
+        run: |
+          mkdir _site
+          cp -R index.html en privacidade.html config.js assets fonts data .nojekyll _site/
+
+      - name: noindex (só na pré-visualização)
+        run: |
+          for f in _site/index.html _site/en/index.html _site/privacidade.html; do
+            perl -0pi -e 's|<meta name="viewport"|<meta name="robots" content="noindex, nofollow">\n<meta name="viewport"|' "$f"
+            grep -q 'content="noindex, nofollow"' "$f" || { echo "Falta o noindex em $f"; exit 1; }
+          done
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+      - id: publicacao
+        uses: actions/deploy-pages@v4
