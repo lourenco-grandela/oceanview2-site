@@ -173,8 +173,15 @@ Hoje devolve **19 no `index.html`, 19 no `en/index.html` e 11 na
 
 ## Em curso
 
-- Ligar a pasta ao repositório do GitHub e ativar a pré-visualização
-  (Settings › Pages › Source: GitHub Actions).
+- **Pasta ligada ao GitHub** (`lourenco-grandela/oceanview2-site`, público).
+  O `main` do GitHub tinha só o CLAUDE.md e o ESTADO.md antigos; o histórico
+  foi mantido e os dois ficheiros foram substituídos pelas versões atuais.
+- **Falta enviar o commit do workflow da pré-visualização.** O GitHub recusou-o
+  porque o token guardado neste Mac não tem a permissão `workflow`. Está em
+  local, à frente do `origin/main`. Para o enviar: dar ao token a permissão
+  `workflow` (ou criar um novo com ela) e correr `git push`. Depois, no
+  repositório: Settings › Pages › Source: **GitHub Actions**. A
+  pré-visualização fica em `https://lourenco-grandela.github.io/oceanview2-site/`.
 
 ## Falta
 
