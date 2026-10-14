@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: descomentar e trocar pelo domínio definitivo depois de apontar o DNS.
+# Sitemap: https://TODO-dominio.pt/sitemap.xml

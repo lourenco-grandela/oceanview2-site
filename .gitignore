@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+.venv/
+
+# Originais, referência de design e fotografias (não se publicam)
+material/
+
+# Configuração local do Claude Code (caminhos desta máquina)
+.claude/

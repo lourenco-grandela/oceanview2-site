@@ -12,8 +12,8 @@ Este ficheiro é a memória do projeto para o Claude Code: lê-o no início de c
 
 ## Fases e prazos
 
-1. Landing page de lançamento, em português: online a 25/09/2026. A versão inglesa entra na semana seguinte.
-2. Site completo em português e inglês: até 16/10/2026.
+1. **Landing page com o novo design (versão 2), em português e inglês.** Reconstrução a partir de 15/10/2026. Publica-se assim que chegarem os dados obrigatórios (alvo: semana de 19/10/2026). É a prioridade do projeto: os clientes querem divulgá-la já nas redes.
+2. Site completo (seletor e páginas de fração, acabamentos, evolução da obra): quando chegar a tabela das frações.
 
 ## Stack e alojamento
 
@@ -24,33 +24,17 @@ Este ficheiro é a memória do projeto para o Claude Code: lê-o no início de c
 
 ## Sistema visual
 
-Usar exatamente estes valores (contrastes já verificados para texto AA):
+**Desde 14/10/2026 vale o `docs/DESIGN.md` (versão 2).** O alvo visual é `material/design/referencia.html`, com capturas em `material/design/captura-*.jpg`. Resumo:
 
-```css
-:root {
-  /* marca */
-  --atlantico: #14303A; --mare: #2E5560; --cal: #EEF0EC; --moleanos: #DCD5C6;
-  --sargaco: #5B6446; --luz: #C98E45; --bronze: #8F6229;
-  /* tema Dia (por omissão) */
-  --surface: #FFFFFF; --surface-alt: #EEF0EC; --ink: #1B2A30; --ink-muted: #5F6C70;
-  --heading: #14303A; --line: #CBD1CD; --accent-text: #8F6229;
-  --action: #14303A; --action-hover: #2E5560; --on-action: #FFFFFF; --focus-ring: #2E5560;
-  --fracao-disponivel: #2E5560; --fracao-reservada: #8F6229; --fracao-vendida: #6C7875;
-  --scrim: #14303ADB;
-}
-[data-theme="hora-azul"] {
-  --surface: #14303A; --surface-alt: #233D46; --ink: #F3F5F2; --ink-muted: #B7C5C4;
-  --heading: #F3F5F2; --line: #F3F5F224; --accent-text: #D29A55;
-  --action: #C98E45; --action-hover: #D29A55; --on-action: #14303A; --focus-ring: #C98E45;
-  --fracao-disponivel: #EEF0EC; --fracao-reservada: #C98E45; --fracao-vendida: #8E9996;
-}
-```
+- Uma só família, Archivo (pesos 400–800, larguras 96–125), alojada no site. O Newsreader sai.
+- Fundo `#F5F5F1`, cartões brancos, títulos Atlântico `#14303A`, texto `#5F6C70`. `#C98E45` só no botão do formulário e no sol do símbolo.
+- Cantos arredondados (24 / 18 / 12 px) e botões em pílula. Sem sombras.
+- Título do hero enorme, em maiúsculas; o resto em frase.
+- Marca provisória: símbolo «Vigia» + «OCEANVIEW 2» (código no `docs/DESIGN.md`), até os clientes escolherem o logótipo.
+- Esboço de arquiteto do edifício na secção Arquitetura.
+- Sem ripas de madeira em nenhum elemento: o edifício terá acrílico.
 
-- Tipografia: Archivo (Google Fonts, com o eixo de largura `wdth` 100 a 125) para títulos, marca e interface; Newsreader para texto corrido.
-- Marca provisória: «OCEANVIEW 2» em Archivo com largura 125, peso 500, maiúsculas e espaçamento de 0,06em. O logótipo definitivo está a ser desenhado a partir do nome OceanView e vai substituí-la.
-- Não usar ripas de madeira em nenhum elemento: o edifício terá acrílico. O sistema visual antigo está desatualizado nesse ponto.
-- Arestas vivas (raio 0; 2 px só em chips e campos), filetes em vez de sombras, muito espaço e composições horizontais. `--luz` é só acento, até 3% da área, e nunca texto sobre fundo claro.
-- Dois temas: Dia (fundo branco e Cal) e Hora azul (fundo Atlântico), usado no hero e sobre fotografia com o véu `--scrim`.
+O sistema anterior (arestas vivas, Newsreader, temas Dia e Hora azul) está **substituído**: não o reutilizar.
 
 ## Regras de conteúdo
 
@@ -61,14 +45,20 @@ Usar exatamente estes valores (contrastes já verificados para texto AA):
 - Não inventar dados: o que faltar fica marcado com `TODO:` e entra nas perguntas de `docs/ESTADO.md`.
 - Os textos chegam do chat de projeto em `content/`; não os reescrever sem pedido.
 
-## Landing page (fase 1)
+## Landing page (versão 2)
 
-1. Hero em Hora azul: marca, frase «Uma nova forma de chegar a casa.», localização e botões «Registar interesse» e WhatsApp.
-2. O essencial: 12 apartamentos · T1, T2 e T2+2 · 56 a 253 m² · estacionamento em cave · varandas e terraços.
-3. Localização: fotografias reais de drone e tempos medidos até à praia.
-4. Galeria: imagens do promotor e fotografias, com a indicação de imagem ilustrativa onde se aplica.
-5. Registo de interesse: formulário com qualificação e consentimento.
-6. Rodapé legal, política de privacidade e definições de cookies.
+Textos em `content/landing.pt.md` e `content/landing.en.md`; ordem e aspeto em `material/design/referencia.html`.
+
+1. Hero sobre fotografia: marca, «UMA NOVA FORMA DE CHEGAR A CASA.», subtítulo, «Registar interesse» e WhatsApp.
+2. O projeto: imagem, título, texto e quatro números.
+3. Imagem grande da sala.
+4. Tipologias: três cartões (T1, T2, T2+2), cada um leva ao formulário com a tipologia escolhida.
+5. Frações: seletor de A a L e ficha. **Só aparece quando o `data/fracoes.json` tiver tipologia nas 12 frações**; até lá fica escondido (o código fica pronto).
+6. Arquitetura: título centrado e esboço de arquiteto.
+7. Localização: texto, tempos medidos e fotografia de drone (ou bloco de espera) com ligação ao Google Maps. Sem mapas incorporados: o site não faz pedidos a outros servidores.
+8. Próximos passos: três cartões (plantas, visita, WhatsApp).
+9. Registo de interesse: bloco escuro com o formulário e uma imagem.
+10. Rodapé legal, política de privacidade e definições de cookies.
 
 ### Formulário
 
@@ -119,6 +109,10 @@ Início, Localização, Frações (seletor de A a L com o estado de cada uma e l
 - Contraste AA, foco visível e navegação por teclado.
 - `<title>`, descrição e Open Graph em português e inglês, e favicon.
 - Formulário testado de ponta a ponta: o pedido chega à folha e ao email.
+
+## Pastas
+
+- `material/`: originais, referência de design e fotografias. **Não se publica** (está no `.gitignore`). O site usa só as versões otimizadas em `assets/img/`.
 
 ## Fim de cada sessão
 
