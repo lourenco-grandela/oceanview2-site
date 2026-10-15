@@ -1,17 +1,19 @@
-# Pré-visualização no GitHub Pages, para mostrar aos clientes enquanto faltam
-# dados. Exceção à regra dos TODO aprovada só para esta pré-visualização.
+# Publicação no GitHub Pages, em dois modos:
 #
-# - Publica só os ficheiros do site (nada de docs/, content/, formulario/,
-#   ferramentas/ nem material/).
-# - Acrescenta <meta name="robots" content="noindex, nofollow"> às três páginas
-#   no momento da publicação. Os ficheiros do repositório ficam sem noindex,
-#   prontos para o lançamento.
-# - No lançamento (domínio próprio): apagar o passo «noindex», acrescentar o
-#   CNAME e o sitemap.xml/robots.txt à lista de ficheiros. Ver README.md.
+# - PRÉ-VISUALIZAÇÃO (não há CNAME): em https://<utilizador>.github.io/<repositório>/,
+#   com <meta name="robots" content="noindex, nofollow"> nas páginas. Exceção
+#   à regra dos TODO aprovada só para mostrar aos clientes.
+# - DOMÍNIO (há CNAME): sem noindex, com robots.txt, sitemap.xml e CNAME.
+#   O CNAME só é escrito pelo ferramentas/preencher.py quando não falta nenhum
+#   dado obrigatório; mesmo assim, este workflow recusa publicar no domínio se
+#   houver algum marcador .todo visível.
+#
+# Publica só os ficheiros do site (nada de docs/, content/, formulario/,
+# ferramentas/, qr/ nem material/). Ver docs/LANCAMENTO.md.
 #
 # Antes da primeira publicação: Settings › Pages › Build and deployment ›
 # Source: «GitHub Actions».
-name: Pré-visualização (noindex)
+name: Publicação (pré-visualização ou domínio)
 
 on:
   push:
@@ -36,17 +38,42 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Escolher o modo
+        run: |
+          if [ -f CNAME ]; then
+            echo "MODO=dominio" >> "$GITHUB_ENV"
+            echo "BASE=/" >> "$GITHUB_ENV"
+            echo "Modo: DOMÍNIO ($(cat CNAME))"
+          else
+            echo "MODO=previsualizacao" >> "$GITHUB_ENV"
+            echo "BASE=/${{ github.event.repository.name }}/" >> "$GITHUB_ENV"
+            echo "Modo: PRÉ-VISUALIZAÇÃO (noindex)"
+          fi
+
       - name: Juntar os ficheiros do site
         run: |
           mkdir _site
-          cp -R index.html en privacidade.html config.js assets fonts data .nojekyll _site/
+          cp -R index.html en privacidade.html 404.html config.js assets fonts data .nojekyll _site/
+          if [ "$MODO" = dominio ]; then cp CNAME robots.txt sitemap.xml _site/; fi
+          # A 404 é servida a qualquer profundidade: os caminhos partem do <base>.
+          perl -0pi -e "s|<base href=\"/\">|<base href=\"$BASE\">|" _site/404.html
+          grep -q "<base href=\"$BASE\">" _site/404.html
 
-      - name: noindex (só na pré-visualização)
+      - name: Pré-visualização — noindex
+        if: env.MODO == 'previsualizacao'
         run: |
-          for f in _site/index.html _site/en/index.html _site/privacidade.html; do
+          for f in _site/index.html _site/en/index.html _site/privacidade.html _site/en/privacy.html; do
             perl -0pi -e 's|<meta name="viewport"|<meta name="robots" content="noindex, nofollow">\n<meta name="viewport"|' "$f"
             grep -q 'content="noindex, nofollow"' "$f" || { echo "Falta o noindex em $f"; exit 1; }
           done
+
+      - name: Domínio — recusar se houver dados em falta
+        if: env.MODO == 'dominio'
+        run: |
+          if grep -l 'class="todo"\|TODO-dominio' _site/index.html _site/en/index.html _site/privacidade.html _site/en/privacy.html; then
+            echo "Há marcadores por preencher nestas páginas: não se publica no domínio."
+            exit 1
+          fi
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

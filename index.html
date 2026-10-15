@@ -107,7 +107,7 @@
       </div>
       <div class="hero__lado">
         <!-- TODO: a distância até à praia só entra depois de medida. -->
-        <p class="hero__subtitulo">Doze apartamentos a <span class="todo">[X]</span> minutos a pé da praia, com varandas, terraços e estacionamento em cave.</p>
+        <p class="hero__subtitulo">Doze apartamentos a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé da praia, com varandas, terraços e estacionamento em cave.</p>
         <div class="grupo-botoes">
           <a class="btn btn--claro" href="#registo">Registar interesse <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
           <a class="btn btn--contorno-claro" data-whatsapp hidden href="#">Falar por WhatsApp</a>
@@ -135,7 +135,7 @@
       </figure>
       <div class="projeto__texto">
         <h2 class="titulo titulo--grande" id="titulo-projeto">Uma casa para viver junto ao mar, todo o ano.</h2>
-        <p class="texto">O OceanView 2 são doze apartamentos na Consolação, em Peniche: um T1, sete T2 e quatro T2+2. Varandas e terraços conforme a fração, estacionamento em cave e a praia a <span class="todo">[X]</span> minutos a pé.</p>
+        <p class="texto">O OceanView 2 são doze apartamentos na Consolação, em Peniche: um T1, sete T2 e quatro T2+2. Varandas e terraços conforme a fração, estacionamento em cave e a praia a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé.</p>
       </div>
     </div>
 
@@ -155,7 +155,7 @@
       <div class="numeros__item">
         <!-- TODO: minutos a pé até à praia, depois de medidos. -->
         <dt class="numeros__rotulo">A pé da praia da Consolação</dt>
-        <dd class="numeros__valor"><span class="todo">[X]</span><span class="numeros__unidade">min</span></dd>
+        <dd class="numeros__valor"><span class="todo" data-dado="praia_a_pe_min">[X]</span><span class="numeros__unidade">min</span></dd>
       </div>
     </dl>
   </section>
@@ -313,7 +313,7 @@
     <p class="etiqueta">Arquitetura</p>
     <h2 class="titulo arquitetura__titulo" id="titulo-arquitetura">Linhas simples.<br>A luz da costa.</h2>
     <!-- TODO: texto a validar pela Inês e pelo Carlos (content/landing.pt.md). -->
-    <p class="texto"><span class="todo">Varandas amplas, cobertura em telha e uma fachada clara, à escala da Consolação.</span></p>
+    <p class="texto"><span class="todo" data-dado="arquitetura_validada">Varandas amplas, cobertura em telha e uma fachada clara, à escala da Consolação.</span></p>
     <img class="arquitetura__esboco" src="assets/img/esboco.webp" width="1479" height="891" loading="lazy" decoding="async"
          alt="Esboço de arquiteto da fachada do OceanView 2: três pisos com varandas corridas e cobertura em telha.">
     <a class="btn btn--contorno btn--branco" href="#registo">Pedir plantas e acabamentos <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
@@ -325,24 +325,24 @@
       <div class="localizacao__texto">
         <p class="etiqueta">Localização</p>
         <!-- TODO: título, texto e tempos dependem das medições (a pé / de carro). -->
-        <h2 class="titulo titulo--grande" id="titulo-localizacao">O mar a <span class="todo">[X]</span> minutos a pé.</h2>
-        <p class="texto">O OceanView 2 nasce na Consolação, em Peniche, a <span class="todo">[X]</span> minutos a pé da praia e a <span class="todo">[Y]</span> minutos de carro do centro de Peniche. A praia da Consolação é conhecida pelo iodo das suas águas e, para norte, um longo areal segue até Peniche, procurado por surfistas.</p>
+        <h2 class="titulo titulo--grande" id="titulo-localizacao">O mar a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé.</h2>
+        <p class="texto">O OceanView 2 nasce na Consolação, em Peniche, a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé da praia e a <span class="todo" data-dado="peniche_carro_min">[Y]</span> minutos de carro do centro de Peniche. A praia da Consolação é conhecida pelo iodo das suas águas e, para norte, um longo areal segue até Peniche, procurado por surfistas.</p>
         <ul class="distancias">
-          <li><span>Praia da Consolação</span><span><span class="todo">[X]</span> min a pé</span></li>
-          <li><span>Peniche</span><span><span class="todo">[Y]</span> min de carro</span></li>
-          <li><span>Óbidos</span><span><span class="todo">[Z]</span> min de carro</span></li>
-          <li><span>Lisboa</span><span><span class="todo">[W]</span> min de carro</span></li>
+          <li><span>Praia da Consolação</span><span><span class="todo" data-dado="praia_a_pe_min">[X]</span> min a pé</span></li>
+          <li><span>Peniche</span><span><span class="todo" data-dado="peniche_carro_min">[Y]</span> min de carro</span></li>
+          <li><span>Óbidos</span><span><span class="todo" data-dado="obidos_carro_min">[Z]</span> min de carro</span></li>
+          <li><span>Lisboa</span><span><span class="todo" data-dado="lisboa_carro_min">[W]</span> min de carro</span></li>
         </ul>
-        <p class="nota localizacao__nota">Tempos medidos em <span class="todo">[data]</span>, a partir do edifício.</p>
+        <p class="nota localizacao__nota">Tempos medidos em <span class="todo" data-dado="data_medicao">[data]</span>, a partir do edifício.</p>
       </div>
-      <!-- TODO: fotografia de drone da zona, com o mar, quando existir
-           (material/fotos/). Até lá fica o bloco de espera. Sem mapa
-           incorporado: o site não faz pedidos a outros servidores. -->
+      <!-- NOTA: quando houver fotografia de drone (material/fotos/), entra aqui
+           no lugar do bloco de espera. Sem mapa incorporado: o site não faz
+           pedidos a outros servidores. -->
       <div class="mapa-espera">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
         <p>Mapa da Consolação</p>
         <!-- TODO: ligação do Google Maps para o local exato do edifício. -->
-        <p class="nota"><span class="todo">Abrir no Google Maps</span></p>
+        <p class="nota"><span class="todo" data-dado="google_maps">Abrir no Google Maps</span></p>
       </div>
     </div>
   </section>
@@ -443,7 +443,9 @@
 
             <div class="campo campo--largo" data-campo="mensagem">
               <label for="mensagem">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" rows="3" placeholder="O que gostaria de saber?"></textarea>
+              <textarea id="mensagem" name="mensagem" rows="3" maxlength="500" aria-describedby="contador-mensagem" placeholder="O que gostaria de saber?"></textarea>
+              <!-- O script da folha corta cada campo aos 500 caracteres. -->
+              <p class="campo__contador" id="contador-mensagem" data-contador="mensagem"><span data-usados>0</span> / 500 caracteres</p>
             </div>
           </div>
 
@@ -506,12 +508,12 @@
     </nav>
   </div>
 
-  <!-- Menções obrigatórias. TODO: preencher antes de publicar. -->
+  <!-- TODO: menções obrigatórias (dados-lancamento.json). -->
   <div class="rodape__colunas">
     <div>
       <p class="etiqueta">Comercialização</p>
-      <p><span class="todo">[mediadora]</span> · AMI n.º <span class="todo">[ ]</span><br>
-         <span class="todo">[nome do agente]</span> · <span class="todo">[telefone]</span> · <span class="todo">[email]</span></p>
+      <p><span class="todo" data-dado="mediadora">[mediadora]</span> · AMI n.º <span class="todo" data-dado="ami">[ ]</span><br>
+         <span class="todo" data-dado="agente_nome">[nome do agente]</span> · <span class="todo" data-dado="agente_telefone">[telefone]</span> · <span class="todo" data-dado="agente_email">[email]</span></p>
     </div>
     <div>
       <p class="etiqueta">Promotor</p>
@@ -519,7 +521,7 @@
     </div>
     <div>
       <p class="etiqueta">Informação</p>
-      <p>Classe energética <span class="todo">[classe]</span>, conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.</p>
+      <p>Classe energética <span class="todo" data-dado="classe_energetica">[classe]</span>, conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.</p>
     </div>
   </div>
 

@@ -1,9 +1,10 @@
 /* OceanView 2 — configuração do site.
- * Único ficheiro a editar quando chegarem os contactos e os endereços.
+ * O WhatsApp e os IDs de medição são escritos pelo ferramentas/preencher.py a
+ * partir do dados-lancamento.json (ver docs/LANCAMENTO.md). Não editar à mão.
  * Não guardar aqui segredos: este ficheiro é servido ao browser.
  */
 window.OCEANVIEW = {
-  // TODO: número de WhatsApp em formato internacional, só dígitos (ex.: 351912345678).
+  // Número de WhatsApp em formato internacional, só dígitos (ex.: 351912345678).
   // Enquanto estiver vazio, os botões de WhatsApp ficam escondidos.
   whatsapp: '',
 
@@ -21,8 +22,8 @@ window.OCEANVIEW = {
   utmCampanhaOmissao: 'lancamento-2026-09',
 
   // Etiquetas de medição. Carregadas só depois do consentimento no banner.
-  // TODO: ID de medição do Google Analytics 4 (G-XXXXXXXXXX).
+  // ID de medição do Google Analytics 4 (G-XXXXXXXXXX).
   ga4: '',
-  // TODO: ID do píxel da Meta.
+  // ID do píxel da Meta (só dígitos).
   metaPixel: ''
 };

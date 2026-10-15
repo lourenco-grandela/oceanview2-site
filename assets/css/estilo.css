@@ -443,6 +443,8 @@ h1, h2, h3 { font-weight: 600; text-wrap: balance; }
 .campo input:focus, .campo textarea:focus { border-color: #FFFFFF; }
 .campo[data-erro='true'] input { border-color: var(--erro-escuro); border-width: 2px; }
 .campo__erro { font-size: 13px; color: var(--erro-escuro); }
+.campo__contador { align-self: flex-end; font-size: 12px; color: var(--texto-claro); font-variant-numeric: tabular-nums; }
+.campo__contador--perto { color: #FFFFFF; font-weight: 600; }
 .campo__erro:empty { display: none; }
 
 .escolha { border: 0; padding: 0; margin: 0; min-width: 0; }
@@ -548,3 +550,25 @@ dialog.definicoes::backdrop { background: rgba(20, 48, 58, .6); }
   .a-revelar { opacity: 0; transform: translateY(16px); }
   .revelada { transition: opacity .5s ease, transform .5s ease; }
 }
+
+/* --- Página 404 (bilingue: o GitHub Pages só usa um 404.html) ------------- */
+.erro404 { padding-top: clamp(32px, 6vw, 72px); }
+.erro404__bloco {
+  padding: clamp(28px, 5vw, 64px);
+  background: var(--cartao); border: 1px solid var(--borda-cartao); border-radius: var(--raio-grande);
+}
+.erro404__codigo {
+  font-size: clamp(72px, 14vw, 180px); font-weight: 800; font-stretch: 96%;
+  line-height: .85; letter-spacing: -0.05em; color: var(--texto-2);
+  margin-bottom: clamp(24px, 4vw, 48px);
+}
+.erro404__linguas { display: grid; gap: 40px; }
+@media (min-width: 900px) {
+  .erro404__linguas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); }
+  .erro404__lingua + .erro404__lingua { border-left: 1px solid var(--filete); padding-left: clamp(32px, 5vw, 80px); }
+}
+@media (max-width: 899px) {
+  .erro404__lingua + .erro404__lingua { border-top: 1px solid var(--filete); padding-top: 40px; }
+}
+.erro404__lingua { display: flex; flex-direction: column; gap: 22px; }
+.erro404 + .rodape { padding-top: 48px; }

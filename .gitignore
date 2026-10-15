@@ -9,3 +9,6 @@ material/
 
 # Configuração local do Claude Code (caminhos desta máquina)
 .claude/
+
+# Dados do lançamento: tem os emails AVISAR (dados pessoais dos clientes)
+dados-lancamento.json

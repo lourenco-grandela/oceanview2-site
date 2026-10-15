@@ -7,6 +7,9 @@
 <title>Política de privacidade — OceanView 2</title>
 <meta name="description" content="Como são tratados os dados pessoais recolhidos no site do OceanView 2, na Consolação, Peniche.">
 <link rel="canonical" href="https://TODO-dominio.pt/privacidade.html">
+<link rel="alternate" hreflang="pt-PT" href="https://TODO-dominio.pt/privacidade.html">
+<link rel="alternate" hreflang="en-GB" href="https://TODO-dominio.pt/en/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://TODO-dominio.pt/privacidade.html">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -36,8 +39,7 @@
   </a>
   <div class="cabecalho__accoes">
     <p class="idiomas" aria-label="Idioma">
-      <a href="privacidade.html" lang="pt-PT" aria-current="page">PT</a><span aria-hidden="true">·</span><!-- TODO: não há ainda política de privacidade em inglês; a troca leva
-           à landing inglesa. Trocar por en/privacy.html quando existir. --><a href="en/" lang="en-GB" hreflang="en-GB">EN</a>
+      <a href="privacidade.html" lang="pt-PT" aria-current="page">PT</a><span aria-hidden="true">·</span><a href="en/privacy.html" lang="en-GB" hreflang="en-GB">EN</a>
     </p>
     <a class="btn btn--principal btn--pequeno" href="./#registo">Registar interesse</a>
   </div>
@@ -50,12 +52,11 @@
 
         <p class="etiqueta">Informação legal</p>
         <h1>Política de privacidade</h1>
-        <p class="nota">Última atualização: <span class="todo">TODO: data de publicação</span>.</p>
+        <p class="nota">Última atualização: <span class="todo" data-dado="data_publicacao_politica">[data de publicação]</span>.</p>
 
         <h2>Quem trata os seus dados</h2>
-        <!-- TODO: identificação do responsável pelo tratamento. Sem isto a
-             política não pode ser publicada. -->
-        <p><span class="todo">TODO: nome ou empresa responsável</span>, NIF <span class="todo">TODO</span>, <span class="todo">TODO: morada</span>, <span class="todo">TODO: email</span>, <span class="todo">TODO: telefone</span>.</p>
+        <!-- TODO: identificação do responsável pelo tratamento (dados-lancamento.json). -->
+        <p><span class="todo" data-dado="responsavel_nome">[nome ou empresa responsável]</span>, NIF <span class="todo" data-dado="responsavel_nif">[ ]</span>, <span class="todo" data-dado="responsavel_morada">[morada]</span>, <span class="todo" data-dado="responsavel_email">[email]</span>, <span class="todo" data-dado="responsavel_telefone">[telefone]</span>.</p>
 
         <h2>Que dados recolhemos</h2>
         <ul>
@@ -72,13 +73,13 @@
 
         <h2>Durante quanto tempo</h2>
         <!-- TODO: prazo por confirmar; a proposta do texto são 24 meses. -->
-        <p>Até <span class="todo">TODO: 24</span> meses depois do último contacto, ou até nos pedir para apagar.</p>
+        <p>Até <span class="todo" data-dado="prazo_conservacao_meses">[24]</span> meses depois do último contacto, ou até nos pedir para apagar.</p>
 
         <h2>Quem pode ter acesso</h2>
         <p>A equipa comercial do empreendimento, o prestador que gere o site e o formulário e as ferramentas que usamos para guardar contactos e enviar email (Google), que tratam os dados apenas em nosso nome.</p>
 
         <h2>Os seus direitos</h2>
-        <p>Pode pedir para aceder, corrigir, apagar ou limitar o tratamento dos seus dados, opor-se a ele e retirar o consentimento, escrevendo para <span class="todo">TODO: email</span>. Se achar que os seus direitos não foram respeitados, pode reclamar junto da Comissão Nacional de Proteção de Dados (<a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).</p>
+        <p>Pode pedir para aceder, corrigir, apagar ou limitar o tratamento dos seus dados, opor-se a ele e retirar o consentimento, escrevendo para <span class="todo" data-dado="email_direitos">[email]</span>. Se achar que os seus direitos não foram respeitados, pode reclamar junto da Comissão Nacional de Proteção de Dados (<a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).</p>
 
         <h2>Cookies</h2>
         <p>O site só ativa cookies de medição e de publicidade depois de os aceitar no banner. Pode mudar a escolha em «Definições de cookies», no rodapé.</p>
@@ -94,7 +95,7 @@
   <div class="rodape__colunas">
     <div>
       <p class="etiqueta">Comercialização</p>
-      <p><span class="todo">[mediadora]</span> · AMI n.º <span class="todo">[ ]</span></p>
+      <p><span class="todo" data-dado="mediadora">[mediadora]</span> · AMI n.º <span class="todo" data-dado="ami">[ ]</span></p>
     </div>
     <div>
       <p class="etiqueta">Promotor</p>
@@ -102,7 +103,7 @@
     </div>
     <div>
       <p class="etiqueta">Informação</p>
-      <p>Classe energética <span class="todo">[classe]</span>, conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.</p>
+      <p>Classe energética <span class="todo" data-dado="classe_energetica">[classe]</span>, conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.</p>
     </div>
   </div>
   <div class="rodape__base">

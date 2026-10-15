@@ -30,6 +30,8 @@
       peloWhatsApp: ' Fale connosco pelo WhatsApp',
       maisTarde: ' Tente novamente mais tarde.',
       whatsapp: 'Olá, gostava de receber informação sobre o OceanView 2.',
+      faltam: 'Faltam {n} caracteres.',
+      limite: 'Chegou ao limite de 500 caracteres.',
       fracao: 'Fração',
       quartos: { 'T1': '1', 'T2': '2', 'T2+2': '2 + 2' },
       descricao: {
@@ -56,6 +58,8 @@
       peloWhatsApp: ' Message us on WhatsApp',
       maisTarde: ' Please try again later.',
       whatsapp: 'Hello, I would like to receive information about OceanView 2.',
+      faltam: '{n} characters left.',
+      limite: 'You have reached the 500-character limit.',
       fracao: 'Apartment',
       quartos: { 'T1': '1', 'T2': '2', 'T2+2': '2 + 2' },
       descricao: {
@@ -472,6 +476,37 @@
     });
   }
 
+  /* --------------------------------------------- contador da mensagem */
+  /* A caixa tem maxlength de 500, que é o corte do script da folha. O número
+     visível acompanha a escrita; para leitores de ecrã, o contador está ligado
+     à caixa por aria-describedby e só é anunciado (aria-live) quando faltam
+     50 caracteres e quando chega ao limite, para não falar a cada tecla. */
+  function iniciarContador() {
+    $$('[data-contador]').forEach(function (contador) {
+      var caixa = document.getElementById(contador.getAttribute('data-contador'));
+      var usados = $('[data-usados]', contador);
+      if (!caixa || !usados) return;
+      var limite = Number(caixa.getAttribute('maxlength')) || 500;
+      var aviso = document.createElement('span');
+      aviso.className = 'so-leitor';
+      aviso.setAttribute('aria-live', 'polite');
+      contador.appendChild(aviso);
+      var ultimoAviso = '';
+
+      function atualizar() {
+        var n = caixa.value.length;
+        usados.textContent = String(n);
+        contador.classList.toggle('campo__contador--perto', n >= limite - 50);
+        var faltam = limite - n;
+        var texto = faltam === 0 ? T.limite : (faltam <= 50 ? T.faltam.replace('{n}', faltam) : '');
+        var marco = faltam === 0 ? 'fim' : (faltam <= 50 ? 'perto' : '');
+        if (marco !== ultimoAviso) { aviso.textContent = texto; ultimoAviso = marco; }
+      }
+      caixa.addEventListener('input', atualizar);
+      atualizar();
+    });
+  }
+
   /* ------------------------------------------------- seletor de frações */
   /* A secção #fracoes está escrita no HTML com o atributo hidden e só aparece
      quando o data/fracoes.json tiver a tipologia das 12 frações. Nada aqui
@@ -601,6 +636,7 @@
     iniciarWhatsApp();
     iniciarEscolhas();
     iniciarFormulario();
+    iniciarContador();
     iniciarFracoes();
     iniciarMovimento();
     iniciarCookies();

@@ -10,13 +10,17 @@ Fase 1: landing page em português e inglês, com o design da versão 2
 ```
 index.html            landing page em português
 en/index.html         landing page em inglês
-privacidade.html      política de privacidade (só em português)
+privacidade.html      política de privacidade em português
+en/privacy.html       política de privacidade em inglês
+404.html              página de erro, bilingue (o GitHub Pages só usa uma)
+dados-lancamento.json dados em falta para o lançamento (fora do git, ver docs/LANCAMENTO.md)
 config.js             número de WhatsApp, URL do formulário e IDs de medição
 assets/css/estilo.css sistema visual (cores, tipografia, componentes)
 assets/js/principal.js formulário, UTM, WhatsApp, cookies
 assets/img/           imagens otimizadas (AVIF/WebP), ver «Imagens»
 fonts/                Archivo alojado aqui, ver «Tipos de letra»
-ferramentas/          script que gera as imagens a partir de material/
+ferramentas/          gerar-imagens.py (imagens) e preencher.py (dados do lançamento)
+qr/                   QR codes com UTM, gerados pelo preencher.py (não se publicam)
 content/landing.*.md  textos da landing page (português e inglês)
 content/privacidade.pt.md texto da política de privacidade
 data/fracoes.json     tabela única das 12 frações (o seletor só aparece
@@ -24,6 +28,7 @@ data/fracoes.json     tabela única das 12 frações (o seletor só aparece
 docs/FORMULARIO.md    contrato do formulário (campos, envio, instalação)
 docs/DESIGN.md        sistema visual (versão 2)
 docs/ESTADO.md        estado do projeto
+docs/LANCAMENTO.md    passo a passo do dia do lançamento
 .github/workflows/    pré-visualização no GitHub Pages (com noindex)
 ```
 
@@ -39,12 +44,13 @@ python3 -m http.server 8000
 ## Pré-visualização (enquanto faltam dados)
 
 O workflow `.github/workflows/pre-visualizacao.yml` publica o site no GitHub
-Pages em cada `push` para o `main`, em `https://<utilizador>.github.io/<repositório>/`.
+Pages em cada `push` para o `main`. Sem `CNAME`, em modo pré-visualização, em
+`https://<utilizador>.github.io/<repositório>/`.
 É uma **exceção aprovada à regra dos TODO, só para mostrar aos clientes**:
 
 - publica só os ficheiros do site (`index.html`, `en/`, `privacidade.html`,
-  `config.js`, `assets/`, `fonts/`, `data/`);
-- acrescenta `<meta name="robots" content="noindex, nofollow">` às três
+  `404.html`, `config.js`, `assets/`, `fonts/`, `data/`);
+- acrescenta `<meta name="robots" content="noindex, nofollow">` às quatro
   páginas no momento da publicação — os ficheiros do repositório não o têm;
 - os caminhos são todos relativos (fontes incluídas), por isso o site funciona
   no subcaminho do repositório.
@@ -55,25 +61,30 @@ tiver, mesmo com o `noindex`: não pôr lá nada que não possa ser visto.
 
 ## Publicar no domínio (lançamento)
 
-> **Não publicar no domínio enquanto houver TODO visíveis.** Só quando as três
-> páginas — landing portuguesa, landing inglesa e política de privacidade — não
-> tiverem nenhum marcador `.todo` à vista. Para confirmar:
+Tudo o que falta está no `dados-lancamento.json`. O passo a passo completo
+(dados, script, DNS, domínio no GitHub Pages, HTTPS, Search Console e teste do
+formulário) está em [`docs/LANCAMENTO.md`](docs/LANCAMENTO.md). Em resumo:
+
+```bash
+.venv/bin/python ferramentas/preencher.py --verificar   # o que falta
+.venv/bin/python ferramentas/preencher.py               # preenche
+```
+
+- Cada dado em falta está no HTML como `<span class="todo" data-dado="chave">`.
+  O script troca o conteúdo e tira a classe `.todo`; o marcador fica, por isso
+  pode correr-se outra vez com um valor corrigido.
+- Só quando não falta nenhum dado obrigatório é que o script escreve o
+  `CNAME`. É isso que faz o workflow publicar **no domínio, sem `noindex`**.
+  Mesmo com `CNAME`, o workflow recusa publicar se houver um `.todo` visível.
+- Os emails da linha `AVISAR` ficam só no `dados-lancamento.json` (fora do
+  git): o script mostra a linha para colar no Apps Script.
+
+> **Regra:** nada vai para o domínio com marcadores `.todo` visíveis. Para
+> confirmar à mão:
 >
 > ```bash
-> grep -o 'class="todo"' index.html en/index.html privacidade.html | cut -d: -f1 | uniq -c
+> grep -o 'class="todo"' index.html en/index.html privacidade.html en/privacy.html | cut -d: -f1 | uniq -c
 > ```
->
-> Só se publica quando este comando não devolver nada.
-
-1. No workflow, apagar o passo «noindex» e acrescentar `CNAME`, `robots.txt` e
-   `sitemap.xml` à lista de ficheiros copiados.
-2. Criar o ficheiro `CNAME` na raiz com o domínio (só o domínio, sem
-   `https://`) e, no registador, apontar os registos DNS para o GitHub Pages.
-   O `CNAME` ainda **não** existe — só depois de o domínio estar registado em
-   nome dos clientes.
-3. Trocar `TODO-dominio.pt` pelo domínio nas três páginas, no `robots.txt` e
-   no `sitemap.xml`.
-4. Ligar **Enforce HTTPS** assim que o certificado ficar pronto.
 
 O ficheiro `.nojekyll` está na raiz para o GitHub servir os ficheiros tal como
 estão, sem os processar.
@@ -145,8 +156,11 @@ O português está em `/` e o inglês em `/en/`. As duas páginas partilham o
   são os mesmos do português** (`Segunda habitação`, `Até 3 meses`, …): é a
   mesma folha de contactos e as mesmas colunas. O campo `pagina` diz
   `/en/index.html`, o que permite saber de que versão veio cada contacto.
-- A política de privacidade só existe em português. As ligações a partir da
-  versão inglesa estão marcadas com `hreflang="pt-PT"`.
+- A política de privacidade existe nas duas línguas (`privacidade.html` e
+  `en/privacy.html`), com `hreflang` entre elas.
+- A página 404 é uma só, bilingue: o GitHub Pages serve o mesmo `404.html`
+  para qualquer endereço. Os caminhos partem do `<base href>`, que o workflow
+  ajusta ao modo (raiz do repositório na pré-visualização, `/` no domínio).
 
 ## Tipos de letra
 
@@ -162,7 +176,7 @@ o design da versão 2.
 
 Reduzido ao alfabeto latino e aos acentos do português. O 800 e a largura 96
 são do título do hero; a largura 125 é da marca. É adiantado com `preload` no
-`<head>` das três páginas.
+`<head>` de todas as páginas.
 
 Os caminhos são **relativos** (`fonts/...` no `preload`, `../../fonts/...` no
 `estilo.css`), por isso o site funciona tanto na raiz do domínio como num

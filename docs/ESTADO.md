@@ -1,8 +1,67 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-14
+Última atualização: 2026-10-15
 
 ## Feito
+
+### Site fechado do nosso lado (2026-10-15)
+
+- **Um só ficheiro para os dados em falta: `dados-lancamento.json`** (fora do
+  git, porque vai ter os emails da linha AVISAR, que são dados pessoais dos
+  clientes; o repositório é público). Cada bloco diz quem dá o quê.
+- **`ferramentas/preencher.py`** lê esse ficheiro e:
+  - valida os formatos (email, NIF com dígito de controlo, AMI, classe
+    energética, domínio, datas, minutos, ligação do Maps, IDs do GA4 e da
+    Meta) e, se algum estiver mal, pára sem mexer em nada;
+  - preenche os 19 marcadores de cada landing page e os 11 de cada política
+    (cada um é um `<span data-dado="chave">`, que fica no HTML sem a classe
+    `.todo`, por isso o script pode correr outra vez com um valor corrigido),
+    a descrição da página, o `config.js` e o domínio em todos os endereços;
+  - gera o `robots.txt`, o `sitemap.xml` (quatro páginas, com `hreflang`) e
+    os QR codes com UTM em `qr/` (lona, brochura, brochura em inglês; SVG e
+    PNG, correção de erros nível Q);
+  - **só escreve o `CNAME` quando não falta nada obrigatório**, e é o `CNAME`
+    que faz o workflow publicar no domínio sem `noindex`;
+  - mostra a linha AVISAR para colar no Apps Script, sem a gravar em
+    ficheiro nenhum;
+  - `--verificar` diz o que falta, quem dá e quantos `.todo` ficam.
+- **Testado numa cópia, com dados fictícios** (nunca no repositório): dados
+  mal escritos → recusa sem alterar nada; dados parciais → preenche o que há,
+  sem `CNAME`; dados completos → 0 `.todo`, `CNAME`, QR codes, `robots.txt` e
+  `sitemap.xml` certos; segunda passagem com um valor mudado → atualizado nos
+  seis sítios e na descrição.
+- **Workflow com dois modos**: sem `CNAME`, pré-visualização com `noindex`;
+  com `CNAME`, domínio com `robots.txt`, `sitemap.xml` e sem `noindex` — e
+  recusa publicar se houver algum `.todo` visível. Simulado localmente nos
+  dois modos e no caso de recusa.
+- **`en/privacy.html`** a partir do `content/privacidade.en.md`, no novo
+  design, com `hreflang` entre as duas políticas; a landing inglesa, o
+  consentimento e o banner de cookies ligam-lhe. A troca PT/EN da política
+  portuguesa leva à inglesa.
+- **Página 404 bilingue** (`404.html`). O GitHub Pages serve o mesmo ficheiro
+  a qualquer profundidade, por isso os caminhos partem de um `<base>` que o
+  workflow ajusta; os SVG estão em linha para não dependerem do `<base>`.
+  Os textos curtos da 404 («Página não encontrada.» / «Page not found.») são
+  meus.
+- **Mensagem com `maxlength="500"` e contador** (o corte do script da folha).
+  O contador está ligado à caixa por `aria-describedby` e só é anunciado a
+  leitores de ecrã quando faltam 50 caracteres e no limite.
+- **`docs/apps-script.gs` apagado.**
+- **`docs/LANCAMENTO.md`**: o dia do lançamento passo a passo.
+- **Domínios (whois, 15/10/2026): `oceanview2.pt`, `oceanview2.com` e
+  `oceanviewconsolacao.pt` estão todos livres** («No Match» na DNS.PT e na
+  Verisign, confirmado também na pesquisa da DNS.PT). Não foram registados:
+  o registo é em nome dos clientes.
+- **Pré-visualização no ar**: <https://lourenco-grandela.github.io/oceanview2-site/>,
+  com `noindex`.
+
+### Qualidade das páginas novas (2026-10-15)
+
+| Página | Telemóvel (sem `noindex`) |
+| --- | --- |
+| `en/privacy.html` | 100 / 100 / 100 / 100 |
+| `404.html` | 100 / 100 / 100 / — (tem `noindex` de propósito) |
+| `index.html` (pré-visualização) | 97 / 100 / 100 / 66 — o 66 é o `noindex` |
 
 ### Versão 2 da landing page (2026-10-14)
 
@@ -158,96 +217,63 @@ O que fica diferente de `material/design/referencia.html`, e porquê:
 
 ## Regra de publicação
 
-**No domínio, nada é publicado enquanto houver marcadores TODO visíveis** em
-qualquer uma das três páginas:
+**No domínio, nada é publicado enquanto houver marcadores `.todo` visíveis.**
+Agora é automático: o `preencher.py` só escreve o `CNAME` com os dados todos,
+e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **19 no
+`index.html`, 19 no `en/index.html`, 11 na `privacidade.html` e 11 na
+`en/privacy.html`**.
 
-```bash
-grep -o 'class="todo"' index.html en/index.html privacidade.html | cut -d: -f1 | uniq -c
-```
-
-Hoje devolve **19 no `index.html`, 19 no `en/index.html` e 11 na
-`privacidade.html`.**
-
-**Exceção aprovada a 14/10/2026: a pré-visualização no GitHub Pages**, com
-`noindex`, só para mostrar aos clientes. Não serve para divulgar nas redes.
+Exceção aprovada a 14/10/2026: a pré-visualização no GitHub Pages, com
+`noindex`, só para mostrar aos clientes.
 
 ## Em curso
 
-- **Pasta ligada ao GitHub** (`lourenco-grandela/oceanview2-site`, público).
-  O `main` do GitHub tinha só o CLAUDE.md e o ESTADO.md antigos; o histórico
-  foi mantido e os dois ficheiros foram substituídos pelas versões atuais.
-- **Falta enviar o commit do workflow da pré-visualização.** O GitHub recusou-o
-  porque o token guardado neste Mac não tem a permissão `workflow`. Está em
-  local, à frente do `origin/main`. Para o enviar: dar ao token a permissão
-  `workflow` (ou criar um novo com ela) e correr `git push`. Depois, no
-  repositório: Settings › Pages › Source: **GitHub Actions**. A
-  pré-visualização fica em `https://lourenco-grandela.github.io/oceanview2-site/`.
+- Nada do nosso lado: o site está à espera dos dados. Quando chegarem,
+  `docs/LANCAMENTO.md`.
 
 ## Falta
 
-### Bloqueia o lançamento
+Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 
-1. **Número de WhatsApp** — `config.js`.
-2. **Comercialização**: mediadora, n.º AMI, nome do agente, telefone e email —
-   rodapé das duas landing pages (e mediadora e AMI na política).
-3. **Classe energética** — rodapé das três páginas.
-4. **Política de privacidade**: responsável, NIF, morada, email, telefone,
-   prazo de conservação, email para os direitos e data de publicação; e a
-   validação pelos clientes e por um jurista.
-5. **Domínio registado** — trocar `TODO-dominio.pt` (canonical, `hreflang`,
-   `og:url`, `og:image`, `robots.txt`, `sitemap.xml`), criar o `CNAME` e mudar
-   o workflow (README, «Publicar no domínio»).
-6. **Distâncias medidas** ([X] praia a pé, [Y] Peniche, [Z] Óbidos e [W]
-   Lisboa de carro) e a data da medição. Aparecem no subtítulo do hero, no
-   texto e nos números de O projeto, no título, texto e lista da Localização e
-   na descrição da página.
-7. **Texto da Arquitetura validado pela Inês e pelo Carlos** — está marcado.
-8. **Ligação do Google Maps** para o local do edifício.
-9. **Teste de ponta a ponta do formulário** a partir da pré-visualização
-   (linha na folha e email).
+### Dos clientes
 
-### Entra assim que chegar
+1. Número de WhatsApp.
+2. Mediadora, n.º AMI, nome, telefone e email do agente.
+3. Classe energética.
+4. Política: responsável (nome ou empresa, NIF, morada, email, telefone),
+   prazo de conservação, email para os direitos e aprovação do texto (com
+   jurista).
+5. Emails Google para a linha AVISAR.
+6. Domínio registado em nome deles (os três candidatos estão livres).
+7. Validação da frase da Arquitetura.
+8. Localização exata do edifício, para a ligação do Google Maps.
+9. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
 
-10. **Fotografia de drone** (`material/fotos/`) para o hero e a Localização.
-11. **Renders em alta resolução** (2400 px ou mais de largura).
-12. **IDs do GA4 e do píxel da Meta** — `config.js`.
-13. **Logótipo definitivo** (hoje é o símbolo Vigia provisório).
-14. **Tabela das frações** — `data/fracoes.json`; o seletor aparece sozinho
-    quando as 12 tiverem tipologia.
-15. **Política de privacidade em inglês.** A versão inglesa liga à portuguesa.
+### Do Lourenço
+
+10. Distâncias medidas (praia a pé; Peniche, Óbidos e Lisboa de carro) e a
+    data da medição.
+11. Fotografia de drone (não impede o lançamento: há o bloco de espera).
+12. Imagens novas, sem as ripas de madeira dos renders atuais.
+13. Teste do formulário de ponta a ponta no domínio e apagar as linhas de
+    teste da folha.
+
+## Decisões (15/10/2026)
+
+- Os renders com ripas ficam por agora, com a nota de imagem ilustrativa; o
+  Lourenço vai fazer imagens novas.
+- Não há originais maiores do que 1536 px.
+- A cor de erro `#F6B9AE` está aprovada.
+- O repositório fica público.
+- O inglês está validado.
+- `docs/apps-script.gs` apagado.
+- `maxlength` de 500 na mensagem, com contador.
+- A linha de teste da folha é apagada pelo Lourenço depois do teste de ponta a
+  ponta.
 
 ## Perguntas
 
-1. **Os renders mostram painéis verticais com ripas castanhas na fachada**
-   (parecem madeira, junto às varandas). O CLAUDE.md diz que o edifício terá
-   acrílico e nada de ripas de madeira. Os renders ficam como estão, com a
-   nota de imagem ilustrativa, ou o promotor manda versões corrigidas antes de
-   irem para as redes?
-2. **Há originais dos renders com mais de 1536 px?** Num ecrã retina o hero
-   fica ligeiramente suave.
-3. **Cor de erro do formulário** (`#F6B9AE`, fora da paleta): aprovam, ou
-   preferem outra?
-4. **Repositório público ou privado?** O GitHub Pages grátis só funciona com
-   repositório público. Se for público, ficam visíveis o `docs/`, o
-   `content/`, o URL da aplicação web (não é segredo, segundo o
-   `docs/FORMULARIO.md`) e o email do Lourenço na linha `AVISAR` do
-   `formulario/Codigo.gs` e neste ficheiro.
-5. **Quem valida o inglês?** Os textos vêm do `content/landing.en.md`; o que
-   escrevi eu foi só interface (definições de cookies, «Map of Consolação»,
-   «Fields marked * are required», mensagens de erro).
-6. **Política de privacidade em inglês**: fazemos, ou a versão inglesa liga à
-   portuguesa no lançamento?
-7. **Apagar o registo «TESTE — apagar» da folha de contactos.**
-8. O rascunho da política tem de ser **validado pelos clientes e por um
-   jurista**: quem trata disso, e quando?
-9. **Quando entram os emails da Inês e do Carlos na linha `AVISAR`?** E a
-   folha fica na conta do Lourenço ou passa para uma conta dos clientes?
-10. O `docs/apps-script.gs` é um rascunho antigo, com outros nomes de campos.
-    **Apago-o?**
-11. O script corta cada campo aos **500 caracteres**. **Ponho um `maxlength`
-    de 500 na caixa da mensagem?**
-12. Número de WhatsApp comercial: é o mesmo que o telefone do rodapé?
-13. Quem mede as distâncias, e em que dia?
+Nenhuma pendente do nosso lado.
 
 ## Registo
 
@@ -278,3 +304,9 @@ Hoje devolve **19 no `index.html`, 19 no `en/index.html` e 11 na
   escondido até haver tipologias, caminhos relativos e workflow de
   pré-visualização com `noindex`. Lighthouse 97–100 no telemóvel e 100 no
   desktop, CLS 0.
+- 2026-10-15: site fechado do nosso lado — `dados-lancamento.json` e
+  `ferramentas/preencher.py` (com `--verificar`, testado numa cópia com dados
+  fictícios), workflow com modo pré-visualização / domínio, `en/privacy.html`,
+  página 404 bilingue, contador de 500 caracteres, `docs/LANCAMENTO.md`,
+  `docs/apps-script.gs` apagado. Domínios candidatos livres. Pré-visualização
+  no ar.
