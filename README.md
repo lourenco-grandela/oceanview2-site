@@ -103,9 +103,9 @@ Lista curta:
 
 - `config.js` — número de WhatsApp, URL da Web App do formulário, IDs do GA4 e do píxel da Meta.
 - `index.html` e `privacidade.html` — trocar `TODO-dominio.pt` pelo domínio real (canonical, `og:url`, `og:image`).
-- `index.html` — distâncias medidas, contactos comerciais, denominação da mediadora, n.º AMI e classe energética.
+- `index.html` — contactos comerciais, denominação da mediadora, n.º AMI e classe energética (as distâncias e o Google Maps já estão preenchidos).
 - `privacidade.html` — responsável pelo tratamento, prazos de conservação e transferências de dados.
-- `assets/img/` — trocar os renders pelas fotografias finais quando existirem (drone no hero e na Localização).
+- `assets/img/` — trocar os renders pelas imagens novas, sem ripas, quando existirem.
 - `robots.txt` e `sitemap.xml` — domínio definitivo.
 
 ## Imagens
@@ -126,9 +126,10 @@ As imagens em `assets/img/` são geradas a partir dos originais em `material/`
   mais, porque a redução enche a transparência de meios-tons.
 - Imagens de partilha (`og-oceanview2.jpg` e `og-oceanview2-en.jpg`), favicon
   e ícone do iPhone com o símbolo Vigia.
-- Quando houver fotografias reais em `material/fotos/`, acrescentá-las ao
-  script; a de drone com o edifício e o mar vai para o hero e para a
-  Localização.
+- Fotografias editadas pelo Lourenço (`material/fotos/`), recortadas e
+  reduzidas pelo script (lista `FOTOS`): três cartões de Viver aqui em 4:5 e
+  o bloco da Localização. Só se usam fotografias editadas; nunca de drone
+  sem edição. Para gerar só algumas: `gerar-imagens.py viver-praia localizacao`.
 - Manter a menção «Imagem ilustrativa, não contratual» em tudo o que não seja
   fotografia final.
 

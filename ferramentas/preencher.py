@@ -85,7 +85,7 @@ CAMPOS = [
     ("peniche_carro_min", ("distancias", "peniche_carro_min"), "minutos", True, "tu"),
     ("obidos_carro_min", ("distancias", "obidos_carro_min"), "minutos", True, "tu"),
     ("lisboa_carro_min", ("distancias", "lisboa_carro_min"), "minutos", True, "tu"),
-    ("data_medicao", ("distancias", "data_medicao"), "data", True, "tu"),
+    ("data_medicao", ("distancias", "data_medicao"), "mes", True, "tu"),
     ("google_maps", ("google_maps",), "maps", True, "clientes / tu"),
     ("arquitetura_validada", ("arquitetura_validada",), "sim", True, "clientes"),
     ("ga4", ("medicao", "ga4"), "ga4", False, "clientes / tu"),
@@ -165,6 +165,12 @@ def validar(tipo, valor):
         if tipo == "meses" and valor > 120:
             return None, "mais de 10 anos? confirmar"
         return valor, None
+    if tipo == "mes":
+        # Mês da medição: AAAA-MM (ou uma data completa, de que só conta o mês).
+        m = re.fullmatch(r"(\d{4})-(\d{2})(?:-\d{2})?", str(valor))
+        if not m or not 1 <= int(m.group(2)) <= 12:
+            return None, "mês no formato AAAA-MM"
+        return dt.date(int(m.group(1)), int(m.group(2)), 1), None
     if tipo == "data":
         try:
             return dt.date.fromisoformat(str(valor)), None
@@ -214,6 +220,19 @@ def recolher(dados):
 
 
 # ----------------------------------------------------------- escrita
+def mes_por_extenso(data, lingua):
+    mes = MESES[lingua][data.month - 1]
+    return "%s de %d" % (mes, data.year) if lingua == "pt" else "%s %d" % (mes, data.year)
+
+
+def duracao(minutos):
+    """Até 59 min só o número (a página escreve «min» ou «minutos» a seguir);
+    a partir de 60, «1h15» (a página não acrescenta unidade)."""
+    if minutos < 60:
+        return str(minutos)
+    return "%dh%02d" % divmod(minutos, 60) if minutos % 60 else "%dh" % (minutos // 60)
+
+
 def data_por_extenso(data, lingua):
     mes = MESES[lingua][data.month - 1]
     return "%d de %s de %d" % (data.day, mes, data.year) if lingua == "pt" else "%d %s %d" % (data.day, mes, data.year)
@@ -229,20 +248,53 @@ def telefone_href(numero):
 def conteudo(chave, valor, lingua):
     """HTML a pôr dentro do <span data-dado>. None = não mexer no conteúdo."""
     e = html.escape
-    if chave in ("data_medicao", "data_publicacao_politica"):
+    if chave == "data_medicao":
+        return e(mes_por_extenso(valor, lingua))
+    if chave == "data_publicacao_politica":
         return e(data_por_extenso(valor, lingua))
+    if chave.endswith("_min"):
+        return e(duracao(valor))
     if chave in ("agente_telefone", "responsavel_telefone"):
         return '<a href="%s">%s</a>' % (telefone_href(valor), e(valor))
     if chave in ("agente_email", "responsavel_email", "email_direitos"):
         return '<a href="mailto:%s">%s</a>' % (e(valor), e(valor))
     if chave == "google_maps":
-        return '<a href="%s" target="_blank" rel="noopener">%s</a>' % (e(valor), ROTULO_MAPS[lingua])
+        return '<a class="btn btn--claro" href="%s" target="_blank" rel="noopener">%s</a>' % (e(valor), ROTULO_MAPS[lingua])
     if chave == "arquitetura_validada":
         return None
     return e(str(valor))
 
 
 MARCADOR = re.compile(r'<span(?: class="todo")? data-dado="([a-z_]+)">(.*?)</span>', re.S)
+
+
+def preco_minimo(raiz):
+    """Valor mais baixo das frações disponíveis, do data/fracoes.json (ou None)."""
+    try:
+        with open(os.path.join(raiz, "data", "fracoes.json"), encoding="utf-8") as f:
+            fracoes = json.load(f)
+    except (OSError, ValueError):
+        return None
+    precos = [f["preco"] for f in fracoes
+              if f.get("estado") == "disponivel" and isinstance(f.get("preco"), (int, float))]
+    return min(precos) if precos else None
+
+
+def formatar_preco(valor, lingua):
+    """250.000 € em português, €250,000 em inglês (como no content/)."""
+    n = "{:,}".format(int(round(valor)))
+    return n.replace(",", ".") + " €" if lingua == "pt" else "€" + n
+
+
+def preencher_descricao(texto, lingua, raiz):
+    """«desde 250.000 €» / «from €250,000» na descrição da página, a partir do
+    data/fracoes.json: o valor nunca fica escrito à mão."""
+    minimo = preco_minimo(raiz)
+    if minimo is None:
+        return texto
+    palavra = "desde " if lingua == "pt" else "from "
+    return re.sub(r'(<meta (?:name="description"|property="og:description") content="[^"]*?%s)(\[valor\]|\[value\]|[\d.]+ €|€[\d,]+)' % palavra,
+                  lambda m: m.group(1) + formatar_preco(minimo, lingua), texto)
 
 
 def preencher_pagina(texto, lingua, valores):
@@ -266,7 +318,7 @@ def preencher_pagina(texto, lingua, valores):
 
     # Descrição da página (meta description e og:description): os minutos a pé.
     if "praia_a_pe_min" in valores:
-        texto = re.sub(r'(<meta (?:name="description"|property="og:description") content="[^"]*?)(\[X\]|\d+)( minut)',
+        texto = re.sub(r'(<meta (?:name="description"|property="og:description") content="[^"]*?)(\[X\]|\d+)([ -]minut)',
                        lambda m: m.group(1) + str(valores["praia_a_pe_min"]) + m.group(3), texto)
     return texto, preenchidos, por_preencher
 
@@ -433,6 +485,7 @@ def main():
         with open(caminho, encoding="utf-8") as f:
             texto = f.read()
         texto, feitos, falta = preencher_pagina(texto, lingua, valores)
+        texto = preencher_descricao(texto, lingua, raiz)
         if "dominio" in valores:
             texto = trocar_dominio(texto, antigo, valores["dominio"])
         if completo:

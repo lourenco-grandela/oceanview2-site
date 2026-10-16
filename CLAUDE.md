@@ -110,6 +110,15 @@ Início, Localização, Frações (seletor de A a L com o estado de cada uma e l
 - `<title>`, descrição e Open Graph em português e inglês, e favicon.
 - Formulário testado de ponta a ponta: o pedido chega à folha e ao email.
 
+## Decisões de 15/10/2026 (versão 2.1)
+
+- A landing page passa à **versão 2.1**: o design da v2 mantém-se tal como está, com dados reais e as secções novas Frações e valores (recolhível), Viver aqui e Para quem. Textos em `content/landing.*.md` (v2.1), aspeto em `material/design-v2-1/referencia-v2-1.html`, regras no fim do `docs/DESIGN.md`. A v3 (material/arquivo-v3) foi posta de parte: não a usar.
+- **Hero com a fachada de dia**, não a de noite. A de noite pode continuar noutros sítios (ex.: bloco do formulário).
+- **Tipologias como os clientes as apresentam**: 1 T1 (D), 7 T2 (A, B, C, E, F, G, H) e 4 T2+2 (I, J, K, L). Usar sempre «T2+2» para I a L.
+- **Valores públicos no site.** Todas as frações disponíveis. Dados em `data/fracoes.json` (preço, áreas de habitação, exterior, sótão, permilagem): o site lê daí e nada fica escrito à mão. Tabela em PDF: `assets/docs/OceanView2_Tabela_de_Valores.pdf`.
+- **Tempos medidos** (outubro de 2026): praia da Consolação 6 min a pé · Peniche 10 min de carro · Óbidos 18 min de carro · Lisboa 1h15 de carro. Google Maps: https://maps.app.goo.gl/fyuLWXY6xwbT7Fyo8
+- **Fotografias**: só as fotografias editadas pelo Lourenço, que ele põe em `material/fotos/`. Nunca usar fotografias de drone sem edição.
+
 ## Pastas
 
 - `material/`: originais, referência de design e fotografias. **Não se publica** (está no `.gitignore`). O site usa só as versões otimizadas em `assets/img/`.

@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>OceanView 2 · Twelve apartments in Consolação, Peniche</title>
-<!-- TODO: a descrição espera a distância medida até à praia ([X] minutes' walk). -->
-<meta name="description" content="T1, T2 and T2+2 apartments with balconies and terraces, [X] minutes' walk from Consolação beach. Register your interest.">
+<title>OceanView 2 · T1, T2 and T2+2 apartments in Consolação, Peniche</title>
+<!-- A descrição é escrita pelo ferramentas/preencher.py: os minutos a pé vêm do
+     dados-lancamento.json e o valor «from» do data/fracoes.json. -->
+<meta name="description" content="Twelve apartments a 6-minute walk from Consolação beach, from €250,000. See apartments, areas and prices.">
 
 <!-- TODO: substituir TODO-dominio.pt pelo domínio definitivo em todo o ficheiro
      (canonical, hreflang, og:url e og:image) e criar o ficheiro CNAME. -->
@@ -19,8 +20,8 @@
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="pt_PT">
 <meta property="og:site_name" content="OceanView 2">
-<meta property="og:title" content="OceanView 2 · Twelve apartments in Consolação, Peniche">
-<meta property="og:description" content="T1, T2 and T2+2 apartments with balconies and terraces, [X] minutes' walk from Consolação beach. Register your interest.">
+<meta property="og:title" content="OceanView 2 · T1, T2 and T2+2 apartments in Consolação, Peniche">
+<meta property="og:description" content="Twelve apartments a 6-minute walk from Consolação beach, from €250,000. See apartments, areas and prices.">
 <meta property="og:url" content="https://TODO-dominio.pt/en/">
 <meta property="og:image" content="https://TODO-dominio.pt/assets/img/og-oceanview2-en.jpg">
 <meta property="og:image:width" content="1200">
@@ -67,16 +68,22 @@
   <symbol id="seta" viewBox="0 0 24 24">
     <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
+  <symbol id="divisa" viewBox="0 0 24 24">
+    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="descarregar" viewBox="0 0 24 24">
+    <path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
 </svg>
 
 <!-- ============================================================ HERO ==== -->
 <div class="hero" id="inicio">
   <div class="hero__moldura">
     <picture class="hero__imagem">
-      <source type="image/avif" srcset="../assets/img/fachada-noite-640.avif 640w, ../assets/img/fachada-noite-1024.avif 1024w, ../assets/img/fachada-noite-1536.avif 1536w" sizes="100vw">
-      <source type="image/webp" srcset="../assets/img/fachada-noite-640.webp 640w, ../assets/img/fachada-noite-1024.webp 1024w, ../assets/img/fachada-noite-1536.webp 1536w" sizes="100vw">
-      <img src="../assets/img/fachada-noite-1536.webp" width="1536" height="1024" fetchpriority="high" decoding="async"
-           alt="OceanView 2 façade at dusk, with the balconies lit and the sea in the distance.">
+      <source type="image/avif" srcset="../assets/img/fachada-dia-640.avif 640w, ../assets/img/fachada-dia-1024.avif 1024w, ../assets/img/fachada-dia-1536.avif 1536w" sizes="100vw">
+      <source type="image/webp" srcset="../assets/img/fachada-dia-640.webp 640w, ../assets/img/fachada-dia-1024.webp 1024w, ../assets/img/fachada-dia-1536.webp 1536w" sizes="100vw">
+      <img src="../assets/img/fachada-dia-1536.webp" width="1536" height="1024" fetchpriority="high" decoding="async"
+           alt="OceanView 2 façade by day: a light three-storey building with glass balconies and a tiled roof.">
     </picture>
     <div class="hero__veu" aria-hidden="true"></div>
 
@@ -87,8 +94,8 @@
       </a>
       <nav class="navegacao" aria-label="Main">
         <a href="#projeto">The project</a>
-        <a href="#tipologias">Apartments</a>
-        <a href="#arquitetura">Architecture</a>
+        <a href="#fracoes">Apartments &amp; prices</a>
+        <a href="#viver">Living here</a>
         <a href="#localizacao">Location</a>
         <a href="#registo">Contact</a>
       </nav>
@@ -106,11 +113,10 @@
         <h1 class="hero__titulo">A new<br>way of<br>coming<br>home.</h1>
       </div>
       <div class="hero__lado">
-        <!-- TODO: a distância até à praia só entra depois de medida. -->
-        <p class="hero__subtitulo">Twelve apartments <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutes' walk from the beach, with balconies, terraces and underground parking.</p>
+        <p class="hero__subtitulo">Twelve apartments a <span data-dado="praia_a_pe_min">6</span>-minute walk from the beach, with balconies, terraces and underground parking.</p>
         <div class="grupo-botoes">
           <a class="btn btn--claro" href="#registo">Register interest <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
-          <a class="btn btn--contorno-claro" data-whatsapp hidden href="#">Message us on WhatsApp</a>
+          <a class="btn btn--contorno-claro" href="#fracoes">See apartments &amp; prices</a>
         </div>
         <p class="hero__nota">Illustrative image, not contractual.</p>
       </div>
@@ -135,7 +141,7 @@
       </figure>
       <div class="projeto__texto">
         <h2 class="titulo titulo--grande" id="titulo-projeto">A home by the sea, all year round.</h2>
-        <p class="texto">OceanView 2 is twelve apartments in Consolação, Peniche: one T1, seven T2 and four T2+2. Balconies and terraces depending on the apartment, underground parking and the beach <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutes away on foot.</p>
+        <p class="texto">OceanView 2 is twelve apartments in Consolação, Peniche: one T1, seven T2 and four T2+2. Balconies and terraces depending on the apartment, underground parking and the beach a <span data-dado="praia_a_pe_min">6</span>-minute walk away.</p>
       </div>
     </div>
 
@@ -153,9 +159,8 @@
         <dd class="numeros__valor">56–253<span class="numeros__unidade">m²</span></dd>
       </div>
       <div class="numeros__item">
-        <!-- TODO: minutos a pé até à praia, depois de medidos (os mesmos da versão portuguesa). -->
         <dt class="numeros__rotulo">On foot to Consolação beach</dt>
-        <dd class="numeros__valor"><span class="todo" data-dado="praia_a_pe_min">[X]</span><span class="numeros__unidade">min</span></dd>
+        <dd class="numeros__valor"><span data-dado="praia_a_pe_min">6</span><span class="numeros__unidade">min</span></dd>
       </div>
     </dl>
   </section>
@@ -173,14 +178,16 @@
     </figure>
   </div>
 
-  <!-- ====================================================== TIPOLOGIAS ==== -->
+  <!-- ====================================================== TIPOLOGIAS ====
+       Número de apartamentos, áreas e valores: calculados pelo principal.js a
+       partir do data/fracoes.json. As linhas vazias guardam o lugar (sem salto). -->
   <section class="seccao envolvente" id="tipologias" aria-labelledby="titulo-tipologias" data-revelar>
     <div class="seccao__topo">
       <div class="seccao__titulos">
-        <p class="etiqueta">Apartments</p>
+        <p class="etiqueta">Apartment types</p>
         <h2 class="titulo" id="titulo-tipologias">Three ways to live at OceanView 2.</h2>
       </div>
-      <a class="btn btn--contorno btn--pequeno" href="#registo">Request floor plans <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
+      <a class="btn btn--contorno btn--pequeno" href="#fracoes">See apartments &amp; prices <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
     </div>
 
     <ul class="cartoes">
@@ -198,7 +205,8 @@
             <div class="cartao__textos">
               <span class="cartao__numero" aria-hidden="true">01</span>
               <h3 class="cartao__nome">T1</h3>
-              <p class="cartao__linha">1 apartment. One bedroom, living room and kitchen.</p>
+              <p class="cartao__linha" data-tipologia-linha="T1">&nbsp;</p>
+              <p class="cartao__valor" data-tipologia-valor="T1">&nbsp;</p>
             </div>
             <span class="seta" aria-hidden="true"><svg><use href="#seta"></use></svg></span>
           </div>
@@ -218,7 +226,8 @@
             <div class="cartao__textos">
               <span class="cartao__numero" aria-hidden="true">02</span>
               <h3 class="cartao__nome">T2</h3>
-              <p class="cartao__linha">7 apartments. Two bedrooms.</p>
+              <p class="cartao__linha" data-tipologia-linha="T2">&nbsp;</p>
+              <p class="cartao__valor" data-tipologia-valor="T2">&nbsp;</p>
             </div>
             <span class="seta" aria-hidden="true"><svg><use href="#seta"></use></svg></span>
           </div>
@@ -228,9 +237,9 @@
         <a class="cartao cartao--tipologia" href="#registo" data-pre-tipologia="T2+2">
           <div class="figura">
             <picture>
-              <source type="image/avif" srcset="../assets/img/fachada-noite-640.avif 640w, ../assets/img/fachada-noite-1024.avif 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
-              <source type="image/webp" srcset="../assets/img/fachada-noite-640.webp 640w, ../assets/img/fachada-noite-1024.webp 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
-              <img src="../assets/img/fachada-noite-640.webp" width="640" height="427" loading="lazy" decoding="async" alt="" style="object-position: 50% 28%">
+              <source type="image/avif" srcset="../assets/img/fachada-dia-640.avif 640w, ../assets/img/fachada-dia-1024.avif 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+              <source type="image/webp" srcset="../assets/img/fachada-dia-640.webp 640w, ../assets/img/fachada-dia-1024.webp 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+              <img src="../assets/img/fachada-dia-640.webp" width="640" height="427" loading="lazy" decoding="async" alt="" style="object-position: 60% 20%">
             </picture>
             <span class="legenda" aria-hidden="true">Illustrative image, not contractual.</span>
           </div>
@@ -238,72 +247,66 @@
             <div class="cartao__textos">
               <span class="cartao__numero" aria-hidden="true">03</span>
               <h3 class="cartao__nome">T2+2</h3>
-              <p class="cartao__linha">4 apartments. Two bedrooms and two additional rooms.</p>
+              <p class="cartao__linha" data-tipologia-linha="T2+2">&nbsp;</p>
+              <p class="cartao__valor" data-tipologia-valor="T2+2">&nbsp;</p>
             </div>
             <span class="seta" aria-hidden="true"><svg><use href="#seta"></use></svg></span>
           </div>
         </a>
       </li>
     </ul>
-    <p class="nota tipologias__nota">Prices on request. Areas and floor plans for each apartment available on request. In Portugal, “T” plus a number gives the bedrooms; “+2” means two additional rooms.</p>
+    <p class="nota tipologias__nota">In Portugal, “T” plus a number gives the bedrooms; “+2” means two additional rooms.</p>
   </section>
 
-  <!-- ========================================================= FRAÇÕES ====
-       Pronto mas escondido: o principal.js só tira o hidden quando o
-       data/fracoes.json tiver a tipologia das 12 frações. Nenhum valor desta
-       ficha está escrito à mão: vem todo do JSON. -->
-  <section class="seccao envolvente" id="fracoes" aria-labelledby="titulo-fracoes" hidden
-           data-fonte="../data/fracoes.json" data-imagens="../assets/img/">
+  <!-- ============================================== FRAÇÕES E VALORES ====
+       Tudo o que é número vem do data/fracoes.json (principal.js): resumo,
+       filtros, tabela e cartões. A lista começa fechada. Se o JSON não chegar
+       ou não tiver as 12 frações com tipologia, a secção esconde-se. -->
+  <section class="seccao envolvente" id="fracoes" aria-labelledby="titulo-fracoes" data-fonte="../data/fracoes.json">
     <div class="fracoes__cabecalho">
-      <p class="etiqueta">Availability</p>
-      <h2 class="titulo" id="titulo-fracoes">Choose your apartment.</h2>
-      <p class="texto">Twelve apartments, A to L. Choose a letter to see the type, area and availability.</p>
-    </div>
-    <div class="chips" role="group" aria-label="Apartments">
-      <button class="chip" type="button" aria-pressed="false" data-fracao="A">A</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="B">B</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="C">C</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="D">D</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="E">E</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="F">F</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="G">G</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="H">H</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="I">I</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="J">J</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="K">K</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="L">L</button>
+      <p class="etiqueta">Apartments &amp; prices</p>
+      <h2 class="titulo" id="titulo-fracoes">Choose your home.</h2>
+      <p class="texto">Twelve apartments, A to L, with areas and prices. Open the full list or download the price list.</p>
     </div>
 
-    <div class="ficha" data-ficha aria-live="polite">
-      <figure class="figura ficha__imagem">
-        <picture data-f="imagem">
-          <source type="image/avif" srcset="../assets/img/quarto-640.avif 640w, ../assets/img/quarto-1024.avif 1024w, ../assets/img/quarto-1536.avif 1536w" sizes="(min-width: 900px) 45vw, 100vw">
-          <source type="image/webp" srcset="../assets/img/quarto-640.webp 640w, ../assets/img/quarto-1024.webp 1024w, ../assets/img/quarto-1536.webp 1536w" sizes="(min-width: 900px) 45vw, 100vw">
-          <img src="../assets/img/quarto-1024.webp" width="1536" height="1022" loading="lazy" decoding="async" alt="">
-        </picture>
-        <figcaption class="legenda">Illustrative image, not contractual.</figcaption>
-      </figure>
-      <div class="ficha__corpo">
-        <div class="ficha__topo">
-          <div class="ficha__linha">
-            <h3 class="etiqueta" data-f="titulo">Apartment</h3>
-            <span class="estado" data-f="estado"></span>
-          </div>
-          <p class="ficha__tipologia" data-f="tipologia"></p>
-          <p class="ficha__descricao" data-f="descricao"></p>
-        </div>
-        <dl class="ficha__dados">
-          <div><dt>Bedrooms</dt><dd data-f="quartos"></dd></div>
-          <div><dt>Private area</dt><dd data-f="area"></dd></div>
-          <div><dt>Floor</dt><dd data-f="piso"></dd></div>
+    <div class="valores">
+      <div class="valores__topo">
+        <dl class="valores__resumo">
+          <div><dt>Apartments</dt><dd data-resumo="disponiveis">&nbsp;</dd></div>
+          <div><dt>Prices from</dt><dd data-resumo="desde">&nbsp;</dd></div>
+          <div><dt>Types</dt><dd data-resumo="tipologias">&nbsp;</dd></div>
         </dl>
-        <div class="ficha__base">
-          <span class="ficha__preco" data-f="preco"></span>
-          <div class="grupo-botoes">
-            <a class="btn btn--contorno" href="#registo" data-pre-tipologia="">Request floor plan</a>
-            <a class="btn btn--principal" href="#registo" data-pre-tipologia="">Register interest <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
-          </div>
+        <div class="grupo-botoes">
+          <a class="btn btn--contorno" href="../assets/docs/OceanView2_Tabela_de_Valores.pdf" type="application/pdf" download><svg aria-hidden="true" focusable="false"><use href="#descarregar"></use></svg>Price list (PDF)</a>
+          <button class="btn btn--principal" type="button" aria-expanded="false" aria-controls="lista-fracoes" data-abrir-lista>
+            <span data-rotulo>See all 12 apartments</span> <svg class="valores__divisa" aria-hidden="true" focusable="false"><use href="#divisa"></use></svg>
+          </button>
         </div>
+      </div>
+
+      <div class="valores__lista" id="lista-fracoes" hidden>
+        <div class="filtros" role="group" aria-label="Filter apartments" data-filtros></div>
+        <p class="so-leitor" aria-live="polite" data-contagem></p>
+        <div class="tabela-fracoes">
+          <table>
+            <caption class="so-leitor">OceanView 2 apartments, with areas in m² and prices</caption>
+            <thead>
+              <tr>
+                <th scope="col">Apartment</th>
+                <th scope="col">Type</th>
+                <th scope="col">Floor</th>
+                <th scope="col" class="num">Living area</th>
+                <th scope="col" class="num">Outdoor</th>
+                <th scope="col" class="num">Attic</th>
+                <th scope="col" class="num">Price</th>
+                <th scope="col"><span class="so-leitor">Floor plan</span></th>
+              </tr>
+            </thead>
+            <tbody data-linhas></tbody>
+          </table>
+        </div>
+        <ul class="cartoes-fracoes" data-cartoes></ul>
+        <p class="nota valores__nota">Areas in m², from the project’s area schedule. Outdoor: balconies, terraces and porches. Prices subject to confirmation.</p>
       </div>
     </div>
   </section>
@@ -319,32 +322,115 @@
     <a class="btn btn--contorno btn--branco" href="#registo">Request plans and finishes <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
   </section>
 
-  <!-- ===================================================== LOCALIZAÇÃO ==== -->
+  <!-- ===================================================== LOCALIZAÇÃO ====
+       Tempos e ligação do Google Maps: escritos pelo ferramentas/preencher.py a
+       partir do dados-lancamento.json (cada <span data-dado>). -->
   <section class="seccao seccao--larga envolvente" id="localizacao" aria-labelledby="titulo-localizacao" data-revelar>
     <div class="metades">
       <div class="localizacao__texto">
         <p class="etiqueta">Location</p>
-        <!-- TODO: título, texto e tempos dependem das medições (on foot / by car). -->
-        <h2 class="titulo titulo--grande" id="titulo-localizacao">The sea, <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutes on foot.</h2>
-        <p class="texto">OceanView 2 is in Consolação, Peniche, <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutes' walk from the beach and <span class="todo" data-dado="peniche_carro_min">[Y]</span> minutes by car from the centre of Peniche. Consolação beach is known for its iodine-rich waters, and to the north a long stretch of sand runs all the way to Peniche, popular with surfers.</p>
+        <h2 class="titulo titulo--grande" id="titulo-localizacao">The sea, a <span data-dado="praia_a_pe_min">6</span>-minute walk away.</h2>
+        <p class="texto">OceanView 2 is in Consolação, Peniche, a <span data-dado="praia_a_pe_min">6</span>-minute walk from the beach and <span data-dado="peniche_carro_min">10</span> minutes by car from the centre of Peniche. Consolação beach is known for its iodine-rich waters, and to the north a long stretch of sand runs all the way to Peniche, popular with surfers.</p>
         <ul class="distancias">
-          <li><span>Consolação beach</span><span><span class="todo" data-dado="praia_a_pe_min">[X]</span> min on foot</span></li>
-          <li><span>Peniche</span><span><span class="todo" data-dado="peniche_carro_min">[Y]</span> min by car</span></li>
-          <li><span>Óbidos</span><span><span class="todo" data-dado="obidos_carro_min">[Z]</span> min by car</span></li>
-          <li><span>Lisbon</span><span><span class="todo" data-dado="lisboa_carro_min">[W]</span> min by car</span></li>
+          <li><span>Consolação beach</span><span><span data-dado="praia_a_pe_min">6</span> min on foot</span></li>
+          <li><span>Peniche centre</span><span><span data-dado="peniche_carro_min">10</span> min by car</span></li>
+          <li><span>Óbidos</span><span><span data-dado="obidos_carro_min">18</span> min by car</span></li>
+          <li><span>Lisbon</span><span><span data-dado="lisboa_carro_min">1h15</span> by car</span></li>
         </ul>
-        <p class="nota localizacao__nota">Times measured on <span class="todo" data-dado="data_medicao">[date]</span> from the building.</p>
+        <p class="nota localizacao__nota">Times measured in <span data-dado="data_medicao">October 2026</span> from the building.</p>
       </div>
-      <!-- NOTA: quando houver fotografia de drone (material/fotos/), entra aqui
-           no lugar do bloco de espera. Sem mapa incorporado: o site não faz
-           pedidos a outros servidores. -->
-      <div class="mapa-espera">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-        <p>Map of Consolação</p>
-        <!-- TODO: ligação do Google Maps para o local exato do edifício. -->
-        <p class="nota"><span class="todo" data-dado="google_maps">Open in Google Maps</span></p>
+      <!-- Fotografia editada da zona (foto-1), com a ligação ao Google Maps por
+           cima. Sem mapa incorporado: o site não faz pedidos a outros servidores. -->
+      <div class="mapa-foto">
+        <picture>
+          <source type="image/avif" srcset="../assets/img/localizacao-640.avif 640w, ../assets/img/localizacao-1024.avif 1024w, ../assets/img/localizacao-1536.avif 1536w" sizes="(min-width: 1320px) 600px, (min-width: 900px) 46vw, 100vw">
+          <source type="image/webp" srcset="../assets/img/localizacao-640.webp 640w, ../assets/img/localizacao-1024.webp 1024w, ../assets/img/localizacao-1536.webp 1536w" sizes="(min-width: 1320px) 600px, (min-width: 900px) 46vw, 100vw">
+          <img src="../assets/img/localizacao-1024.webp" width="1536" height="861" loading="lazy" decoding="async"
+               alt="Consolação from the air: red-roofed houses, the beach and the sea, with Peniche in the distance.">
+        </picture>
+        <div class="mapa-foto__conteudo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <p>Consolação, Peniche</p>
+          <span data-dado="google_maps"><a class="btn btn--claro" href="https://maps.app.goo.gl/fyuLWXY6xwbT7Fyo8" target="_blank" rel="noopener">Open in Google Maps</a></span>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- ====================================================== VIVER AQUI ====
+       Só fotografias editadas pelo Lourenço (material/fotos/), geradas pelo
+       ferramentas/gerar-imagens.py. Sem legenda (decisão de 16/10/2026). -->
+  <section class="seccao seccao--larga envolvente" id="viver" aria-labelledby="titulo-viver" data-revelar>
+    <div class="seccao__titulos viver__topo">
+      <p class="etiqueta">Living here</p>
+      <h2 class="titulo viver__titulo" id="titulo-viver">Sea, surf and Lisbon at just the right distance.</h2>
+    </div>
+    <ul class="viver">
+      <li class="viver__cartao">
+        <picture>
+          <source type="image/avif" srcset="../assets/img/viver-praia-480.avif 480w, ../assets/img/viver-praia-800.avif 800w, ../assets/img/viver-praia-918.avif 918w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <source type="image/webp" srcset="../assets/img/viver-praia-480.webp 480w, ../assets/img/viver-praia-800.webp 800w, ../assets/img/viver-praia-918.webp 918w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <img src="../assets/img/viver-praia-800.webp" width="800" height="1000" loading="lazy" decoding="async"
+               alt="Consolação beach from the air, with the fort, the sand and the sea.">
+        </picture>
+        <div class="viver__texto">
+          <h3 class="viver__nome">Beach</h3>
+          <p>A six-minute walk to the sand, all year round.</p>
+        </div>
+      </li>
+      <li class="viver__cartao">
+        <picture>
+          <source type="image/avif" srcset="../assets/img/viver-surf-480.avif 480w, ../assets/img/viver-surf-800.avif 800w, ../assets/img/viver-surf-1080.avif 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <source type="image/webp" srcset="../assets/img/viver-surf-480.webp 480w, ../assets/img/viver-surf-800.webp 800w, ../assets/img/viver-surf-1080.webp 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <img src="../assets/img/viver-surf-800.webp" width="800" height="1000" loading="lazy" decoding="async"
+               alt="Waves breaking on the sand, seen from above.">
+        </picture>
+        <div class="viver__texto">
+          <h3 class="viver__nome">Surf</h3>
+          <p>Peniche and Baleal, two of the best-known surf destinations in the country, <span data-dado="peniche_carro_min">10</span> minutes away.</p>
+        </div>
+      </li>
+      <li class="viver__cartao">
+        <picture>
+          <source type="image/avif" srcset="../assets/img/viver-consolacao-480.avif 480w, ../assets/img/viver-consolacao-800.avif 800w, ../assets/img/viver-consolacao-1080.avif 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <source type="image/webp" srcset="../assets/img/viver-consolacao-480.webp 480w, ../assets/img/viver-consolacao-800.webp 800w, ../assets/img/viver-consolacao-1080.webp 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <img src="../assets/img/viver-consolacao-800.webp" width="800" height="1000" loading="lazy" decoding="async"
+               alt="Consolação from the air, with the bay and Peniche in the distance.">
+        </picture>
+        <div class="viver__texto">
+          <h3 class="viver__nome">Close to everything</h3>
+          <p>Óbidos <span data-dado="obidos_carro_min">18</span> minutes away and Lisbon <span data-dado="lisboa_carro_min">1h15</span>, without giving up the calm.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ======================================================= PARA QUEM ==== -->
+  <section class="envolvente para-quem" aria-labelledby="titulo-para-quem" data-revelar>
+    <h2 class="so-leitor" id="titulo-para-quem">Who it is for</h2>
+    <ul class="cartoes">
+      <li>
+        <div class="cartao cartao--perfil">
+          <span class="cartao__numero" aria-hidden="true">01</span>
+          <h3 class="cartao__nome">To live in all year round</h3>
+          <p class="cartao__linha">Two bedrooms, underground parking and the beach as part of everyday life, not just holidays.</p>
+        </div>
+      </li>
+      <li>
+        <div class="cartao cartao--perfil">
+          <span class="cartao__numero" aria-hidden="true">02</span>
+          <h3 class="cartao__nome">As a second home</h3>
+          <p class="cartao__linha"><span data-dado="lisboa_carro_min">1h15</span> from Lisbon, ready for weekends and whole summers.</p>
+        </div>
+      </li>
+      <li>
+        <div class="cartao cartao--perfil">
+          <span class="cartao__numero" aria-hidden="true">03</span>
+          <h3 class="cartao__nome">As an investment</h3>
+          <p class="cartao__linha">New build in one of the most sought-after surf areas on the Portuguese coast.</p>
+        </div>
+      </li>
+    </ul>
   </section>
 
   <!-- ================================================ PRÓXIMOS PASSOS ==== -->
@@ -504,7 +590,7 @@
     </a>
     <nav class="rodape__nav" aria-label="Footer">
       <a href="#projeto">The project</a>
-      <a href="#tipologias">Apartments</a>
+      <a href="#fracoes">Apartments &amp; prices</a>
       <a href="#localizacao">Location</a>
       <a href="#registo">Contact</a>
       <a href="../" lang="pt-PT" hreflang="pt-PT">Português</a>
@@ -536,6 +622,14 @@
     </span>
   </div>
 </footer>
+
+<!-- ==================================================== BARRA FIXA ====
+     Só abaixo de 900 px, depois do hero e fora do formulário (principal.js).
+     O WhatsApp aparece quando houver número no config.js. -->
+<div class="barra-fixa" data-barra-fixa hidden>
+  <a class="btn btn--contorno" data-whatsapp hidden href="#">WhatsApp</a>
+  <a class="btn btn--principal" href="#registo">Register interest</a>
+</div>
 
 <!-- ========================================================== COOKIES ==== -->
 <aside class="cookies" id="banner-cookies" hidden aria-label="Cookies">

@@ -32,8 +32,8 @@ preencher cada `null`. Cada bloco diz quem dá o quê. Formatos:
 | `politica.texto_aprovado` | `true` quando os clientes e o jurista aprovarem |
 | `avisar` | `["ines@...", "carlos@..."]` |
 | `dominio` | `"oceanview2.pt"` (sem `https://` nem `www`) |
-| `distancias.*_min` | `6` (minutos inteiros, sem aspas) |
-| `distancias.data_medicao` | `"2026-10-18"` |
+| `distancias.*_min` | `6` (minutos inteiros, sem aspas; `75` aparece como «1h15») |
+| `distancias.data_medicao` | `"2026-10"` (mês da medição; a página diz «outubro de 2026») |
 | `google_maps` | `"https://maps.app.goo.gl/..."` (Google Maps › Partilhar › Copiar link) |
 | `arquitetura_validada` | `true` quando a Inês e o Carlos aprovarem a frase |
 | `medicao.ga4` / `medicao.meta_pixel` | `"G-XXXXXXXXXX"` / `"1234567890"` (recomendado) |
@@ -83,7 +83,10 @@ Abrir `http://localhost:8000/`, `/en/`, `/privacidade.html` e
 - [ ] Nenhum sublinhado tracejado (marcador `.todo`) em nenhuma das quatro.
 - [ ] Rodapé: mediadora, AMI, agente, telefone e email certos; o telefone e o
       email abrem a chamada e o email.
-- [ ] Distâncias certas nos seis sítios de cada língua.
+- [ ] Distâncias certas em todos os sítios de cada língua (hero, O projeto,
+      Localização, Viver aqui e Para quem).
+- [ ] Frações e valores: resumo, «desde» dos cartões e lista iguais ao
+      `data/fracoes.json` e ao PDF da tabela.
 - [ ] «Abrir no Google Maps» abre o local certo.
 - [ ] O botão de WhatsApp aparece no hero e nos Próximos passos e abre a
       conversa com a mensagem pré-preenchida.

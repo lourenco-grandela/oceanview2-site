@@ -17,11 +17,16 @@
 - Favicon e ícone do iPhone com o símbolo «Vigia».
 
 A pasta material/ não se publica; os ficheiros gerados ficam em assets/img/.
-Se aparecerem fotografias reais em material/fotos/, acrescentá-las a IMAGENS.
+Fotografias: só as editadas pelo Lourenço, em material/fotos/ (CLAUDE.md).
+
+Para gerar só algumas imagens, dar os nomes de saída como argumentos:
+    .venv/bin/python ferramentas/gerar-imagens.py fachada-dia og
+("og" refaz as imagens de partilha; sem argumentos gera tudo.)
 """
 import io
 import math
 import os
+import sys
 
 from fontTools.ttLib import TTFont
 from PIL import Image, ImageDraw, ImageFont
@@ -36,14 +41,29 @@ BRANCO = (255, 255, 255)
 
 # nome de saída, original, larguras
 IMAGENS = [
+    ("fachada-dia", "imagens-promotor/fachada-dia.png", (640, 1024, 1536)),
     ("fachada-noite", "imagens-promotor/fachada-noite.png", (640, 1024, 1536)),
     ("quarto", "imagens-promotor/quarto.png", (640, 1024, 1536)),
     ("sala", "imagens-promotor/sala.png", (640, 1024, 1536)),
 ]
 ESBOCO = ("esboco", "design/img/esboco.png")
 
+# Fotografias editadas pelo Lourenço (material/fotos/), escolhidas a 16/10/2026.
+# nome de saída, original, proporção do recorte (largura/altura, None = sem
+# recorte), foco do recorte (x, y de 0 a 1), larguras
+FOTOS = [
+    # Viver aqui: cartões de 500 px de altura, recortados em 4:5.
+    # A foto-5 tem 2047 × 1147: recortada em 4:5 fica com 918 px de largura.
+    ("viver-praia", "fotos/foto-5.jpg", 4 / 5, (0.62, 0.6), (480, 800, 918)),
+    ("viver-surf", "fotos/foto-4.jpg", 4 / 5, (0.5, 0.5), (480, 800, 1080)),
+    ("viver-consolacao", "fotos/foto-3.jpg", 4 / 5, (0.55, 0.55), (480, 800, 1080)),
+    # Localização: bloco ao lado do texto, a Consolação de perto.
+    ("localizacao", "fotos/foto-1.jpg", None, (0.5, 0.5), (640, 1024, 1536)),
+]
+
 QUALIDADE = 74
 QUALIDADE_AVIF = 55
+QUALIDADE_AVIF_FOTO = 48  # fotografias com muito grão: a 55 o AVIF pesava o mesmo que o WebP
 
 
 def guardar_webp(img, caminho, **opcoes):
@@ -58,8 +78,10 @@ def redimensionar(img, largura):
     return img.resize((largura, altura), Image.LANCZOS)
 
 
-def renders():
+def renders(escolha=None):
     for nome, origem, larguras in IMAGENS:
+        if escolha and nome not in escolha:
+            continue
         img = Image.open(os.path.join(ORIGEM, origem)).convert("RGB")
         for largura in larguras:
             saida = redimensionar(img, largura)
@@ -69,6 +91,38 @@ def renders():
             caminho = os.path.join(DESTINO, "%s-%d.avif" % (nome, largura))
             saida.save(caminho, "AVIF", quality=QUALIDADE_AVIF)
             print("%-28s %4d×%-4d %6.1f KB" % (os.path.basename(caminho), saida.width, saida.height, os.path.getsize(caminho) / 1024))
+
+
+def recortar(img, proporcao, foco):
+    if proporcao is None:
+        return img
+    if img.width / img.height > proporcao:
+        largura = round(img.height * proporcao)
+        x0 = round((img.width - largura) * foco[0])
+        return img.crop((x0, 0, x0 + largura, img.height))
+    altura = round(img.width / proporcao)
+    y0 = round((img.height - altura) * foco[1])
+    return img.crop((0, y0, img.width, y0 + altura))
+
+
+def fotos(escolha=None):
+    for nome, origem, proporcao, foco, larguras in FOTOS:
+        if escolha and nome not in escolha:
+            continue
+        img = Image.open(os.path.join(ORIGEM, origem))
+        img.draft("RGB", (max(larguras) * 2, max(larguras) * 2))  # os originais têm 8192 px
+        img = recortar(img.convert("RGB"), proporcao, foco)
+        for largura in larguras:
+            if largura > img.width:
+                raise SystemExit("%s: o recorte só tem %d px de largura (pedido %d)" % (nome, img.width, largura))
+            saida = redimensionar(img, largura)
+            for tipo in ("webp", "avif"):
+                caminho = os.path.join(DESTINO, "%s-%d.%s" % (nome, largura, tipo))
+                if tipo == "webp":
+                    guardar_webp(saida, caminho, quality=QUALIDADE)
+                else:
+                    saida.save(caminho, "AVIF", quality=QUALIDADE_AVIF_FOTO)
+                print("%-28s %4d×%-4d %6.1f KB" % (os.path.basename(caminho), saida.width, saida.height, os.path.getsize(caminho) / 1024))
 
 
 def esboco():
@@ -151,15 +205,17 @@ def escrever(desenho, xy, texto, fonte, cor, espacamento_em=0.0):
 
 def imagem_partilha(linhas, nota, caminho):
     L, A = 1200, 630
+    # Fica a fachada ao anoitecer: o título branco lê-se mal sobre a fachada
+    # clara de dia (testado a 16/10/2026), e a decisão da v2.1 é só para o hero.
     base = Image.open(os.path.join(ORIGEM, "imagens-promotor/fachada-noite.png")).convert("RGB")
     escala = max(L / base.width, A / base.height)
     base = base.resize((round(base.width * escala), round(base.height * escala)), Image.LANCZOS)
-    # mesmo enquadramento do hero: object-position 50% 60%
+    # enquadramento do hero da v2: object-position 50% 60%
     x0 = round((base.width - L) * 0.5)
     y0 = round((base.height - A) * 0.6)
     img = base.crop((x0, y0, x0 + L, y0 + A)).convert("RGBA")
 
-    # véu do hero (docs/DESIGN.md)
+    # véu do hero da v2 (docs/DESIGN.md)
     paragens = [(0.0, 0.55), (0.26, 0.0), (0.44, 0.0), (1.0, 0.82)]
     veu = Image.new("RGBA", (L, A))
     pv = veu.load()
@@ -200,9 +256,14 @@ def imagem_partilha(linhas, nota, caminho):
 
 def main():
     os.makedirs(DESTINO, exist_ok=True)
-    renders()
-    esboco()
-    favicons()
+    escolha = set(sys.argv[1:])
+    renders(escolha)
+    fotos(escolha)
+    if escolha and "og" not in escolha:
+        return
+    if not escolha:
+        esboco()
+        favicons()
     imagem_partilha(["UMA NOVA", "FORMA DE", "CHEGAR", "A CASA."],
                     "Imagem ilustrativa, não contratual.",
                     os.path.join(DESTINO, "og-oceanview2.jpg"))

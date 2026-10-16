@@ -1,107 +1,85 @@
-# Landing page — textos em português (versão 2, novo design, 14/10/2026)
+# Landing page — textos em português (versão 2.1, 15/10/2026)
 
-Tudo entre `[ ]` está por confirmar e não pode ir online assim. As distâncias só entram depois de medidas, com «a pé» ou «de carro». A ordem das secções é a de `material/design/referencia.html`.
+A versão 2.1 é a versão 2 tal como está (mesmo estilo, mesmo hero, mesma ordem) com dados reais e três secções novas. Ordem e aspeto em `material/design-v2-1/referencia-v2-1.html`. Valores, áreas e tipologias vêm do `data/fracoes.json`, nunca escritos à mão.
 
 ## Cabeçalho
 
-- Navegação: O projeto · Tipologias · Arquitetura · Localização · Contacto
+- Navegação: O projeto · Frações e valores · Viver aqui · Localização · Contacto
 - Língua: PT · EN
 - Botão: Registar interesse
 
-## Hero
+## Hero (como na v2)
 
+- Imagem: **fachada de dia** (`material/imagens-promotor/fachada-dia.png`), já não a de noite.
 - Sobretítulo: CONSOLAÇÃO · PENICHE
-- Título (em maiúsculas, quatro linhas): UMA NOVA / FORMA DE / CHEGAR / A CASA.
-- Subtítulo: Doze apartamentos a [X] minutos a pé da praia, com varandas, terraços e estacionamento em cave.
-- Botão principal: Registar interesse
-- Botão secundário: Falar por WhatsApp
-- Legenda da imagem: Imagem ilustrativa, não contratual.
+- Título (maiúsculas, quatro linhas, ligeiramente mais pequeno do que na v2): UMA NOVA / FORMA DE / CHEGAR / A CASA.
+- Subtítulo: Doze apartamentos a 6 minutos a pé da praia, com varandas, terraços e estacionamento em cave.
+- Botões: Registar interesse · Ver frações e valores
+- Legenda: Imagem ilustrativa, não contratual.
 
-## O projeto
+## O projeto (como na v2)
 
-- Etiqueta: O PROJETO
 - Título: Uma casa para viver junto ao mar, todo o ano.
-- Texto: O OceanView 2 são doze apartamentos na Consolação, em Peniche: um T1, sete T2 e quatro T2+2. Varandas e terraços conforme a fração, estacionamento em cave e a praia a [X] minutos a pé.
-- Números:
-  - 12 — Apartamentos
-  - 3 — Tipologias: T1, T2 e T2+2
-  - 56–253 m² — Áreas privativas totais
-  - [X] min — A pé da praia da Consolação
+- Texto: O OceanView 2 são doze apartamentos na Consolação, em Peniche: um T1, sete T2 e quatro T2+2. Varandas e terraços conforme a fração, estacionamento em cave e a praia a 6 minutos a pé.
+- Números: 12 — Apartamentos · 3 — Tipologias: T1, T2 e T2+2 · 56–253 m² — Áreas privativas totais · 6 min — A pé da praia da Consolação
 
-## Imagem grande
+## Imagem grande (como na v2)
 
 - Legenda: Sala e cozinha · Imagem ilustrativa, não contratual.
 
-## Tipologias
+## Tipologias (como na v2, com dados)
 
-- Etiqueta: TIPOLOGIAS
 - Título: Três formas de viver o OceanView 2.
-- Botão: Pedir plantas
-- Cartões:
-  - 01 · T1 — 1 apartamento. Um quarto, sala e cozinha.
-  - 02 · T2 — 7 apartamentos. Dois quartos.
-  - 03 · T2+2 — 4 apartamentos. Dois quartos e duas divisões extra.
-- Nota por baixo: Preços sob consulta. Áreas e plantas de cada fração a pedido.
-- Cada cartão leva ao formulário com a tipologia já escolhida.
+- Botão: Ver frações e valores
+- Cartões (áreas e valores calculados a partir do JSON):
+  - 01 · T1 — 1 apartamento · 56 m² — 250.000 €
+  - 02 · T2 — 7 apartamentos · 75 a 97 m² — Desde 295.000 €
+  - 03 · T2+2 — 4 apartamentos · 82 a 97 m² e sótão — Desde 490.000 €
 
-## Frações (só quando o `data/fracoes.json` estiver preenchido)
+## Frações e valores (nova, recolhível)
 
-- Etiqueta: FRAÇÕES
-- Título: Escolha a sua fração.
-- Texto: Doze frações, da A à L. Escolha uma letra para ver a tipologia, a área e o estado.
-- Ficha: FRAÇÃO [letra] · tipologia · Quartos · Área privativa · Piso · estado · «Preço sob consulta» (ou o preço da tabela) · botões «Pedir planta» e «Registar interesse».
+- Etiqueta: FRAÇÕES E VALORES
+- Título: Escolha a sua casa.
+- Texto: Doze frações, da A à L, com áreas e valores. Abra a lista completa ou descarregue a tabela.
+- Resumo sempre visível (cartão branco): Frações — 12 disponíveis · Valores desde — 250.000 € · Tipologias — T1, T2 e T2+2 (calculados a partir do JSON)
+- Botões: Tabela em PDF (→ `assets/docs/OceanView2_Tabela_de_Valores.pdf`) · Ver as 12 frações (abre a lista; quando aberta passa a «Fechar a lista»)
+- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Habitação · Exterior · Sótão · Valor · «Pedir planta».
+- Nota: Áreas em m², do quadro de áreas do projeto. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.
 
-## Arquitetura
+## Arquitetura (como na v2)
 
-- Etiqueta: ARQUITETURA
-- Título (duas linhas): Linhas simples. / A luz da costa.
+- Título: Linhas simples. / A luz da costa.
 - Texto: Varandas amplas, cobertura em telha e uma fachada clara, à escala da Consolação. [a validar pela Inês e pelo Carlos]
-- Imagem: esboço de arquiteto da fachada (sem legenda de imagem ilustrativa: é um desenho).
 - Botão: Pedir plantas e acabamentos
 
-## Localização
+## Localização (como na v2, com dados)
 
-- Etiqueta: LOCALIZAÇÃO
-- Título: O mar a [X] minutos a pé.
-- Texto: O OceanView 2 nasce na Consolação, em Peniche, a [X] minutos a pé da praia e a [Y] minutos de carro do centro de Peniche. A praia da Consolação é conhecida pelo iodo das suas águas e, para norte, um longo areal segue até Peniche, procurado por surfistas.
-- Tempos medidos: Praia da Consolação, [X] min a pé · Peniche, [Y] min de carro · Óbidos, [Z] min de carro · Lisboa, [W] min de carro.
-- Nota: Tempos medidos em [data], a partir do edifício.
-- Bloco ao lado: fotografia de drone da zona, com o mar (quando existir); até lá, bloco «Mapa da Consolação».
-- Ligação: Abrir no Google Maps [ligação]
+- Título: O mar a 6 minutos a pé.
+- Texto: O OceanView 2 nasce na Consolação, em Peniche, a 6 minutos a pé da praia e a 10 minutos de carro do centro de Peniche. A praia da Consolação é conhecida pelo iodo das suas águas e, para norte, um longo areal segue até Peniche, procurado por surfistas.
+- Tempos: Praia da Consolação — 6 min a pé · Centro de Peniche — 10 min de carro · Óbidos — 18 min de carro · Lisboa — 1h15 de carro
+- Nota: Tempos medidos em outubro de 2026, a partir do edifício.
+- Bloco ao lado: «Consolação, Peniche» e botão «Abrir no Google Maps» → https://maps.app.goo.gl/fyuLWXY6xwbT7Fyo8 (mais tarde, uma fotografia editada da zona).
 
-## Próximos passos
+## Viver aqui (nova)
 
-- Etiqueta: PRÓXIMOS PASSOS
-- Pedir plantas — Receba as plantas e as áreas da fração que lhe interessa.
-- Marcar visita — Conheça o local e a zona connosco, no dia que lhe der jeito.
-- Falar por WhatsApp — Respondemos às suas dúvidas, em português ou em inglês.
+- Etiqueta: VIVER AQUI
+- Título: Mar, surf e Lisboa à distância certa.
+- Três cartões com fotografia **editada pelo Lourenço** (pasta `material/fotos/`):
+  - Praia — Seis minutos a pé até à areia, todo o ano.
+  - Surf — Peniche e o Baleal, dois dos destinos de surf mais conhecidos do país, a 10 minutos.
+  - Perto de tudo — Óbidos a 18 minutos e Lisboa a 1h15, sem abdicar da calma.
 
-## Registo de interesse
+## Para quem (nova)
 
-- Etiqueta: REGISTO DE INTERESSE
-- Título: Seja dos primeiros a conhecer plantas, áreas e condições.
-- Texto: Deixe os seus dados e falamos consigo. Escrevemos apenas sobre o OceanView 2.
-- Campos: Nome*, Telemóvel*, Email*, Tipologia de interesse (T1, T2, T2+2, Ainda não sei), Finalidade (Habitação própria, Segunda habitação, Investimento), Quando pensa comprar (Até 3 meses, 3 a 12 meses, Mais de 12 meses), Mensagem.
-- Consentimento (obrigatório): Autorizo o contacto sobre o OceanView 2 e o tratamento dos meus dados nos termos da política de privacidade.
-- Botão: Registar interesse
-- Mensagem de sucesso: Recebemos o seu registo. Entramos em contacto em breve.
-- Mensagem de erro: Não foi possível enviar. Tente outra vez ou fale connosco pelo WhatsApp.
+- 01 Para viver todo o ano — Dois quartos, estacionamento em cave e a praia como rotina, não como férias.
+- 02 Para uma segunda casa — A 1h15 de Lisboa, pronta para fins de semana e verões inteiros.
+- 03 Para investir — Construção nova numa das zonas de surf mais procuradas da costa portuguesa.
 
-## Rodapé
+## Próximos passos, Registo de interesse e Rodapé
 
-- Navegação: O projeto · Tipologias · Localização · Contacto · English
-- COMERCIALIZAÇÃO: [mediadora] · AMI n.º [ ] · [nome do agente] · [telefone] · [email]
-- PROMOTOR: NS RMA
-- INFORMAÇÃO: Classe energética [classe], conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.
-- Ligações: Política de privacidade · Definições de cookies
+- Como na v2. Opções de tipologia no formulário: T1 · T2 · T2+2 · Ainda não sei. «Pedir planta» na lista leva ao formulário com a fração indicada.
 
 ## Título e descrição da página
 
-- Título: OceanView 2 · Doze apartamentos na Consolação, Peniche
-- Descrição: T1, T2 e T2+2 com varandas e terraços, a [X] minutos a pé da praia da Consolação. Registe o seu interesse.
-- Imagem de partilha: fachada ao anoitecer com o título do hero, com a nota de imagem ilustrativa.
-
-## Banner de cookies
-
-- Texto: Usamos cookies para medir as visitas e para publicidade. Só são ativados depois de aceitar.
-- Botões: Aceitar · Recusar · Definições
+- Título: OceanView 2 · Apartamentos T1, T2 e T2+2 na Consolação, Peniche
+- Descrição: Doze apartamentos a 6 minutos a pé da praia da Consolação, desde 250.000 €. Veja frações, áreas e valores.

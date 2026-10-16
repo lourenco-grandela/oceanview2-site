@@ -33,15 +33,29 @@
       faltam: 'Faltam {n} caracteres.',
       limite: 'Chegou ao limite de 500 caracteres.',
       fracao: 'Fração',
-      quartos: { 'T1': '1', 'T2': '2', 'T2+2': '2 + 2' },
-      descricao: {
-        'T1': 'Um quarto, sala e cozinha.',
-        'T2': 'Dois quartos.',
-        'T2+2': 'Dois quartos e duas divisões extra.'
-      },
       estados: { disponivel: 'Disponível', reservada: 'Reservada', vendida: 'Vendida' },
-      precoConsulta: 'Preço sob consulta',
-      local: 'pt-PT'
+      precoConsulta: 'Sob consulta',
+      // Frações e valores (versão 2.1)
+      apartamentos: function (n) { return n === 1 ? '1 apartamento' : n + ' apartamentos'; },
+      areas: function (a, b) { return a === b ? a + ' m²' : a + ' a ' + b + ' m²'; },
+      comSotao: ' e sótão',
+      desde: 'Desde {v}',
+      disponiveis: '{n} disponíveis',
+      e: ' e ',
+      verLista: 'Ver as {n} frações',
+      fecharLista: 'Fechar a lista',
+      todas: 'Todas',
+      piso: function (n) { return 'Piso ' + n; },
+      aMostrar: function (n) { return n === 1 ? 'A mostrar 1 fração.' : 'A mostrar ' + n + ' frações.'; },
+      habitacao: 'Habitação',
+      exterior: 'Exterior',
+      sotao: 'Sótão',
+      pedirPlanta: 'Pedir planta',
+      pedirPlantaDe: 'Pedir planta da fração {f}',
+      mensagemPlanta: 'Gostava de receber a planta da fração {f}.',
+      milhares: '.',
+      decimal: ',',
+      moeda: function (n) { return n + ' €'; }
     },
     en: {
       nome: 'Please enter your name.',
@@ -61,15 +75,28 @@
       faltam: '{n} characters left.',
       limite: 'You have reached the 500-character limit.',
       fracao: 'Apartment',
-      quartos: { 'T1': '1', 'T2': '2', 'T2+2': '2 + 2' },
-      descricao: {
-        'T1': 'One bedroom, living room and kitchen.',
-        'T2': 'Two bedrooms.',
-        'T2+2': 'Two bedrooms and two additional rooms.'
-      },
       estados: { disponivel: 'Available', reservada: 'Reserved', vendida: 'Sold' },
-      precoConsulta: 'Price on request',
-      local: 'en-GB'
+      precoConsulta: 'On request',
+      apartamentos: function (n) { return n === 1 ? '1 apartment' : n + ' apartments'; },
+      areas: function (a, b) { return a === b ? a + ' m²' : a + ' to ' + b + ' m²'; },
+      comSotao: ' plus attic',
+      desde: 'From {v}',
+      disponiveis: '{n} available',
+      e: ' and ',
+      verLista: 'See all {n} apartments',
+      fecharLista: 'Close the list',
+      todas: 'All',
+      piso: function (n) { return ['Ground floor', 'First floor', 'Second floor', 'Third floor'][n] || 'Floor ' + n; },
+      aMostrar: function (n) { return n === 1 ? 'Showing 1 apartment.' : 'Showing ' + n + ' apartments.'; },
+      habitacao: 'Living area',
+      exterior: 'Outdoor',
+      sotao: 'Attic',
+      pedirPlanta: 'Request floor plan',
+      pedirPlantaDe: 'Request the floor plan for apartment {f}',
+      mensagemPlanta: 'I would like to receive the floor plan for apartment {f}.',
+      milhares: ',',
+      decimal: '.',
+      moeda: function (n) { return '€' + n; }
     }
   };
   var T = TEXTOS[IDIOMA];
@@ -170,13 +197,23 @@
       });
     });
 
-    // Cartões de tipologia, ficha da fração e botões «Pedir plantas»: levam
-    // ao formulário com a tipologia já escolhida.
+    // Cartões de tipologia e «Pedir planta» da lista de frações: levam ao
+    // formulário com a tipologia já escolhida. O «Pedir planta» indica também
+    // a fração na mensagem, que a pessoa pode mudar (a folha não tem coluna
+    // própria para a fração: docs/FORMULARIO.md). Só se escreve na mensagem
+    // se estiver vazia ou ainda com o texto que o próprio site lá pôs.
+    var mensagemAutomatica = '';
     document.addEventListener('click', function (ev) {
       var alvo = ev.target.closest ? ev.target.closest('[data-pre-tipologia]') : null;
       if (!alvo) return;
       var grupo = $('[data-escolha="tipologia"]');
       if (grupo) escolher(grupo, alvo.getAttribute('data-pre-tipologia'));
+      var fracao = alvo.getAttribute('data-pre-fracao');
+      var caixa = $('#mensagem');
+      if (fracao && caixa && (!caixa.value.trim() || caixa.value === mensagemAutomatica)) {
+        caixa.value = mensagemAutomatica = T.mensagemPlanta.replace('{f}', fracao);
+        caixa.dispatchEvent(new Event('input'));
+      }
     });
   }
 
@@ -507,12 +544,13 @@
     });
   }
 
-  /* ------------------------------------------------- seletor de frações */
-  /* A secção #fracoes está escrita no HTML com o atributo hidden e só aparece
-     quando o data/fracoes.json tiver a tipologia das 12 frações. Nada aqui
-     inventa valores: o que vier a null aparece como «—», e o preço a null
-     como «Preço sob consulta». O caminho do JSON vem de data-fonte, para
-     servir as duas línguas e qualquer subcaminho. */
+  /* ------------------------------------------------ frações e valores */
+  /* Versão 2.1: tudo o que é número na secção #fracoes e nos cartões de
+     tipologia vem do data/fracoes.json — resumo, «desde», áreas, filtros,
+     tabela (acima de 700 px) e cartões (abaixo). Nada fica escrito à mão no
+     HTML. A secção está visível de origem (para não saltar ao carregar) e só
+     se esconde se o JSON não chegar ou não tiver as 12 frações com tipologia.
+     O caminho do JSON vem de data-fonte, para servir as duas línguas. */
   var TIPOLOGIAS = ['T1', 'T2', 'T2+2'];
 
   function fracoesCompletas(lista) {
@@ -521,50 +559,147 @@
     });
   }
 
-  function formatarArea(valor) {
-    if (valor === null || valor === undefined || valor === '') return '—';
-    return Number(valor).toLocaleString(T.local, { maximumFractionDigits: 2 }) + ' m²';
+  function vazio(v) { return v === null || v === undefined || v === ''; }
+
+  function agrupar(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, T.milhares);
   }
 
   function formatarPreco(valor) {
-    if (valor === null || valor === undefined || valor === '') return T.precoConsulta;
-    return Number(valor).toLocaleString(T.local, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    if (vazio(valor)) return T.precoConsulta;
+    return T.moeda(agrupar(Math.round(Number(valor))));
   }
 
-  function mostrarFracao(seccao, f) {
-    var imagens = { 'T1': 'quarto', 'T2': 'sala', 'T2+2': 'fachada-noite' };
-    var ficha = $('[data-ficha]', seccao);
-    $('[data-f="titulo"]', ficha).textContent = T.fracao + ' ' + f.fracao;
-    $('[data-f="tipologia"]', ficha).textContent = f.tipologia;
-    $('[data-f="descricao"]', ficha).textContent = T.descricao[f.tipologia] || '';
-    $('[data-f="quartos"]', ficha).textContent = T.quartos[f.tipologia] || '—';
-    $('[data-f="area"]', ficha).textContent = formatarArea(f.area_privativa_m2);
-    $('[data-f="piso"]', ficha).textContent = (f.piso === null || f.piso === undefined || f.piso === '') ? '—' : String(f.piso);
-    $('[data-f="preco"]', ficha).textContent = formatarPreco(f.preco);
+  // Áreas com duas casas decimais, como no quadro de áreas: 78,80 m².
+  function formatarArea(valor) {
+    if (vazio(valor)) return '—';
+    var partes = Number(valor).toFixed(2).split('.');
+    return agrupar(partes[0]) + T.decimal + partes[1] + ' m²';
+  }
 
-    var estado = $('[data-f="estado"]', ficha);
-    var chave = T.estados[f.estado] ? f.estado : 'disponivel';
-    estado.textContent = T.estados[chave];
-    estado.className = 'estado estado--' + chave;
+  function juntar(lista) {
+    if (lista.length < 2) return lista.join('');
+    return lista.slice(0, -1).join(', ') + T.e + lista[lista.length - 1];
+  }
 
-    // A imagem é a da tipologia (ilustrativa), até haver planta por fração.
-    var base = seccao.getAttribute('data-imagens') || 'assets/img/';
-    var nome = imagens[f.tipologia];
-    var foto = $('[data-f="imagem"]', ficha);
-    $$('source', foto).forEach(function (s) {
-      var tipo = s.type === 'image/avif' ? 'avif' : 'webp';
-      s.srcset = [640, 1024, 1536].map(function (w) {
-        return base + nome + '-' + w + '.' + tipo + ' ' + w + 'w';
-      }).join(', ');
-    });
-    $('img', foto).src = base + nome + '-1024.webp';
+  function disponivel(f) { return (f.estado || 'disponivel') === 'disponivel'; }
 
-    $$('[data-pre-tipologia]', ficha).forEach(function (a) {
-      a.setAttribute('data-pre-tipologia', f.tipologia);
+  function minimo(lista) {
+    var precos = lista.filter(function (f) { return disponivel(f) && !vazio(f.preco); })
+      .map(function (f) { return Number(f.preco); });
+    return precos.length ? Math.min.apply(null, precos) : null;
+  }
+
+  // «250.000 €» quando só há um valor; «Desde 295.000 €» quando há vários.
+  function valorDesde(lista) {
+    var m = minimo(lista);
+    if (m === null) return T.precoConsulta;
+    var varios = lista.filter(function (f) { return disponivel(f) && !vazio(f.preco); })
+      .some(function (f) { return Number(f.preco) !== m; });
+    return varios ? T.desde.replace('{v}', formatarPreco(m)) : formatarPreco(m);
+  }
+
+  function preencherTipologias(lista) {
+    TIPOLOGIAS.forEach(function (tipo) {
+      var dela = lista.filter(function (f) { return f.tipologia === tipo; });
+      var linha = $('[data-tipologia-linha="' + tipo + '"]');
+      var valor = $('[data-tipologia-valor="' + tipo + '"]');
+      if (!dela.length) return;
+      var areas = dela.map(function (f) { return f.area_privativa_m2; }).filter(function (a) { return !vazio(a); })
+        .map(function (a) { return Math.round(Number(a)); });
+      var texto = T.apartamentos(dela.length);
+      if (areas.length) {
+        texto += ' · ' + T.areas(Math.min.apply(null, areas), Math.max.apply(null, areas));
+        if (dela.every(function (f) { return !vazio(f.area_sotao_m2); })) texto += T.comSotao;
+      }
+      if (linha) linha.textContent = texto;
+      if (valor) valor.textContent = valorDesde(dela);
     });
   }
 
-  function iniciarFracoes() {
+  // Um filtro por piso. Se as frações de um piso forem exatamente as de uma
+  // tipologia, o rótulo diz as duas coisas («Piso 2 · T2+2»).
+  function filtrosDe(lista) {
+    var pisos = [];
+    lista.forEach(function (f) { if (!vazio(f.piso) && pisos.indexOf(f.piso) === -1) pisos.push(f.piso); });
+    pisos.sort(function (a, b) { return a - b; });
+    return pisos.map(function (p) {
+      var noPiso = lista.filter(function (f) { return f.piso === p; });
+      var tipo = noPiso[0].tipologia;
+      var igual = noPiso.every(function (f) { return f.tipologia === tipo; }) &&
+        lista.filter(function (f) { return f.tipologia === tipo; }).length === noPiso.length;
+      return { piso: p, rotulo: T.piso(p) + (igual ? ' · ' + tipo : '') };
+    });
+  }
+
+  function el(tag, classe, texto) {
+    var e = document.createElement(tag);
+    if (classe) e.className = classe;
+    if (texto !== undefined) e.textContent = texto;
+    return e;
+  }
+
+  function botaoPlanta(f) {
+    var a = el('a', 'btn btn--contorno btn--planta', T.pedirPlanta);
+    a.href = '#registo';
+    a.setAttribute('data-pre-tipologia', f.tipologia);
+    a.setAttribute('data-pre-fracao', f.fracao);
+    a.setAttribute('aria-label', T.pedirPlantaDe.replace('{f}', f.fracao));
+    return a;
+  }
+
+  function valorOuEstado(f) {
+    return disponivel(f) ? formatarPreco(f.preco) : (T.estados[f.estado] || f.estado);
+  }
+
+  function linhaTabela(f) {
+    var tr = el('tr');
+    tr.setAttribute('data-piso', f.piso);
+    var td = el('td');
+    td.appendChild(el('span', 'letra', f.fracao));
+    tr.appendChild(td);
+    tr.appendChild(el('td', 'forte', f.tipologia));
+    tr.appendChild(el('td', 'fraco', vazio(f.piso) ? '—' : T.piso(f.piso)));
+    tr.appendChild(el('td', 'num', formatarArea(f.area_privativa_m2)));
+    tr.appendChild(el('td', 'num fraco', formatarArea(f.area_exterior_m2)));
+    tr.appendChild(el('td', 'num fraco', formatarArea(f.area_sotao_m2)));
+    tr.appendChild(el('td', 'num forte', valorOuEstado(f)));
+    td = el('td');
+    td.appendChild(botaoPlanta(f));
+    tr.appendChild(td);
+    return tr;
+  }
+
+  function cartaoFracao(f) {
+    var li = el('li', 'cartao-fracao');
+    li.setAttribute('data-piso', f.piso);
+    var topo = el('div', 'cartao-fracao__topo');
+    var letra = el('span', 'letra', f.fracao);
+    letra.setAttribute('aria-hidden', 'true');
+    topo.appendChild(letra);
+    var nomes = el('div');
+    nomes.appendChild(el('h3', 'cartao-fracao__nome', T.fracao + ' ' + f.fracao + ' · ' + f.tipologia));
+    nomes.appendChild(el('p', 'cartao-fracao__piso', vazio(f.piso) ? '' : T.piso(f.piso)));
+    topo.appendChild(nomes);
+    li.appendChild(topo);
+
+    var dl = el('dl', 'cartao-fracao__areas');
+    [[T.habitacao, f.area_privativa_m2], [T.exterior, f.area_exterior_m2], [T.sotao, f.area_sotao_m2]].forEach(function (par) {
+      var d = el('div');
+      d.appendChild(el('dt', '', par[0]));
+      d.appendChild(el('dd', '', formatarArea(par[1])));
+      dl.appendChild(d);
+    });
+    li.appendChild(dl);
+
+    var base = el('div', 'cartao-fracao__base');
+    base.appendChild(el('p', 'cartao-fracao__valor', valorOuEstado(f)));
+    base.appendChild(botaoPlanta(f));
+    li.appendChild(base);
+    return li;
+  }
+
+  function iniciarValores() {
     var seccao = $('#fracoes');
     if (!seccao || !window.fetch) return;
     var fonte = seccao.getAttribute('data-fonte');
@@ -573,34 +708,82 @@
     fetch(fonte, { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (lista) {
-        if (!fracoesCompletas(lista)) return; // fica escondida
-        var porLetra = {};
-        lista.forEach(function (f) { porLetra[f.fracao] = f; });
+        if (!fracoesCompletas(lista)) throw new Error('faltam frações ou tipologias no JSON');
+        lista = lista.slice().sort(function (a, b) { return a.fracao < b.fracao ? -1 : 1; });
 
-        var chips = $$('[data-fracao]', seccao);
-        chips.forEach(function (chip) {
-          var f = porLetra[chip.getAttribute('data-fracao')];
-          if (!f) { chip.hidden = true; return; }
-          var chave = T.estados[f.estado] ? f.estado : 'disponivel';
-          chip.setAttribute('aria-label', T.fracao + ' ' + f.fracao + ', ' + f.tipologia + ', ' + T.estados[chave]);
-          if (chave !== 'disponivel') chip.classList.add('chip--indisponivel');
-          chip.addEventListener('click', function () {
-            chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
-            mostrarFracao(seccao, f);
-          });
+        preencherTipologias(lista);
+
+        // Resumo sempre visível
+        var tipos = TIPOLOGIAS.filter(function (t) { return lista.some(function (f) { return f.tipologia === t; }); });
+        $('[data-resumo="disponiveis"]', seccao).textContent = T.disponiveis.replace('{n}', lista.filter(disponivel).length);
+        $('[data-resumo="desde"]', seccao).textContent = formatarPreco(minimo(lista));
+        $('[data-resumo="tipologias"]', seccao).textContent = juntar(tipos);
+
+        // Tabela e cartões
+        var corpo = $('[data-linhas]', seccao);
+        var cartoes = $('[data-cartoes]', seccao);
+        lista.forEach(function (f) {
+          corpo.appendChild(linhaTabela(f));
+          cartoes.appendChild(cartaoFracao(f));
         });
 
-        var primeira = lista.filter(function (f) { return f.estado === 'disponivel'; })[0] || lista[0];
-        var chipInicial = $('[data-fracao="' + primeira.fracao + '"]', seccao);
-        if (chipInicial) chipInicial.setAttribute('aria-pressed', 'true');
-        mostrarFracao(seccao, primeira);
+        // Filtros
+        var caixaFiltros = $('[data-filtros]', seccao);
+        var contagem = $('[data-contagem]', seccao);
+        var opcoes = [{ piso: null, rotulo: T.todas }].concat(filtrosDe(lista));
+        var botoes = opcoes.map(function (o) {
+          var b = el('button', 'filtro', o.rotulo);
+          b.type = 'button';
+          b.setAttribute('aria-pressed', o.piso === null ? 'true' : 'false');
+          b.addEventListener('click', function () {
+            botoes.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+            var n = 0;
+            $$('[data-piso]', seccao).forEach(function (linha) {
+              var mostra = o.piso === null || linha.getAttribute('data-piso') === String(o.piso);
+              linha.hidden = !mostra;
+              if (mostra && linha.tagName === 'TR') n++;
+            });
+            contagem.textContent = T.aMostrar(n);
+          });
+          caixaFiltros.appendChild(b);
+          return b;
+        });
 
-        seccao.hidden = false;
-        $$('[data-so-com-fracoes]').forEach(function (el) { el.hidden = false; });
+        // Abrir e fechar a lista (começa fechada)
+        var botao = $('[data-abrir-lista]', seccao);
+        var rotulo = $('[data-rotulo]', botao);
+        var listaEl = document.getElementById(botao.getAttribute('aria-controls'));
+        var textoAbrir = T.verLista.replace('{n}', lista.length);
+        rotulo.textContent = textoAbrir;
+        botao.addEventListener('click', function () {
+          var abrir = botao.getAttribute('aria-expanded') !== 'true';
+          botao.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+          rotulo.textContent = abrir ? T.fecharLista : textoAbrir;
+          listaEl.hidden = !abrir;
+        });
       })
       .catch(function (erro) {
-        if (window.console) console.info('[OceanView 2] Seletor de frações escondido:', erro.message || erro);
+        seccao.hidden = true;
+        $$('a[href="#fracoes"]').forEach(function (a) { a.hidden = true; });
+        if (window.console) console.warn('[OceanView 2] Frações e valores escondida:', erro.message || erro);
       });
+  }
+
+  /* ------------------------------------------------------ barra fixa */
+  /* Abaixo de 900 px: aparece depois do hero e esconde-se enquanto o
+     formulário estiver no ecrã (aí já há o botão de enviar). */
+  function iniciarBarraFixa() {
+    var barra = $('[data-barra-fixa]');
+    var hero = $('.hero');
+    var registo = $('#registo');
+    if (!barra || !hero || !registo || !('IntersectionObserver' in window)) return;
+    var visivel = { hero: true, registo: false };
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { visivel[e.target === hero ? 'hero' : 'registo'] = e.isIntersecting; });
+      barra.hidden = visivel.hero || visivel.registo;
+    });
+    observador.observe(hero);
+    observador.observe(registo);
   }
 
   /* ------------------------------------------------------------ movimento */
@@ -637,7 +820,8 @@
     iniciarEscolhas();
     iniciarFormulario();
     iniciarContador();
-    iniciarFracoes();
+    iniciarValores();
+    iniciarBarraFixa();
     iniciarMovimento();
     iniciarCookies();
     iniciarAno();

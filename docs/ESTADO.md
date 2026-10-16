@@ -1,8 +1,70 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-15
+Última atualização: 2026-10-16
 
 ## Feito
+
+### Versão 2.1 da landing page (2026-10-16)
+
+O design da v2 mantém-se; mudou só o que a v2.1 pede (`docs/DESIGN.md`,
+«Versão 2.1»; alvo `material/design-v2-1/referencia-v2-1*.html`), nas duas
+línguas, com os textos v2.1 do `content/` tal como estão.
+
+- **Hero com a fachada de dia** (`fachada-dia` em AVIF/WebP a 640, 1024 e
+  1536 px), `object-position: 50% 45%`, véu e título da v2.1
+  (`clamp(46px, 6.6vw, 98px)`, `line-height: .9`). Botões «Registar
+  interesse» e «Ver frações e valores». Navegação: O projeto · Frações e
+  valores · Viver aqui · Localização · Contacto.
+- **Cartões de tipologia com valores calculados do `data/fracoes.json`**:
+  número de apartamentos, áreas (arredondadas) e «desde» saem do JSON
+  (1 apartamento · 56 m² · 250.000 €; 7 · 75 a 97 m² · Desde 295.000 €;
+  4 · 82 a 97 m² e sótão · Desde 490.000 €). Confere com o `content/`.
+- **Frações e valores (nova)**, entre Tipologias e Arquitetura: resumo sempre
+  visível (12 disponíveis · 250.000 € · T1, T2 e T2+2, calculados do JSON),
+  «Tabela em PDF» (→ `assets/docs/OceanView2_Tabela_de_Valores.pdf`, conferido
+  linha a linha com o JSON) e «Ver as 12 frações», que abre a lista no mesmo
+  cartão (`aria-expanded`, `aria-controls`; passa a «Fechar a lista»). **A
+  lista começa fechada.** Filtros gerados dos pisos do JSON (Todas · Piso 0 ·
+  Piso 1 · Piso 2 · T2+2), contagem anunciada a leitores de ecrã, tabela acima
+  de 700 px e cartões abaixo. Nada escrito à mão: se o JSON falhar, a secção
+  esconde-se.
+- **«Pedir planta»** leva ao formulário com a tipologia escolhida e a
+  mensagem «Gostava de receber a planta da fração K.» (editável; só se escreve
+  com a caixa vazia). A folha não ganhou colunas: o contrato do formulário não
+  mudou.
+- **Tempos e Google Maps no `dados-lancamento.json`** e aplicados pelo
+  `preencher.py` em todos os sítios (hero, O projeto, Localização, Viver aqui,
+  Para quem, descrição da página). O script passou a escrever 75 min como
+  «1h15», a data da medição só com mês e ano («outubro de 2026» /
+  «October 2026», formato `AAAA-MM`) e o «desde» da descrição a partir do
+  `data/fracoes.json`.
+- **Localização** com a foto-1 (Consolação vista do ar), «Consolação,
+  Peniche» e «Abrir no Google Maps» por cima. Sem mapa incorporado.
+- **Viver aqui (nova)**: Praia (foto-5), Surf (foto-4), Perto de tudo
+  (foto-3), recortadas em 4:5 pelo `gerar-imagens.py` (lista `FOTOS`), em
+  AVIF e WebP com `srcset`. **Sem legenda**, a pedido do Lourenço.
+- **Para quem (nova)**: três cartões brancos com número, título e frase.
+- **Barra fixa no telemóvel** (abaixo de 900 px): aparece depois do hero e
+  esconde-se com o formulário à vista; «WhatsApp» só aparece com número.
+- **Removido**: o seletor de frações com ficha da v2 (HTML, CSS e JS),
+  substituído pela lista; a nota «Preços sob consulta» das Tipologias.
+- **Imagem de partilha** continua a da fachada ao anoitecer: experimentei a de
+  dia e o título branco lê-se mal sobre a fachada clara.
+
+### Qualidade da versão 2.1 (2026-10-16)
+
+Lighthouse 13.5, servido em local num subcaminho (sem `noindex`):
+
+| Página | Telemóvel | Desktop | CLS |
+| --- | --- | --- | --- |
+| `index.html` | 97 / 100 / 100 / 100 | 100 / 100 / 100 / 100 | 0 |
+| `en/index.html` | 96 / 100 / 100 / 100 | 100 / 100 / 100 / 100 | 0 |
+
+(LCP no telemóvel simulado: 2,6 s, a imagem do hero.) Testado a **360, 390,
+430 e 1440 px** nas duas línguas, com a lista aberta: sem barra horizontal.
+Testados no browser: abrir e fechar a lista, filtros, contagem, «Pedir
+planta» (tipologia e mensagem), barra fixa e valores em inglês (€250,000,
+78.80 m², Ground floor).
 
 ### Site fechado do nosso lado (2026-10-15)
 
@@ -185,7 +247,25 @@ enquanto os emails da Inês e do Carlos não entrarem ali (passo 6 do
 
 ## Diferenças em relação à referência
 
-O que fica diferente de `material/design/referencia.html`, e porquê:
+### Versão 2.1 (`material/design-v2-1/`)
+
+1. **Véu do hero mais escuro abaixo de 900 px.** Na referência, o título e o
+   subtítulo brancos caem sobre a fachada branca de dia e não têm contraste
+   AA no telemóvel. No desktop fica o véu da referência.
+2. **Lista de frações em cartões abaixo de 700 px** (pedido), em vez da
+   tabela com deslocamento horizontal da referência.
+3. **Cartões de tipologia levam ao formulário** com a tipologia escolhida
+   (regra do CLAUDE.md); na referência levam a `#fracoes`.
+4. **Fotografias sem legenda** (decisão de 16/10/2026), apesar de o
+   `docs/DESIGN.md` pedir mês e ano.
+5. **Localização com fotografia** (foto-1) em vez do bloco liso, como o
+   `docs/DESIGN.md` manda quando há fotografia editada da zona.
+6. **Filtro «Piso 2 · T2+2»** num só botão, como na referência (o `content/`
+   lista «Piso 2 · T2+2» sem dizer se são dois).
+
+### Versão 2 (`material/design/referencia.html`)
+
+O que fica diferente, e porquê:
 
 1. **Textos.** Onde a referência e o `content/` divergem, ganhou o `content/`
    (regra do projeto): botão secundário do hero «Falar por WhatsApp» em vez de
@@ -219,9 +299,9 @@ O que fica diferente de `material/design/referencia.html`, e porquê:
 
 **No domínio, nada é publicado enquanto houver marcadores `.todo` visíveis.**
 Agora é automático: o `preencher.py` só escreve o `CNAME` com os dados todos,
-e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **19 no
-`index.html`, 19 no `en/index.html`, 11 na `privacidade.html` e 11 na
-`en/privacy.html`**.
+e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **7 no
+`index.html`, 7 no `en/index.html`, 11 na `privacidade.html` e 11 na
+`en/privacy.html`** (rodapé legal e frase da Arquitetura).
 
 Exceção aprovada a 14/10/2026: a pré-visualização no GitHub Pages, com
 `noindex`, só para mostrar aos clientes.
@@ -246,17 +326,15 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 5. Emails Google para a linha AVISAR.
 6. Domínio registado em nome deles (os três candidatos estão livres).
 7. Validação da frase da Arquitetura.
-8. Localização exata do edifício, para a ligação do Google Maps.
-9. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
+8. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
 
 ### Do Lourenço
 
-10. Distâncias medidas (praia a pé; Peniche, Óbidos e Lisboa de carro) e a
-    data da medição.
-11. Fotografia de drone (não impede o lançamento: há o bloco de espera).
-12. Imagens novas, sem as ripas de madeira dos renders atuais.
-13. Teste do formulário de ponta a ponta no domínio e apagar as linhas de
+9. Imagens novas, sem as ripas de madeira dos renders atuais (o hero de dia
+   ainda as tem).
+10. Teste do formulário de ponta a ponta no domínio e apagar as linhas de
     teste da folha.
+11. Ver no telemóvel real a pré-visualização da v2.1.
 
 ## Decisões (15/10/2026)
 
@@ -271,9 +349,20 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 - A linha de teste da folha é apagada pelo Lourenço depois do teste de ponta a
   ponta.
 
+## Decisões (16/10/2026)
+
+- Fotografias de Viver aqui: foto-5 (Praia), foto-4 (Surf), foto-3 (Perto de
+  tudo). Não há fotografia de surfistas: o cartão Surf leva as ondas no areal.
+- Fotografias sem legenda.
+- Localização com a foto-1.
+
 ## Perguntas
 
-Nenhuma pendente do nosso lado.
+1. O `docs/DESIGN.md` ainda diz «Fotografias reais: legenda com mês e ano».
+   Atualizo-o para «sem legenda», ou fica a regra para o site completo?
+2. A frase do «Pedir planta» («Gostava de receber a planta da fração K.» /
+   «I would like to receive the floor plan for apartment K.») é minha:
+   validar no chat de projeto.
 
 ## Registo
 
@@ -310,3 +399,8 @@ Nenhuma pendente do nosso lado.
   página 404 bilingue, contador de 500 caracteres, `docs/LANCAMENTO.md`,
   `docs/apps-script.gs` apagado. Domínios candidatos livres. Pré-visualização
   no ar.
+- 2026-10-16: versão 2.1 — fachada de dia no hero, valores do
+  `data/fracoes.json` nas Tipologias e na nova secção Frações e valores
+  (recolhível, tabela/cartões, PDF), tempos e Google Maps aplicados pelo
+  `preencher.py`, Localização com fotografia, Viver aqui e Para quem, barra
+  fixa no telemóvel. Lighthouse 96–97 no telemóvel e 100 no desktop, CLS 0.

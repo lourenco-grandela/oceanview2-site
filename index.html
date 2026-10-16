@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>OceanView 2 · Doze apartamentos na Consolação, Peniche</title>
-<!-- TODO: a descrição espera a distância medida até à praia ([X] minutos a pé). -->
-<meta name="description" content="T1, T2 e T2+2 com varandas e terraços, a [X] minutos a pé da praia da Consolação. Registe o seu interesse.">
+<title>OceanView 2 · Apartamentos T1, T2 e T2+2 na Consolação, Peniche</title>
+<!-- A descrição é escrita pelo ferramentas/preencher.py: os minutos a pé vêm do
+     dados-lancamento.json e o valor «desde» do data/fracoes.json. -->
+<meta name="description" content="Doze apartamentos a 6 minutos a pé da praia da Consolação, desde 250.000 €. Veja frações, áreas e valores.">
 
 <!-- TODO: substituir TODO-dominio.pt pelo domínio definitivo em todo o ficheiro
      (canonical, hreflang, og:url e og:image) e criar o ficheiro CNAME. -->
@@ -19,8 +20,8 @@
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:site_name" content="OceanView 2">
-<meta property="og:title" content="OceanView 2 · Doze apartamentos na Consolação, Peniche">
-<meta property="og:description" content="T1, T2 e T2+2 com varandas e terraços, a [X] minutos a pé da praia da Consolação. Registe o seu interesse.">
+<meta property="og:title" content="OceanView 2 · Apartamentos T1, T2 e T2+2 na Consolação, Peniche">
+<meta property="og:description" content="Doze apartamentos a 6 minutos a pé da praia da Consolação, desde 250.000 €. Veja frações, áreas e valores.">
 <meta property="og:url" content="https://TODO-dominio.pt/">
 <meta property="og:image" content="https://TODO-dominio.pt/assets/img/og-oceanview2.jpg">
 <meta property="og:image:width" content="1200">
@@ -67,16 +68,22 @@
   <symbol id="seta" viewBox="0 0 24 24">
     <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
+  <symbol id="divisa" viewBox="0 0 24 24">
+    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="descarregar" viewBox="0 0 24 24">
+    <path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
 </svg>
 
 <!-- ============================================================ HERO ==== -->
 <div class="hero" id="inicio">
   <div class="hero__moldura">
     <picture class="hero__imagem">
-      <source type="image/avif" srcset="assets/img/fachada-noite-640.avif 640w, assets/img/fachada-noite-1024.avif 1024w, assets/img/fachada-noite-1536.avif 1536w" sizes="100vw">
-      <source type="image/webp" srcset="assets/img/fachada-noite-640.webp 640w, assets/img/fachada-noite-1024.webp 1024w, assets/img/fachada-noite-1536.webp 1536w" sizes="100vw">
-      <img src="assets/img/fachada-noite-1536.webp" width="1536" height="1024" fetchpriority="high" decoding="async"
-           alt="Fachada do OceanView 2 ao anoitecer, com as varandas iluminadas e o mar ao fundo.">
+      <source type="image/avif" srcset="assets/img/fachada-dia-640.avif 640w, assets/img/fachada-dia-1024.avif 1024w, assets/img/fachada-dia-1536.avif 1536w" sizes="100vw">
+      <source type="image/webp" srcset="assets/img/fachada-dia-640.webp 640w, assets/img/fachada-dia-1024.webp 1024w, assets/img/fachada-dia-1536.webp 1536w" sizes="100vw">
+      <img src="assets/img/fachada-dia-1536.webp" width="1536" height="1024" fetchpriority="high" decoding="async"
+           alt="Fachada do OceanView 2 durante o dia: edifício claro de três pisos com varandas envidraçadas e cobertura em telha.">
     </picture>
     <div class="hero__veu" aria-hidden="true"></div>
 
@@ -87,8 +94,8 @@
       </a>
       <nav class="navegacao" aria-label="Principal">
         <a href="#projeto">O projeto</a>
-        <a href="#tipologias">Tipologias</a>
-        <a href="#arquitetura">Arquitetura</a>
+        <a href="#fracoes">Frações e valores</a>
+        <a href="#viver">Viver aqui</a>
         <a href="#localizacao">Localização</a>
         <a href="#registo">Contacto</a>
       </nav>
@@ -106,11 +113,10 @@
         <h1 class="hero__titulo">Uma nova<br>forma de<br>chegar<br>a casa.</h1>
       </div>
       <div class="hero__lado">
-        <!-- TODO: a distância até à praia só entra depois de medida. -->
-        <p class="hero__subtitulo">Doze apartamentos a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé da praia, com varandas, terraços e estacionamento em cave.</p>
+        <p class="hero__subtitulo">Doze apartamentos a <span data-dado="praia_a_pe_min">6</span> minutos a pé da praia, com varandas, terraços e estacionamento em cave.</p>
         <div class="grupo-botoes">
           <a class="btn btn--claro" href="#registo">Registar interesse <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
-          <a class="btn btn--contorno-claro" data-whatsapp hidden href="#">Falar por WhatsApp</a>
+          <a class="btn btn--contorno-claro" href="#fracoes">Ver frações e valores</a>
         </div>
         <p class="hero__nota">Imagem ilustrativa, não contratual.</p>
       </div>
@@ -135,7 +141,7 @@
       </figure>
       <div class="projeto__texto">
         <h2 class="titulo titulo--grande" id="titulo-projeto">Uma casa para viver junto ao mar, todo o ano.</h2>
-        <p class="texto">O OceanView 2 são doze apartamentos na Consolação, em Peniche: um T1, sete T2 e quatro T2+2. Varandas e terraços conforme a fração, estacionamento em cave e a praia a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé.</p>
+        <p class="texto">O OceanView 2 são doze apartamentos na Consolação, em Peniche: um T1, sete T2 e quatro T2+2. Varandas e terraços conforme a fração, estacionamento em cave e a praia a <span data-dado="praia_a_pe_min">6</span> minutos a pé.</p>
       </div>
     </div>
 
@@ -153,9 +159,8 @@
         <dd class="numeros__valor">56–253<span class="numeros__unidade">m²</span></dd>
       </div>
       <div class="numeros__item">
-        <!-- TODO: minutos a pé até à praia, depois de medidos. -->
         <dt class="numeros__rotulo">A pé da praia da Consolação</dt>
-        <dd class="numeros__valor"><span class="todo" data-dado="praia_a_pe_min">[X]</span><span class="numeros__unidade">min</span></dd>
+        <dd class="numeros__valor"><span data-dado="praia_a_pe_min">6</span><span class="numeros__unidade">min</span></dd>
       </div>
     </dl>
   </section>
@@ -173,14 +178,16 @@
     </figure>
   </div>
 
-  <!-- ====================================================== TIPOLOGIAS ==== -->
+  <!-- ====================================================== TIPOLOGIAS ====
+       Número de apartamentos, áreas e valores: calculados pelo principal.js a
+       partir do data/fracoes.json. As linhas vazias guardam o lugar (sem salto). -->
   <section class="seccao envolvente" id="tipologias" aria-labelledby="titulo-tipologias" data-revelar>
     <div class="seccao__topo">
       <div class="seccao__titulos">
         <p class="etiqueta">Tipologias</p>
         <h2 class="titulo" id="titulo-tipologias">Três formas de viver o OceanView 2.</h2>
       </div>
-      <a class="btn btn--contorno btn--pequeno" href="#registo">Pedir plantas <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
+      <a class="btn btn--contorno btn--pequeno" href="#fracoes">Ver frações e valores <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
     </div>
 
     <ul class="cartoes">
@@ -198,7 +205,8 @@
             <div class="cartao__textos">
               <span class="cartao__numero" aria-hidden="true">01</span>
               <h3 class="cartao__nome">T1</h3>
-              <p class="cartao__linha">1 apartamento. Um quarto, sala e cozinha.</p>
+              <p class="cartao__linha" data-tipologia-linha="T1">&nbsp;</p>
+              <p class="cartao__valor" data-tipologia-valor="T1">&nbsp;</p>
             </div>
             <span class="seta" aria-hidden="true"><svg><use href="#seta"></use></svg></span>
           </div>
@@ -218,7 +226,8 @@
             <div class="cartao__textos">
               <span class="cartao__numero" aria-hidden="true">02</span>
               <h3 class="cartao__nome">T2</h3>
-              <p class="cartao__linha">7 apartamentos. Dois quartos.</p>
+              <p class="cartao__linha" data-tipologia-linha="T2">&nbsp;</p>
+              <p class="cartao__valor" data-tipologia-valor="T2">&nbsp;</p>
             </div>
             <span class="seta" aria-hidden="true"><svg><use href="#seta"></use></svg></span>
           </div>
@@ -228,9 +237,9 @@
         <a class="cartao cartao--tipologia" href="#registo" data-pre-tipologia="T2+2">
           <div class="figura">
             <picture>
-              <source type="image/avif" srcset="assets/img/fachada-noite-640.avif 640w, assets/img/fachada-noite-1024.avif 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
-              <source type="image/webp" srcset="assets/img/fachada-noite-640.webp 640w, assets/img/fachada-noite-1024.webp 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
-              <img src="assets/img/fachada-noite-640.webp" width="640" height="427" loading="lazy" decoding="async" alt="" style="object-position: 50% 28%">
+              <source type="image/avif" srcset="assets/img/fachada-dia-640.avif 640w, assets/img/fachada-dia-1024.avif 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+              <source type="image/webp" srcset="assets/img/fachada-dia-640.webp 640w, assets/img/fachada-dia-1024.webp 1024w" sizes="(min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+              <img src="assets/img/fachada-dia-640.webp" width="640" height="427" loading="lazy" decoding="async" alt="" style="object-position: 60% 20%">
             </picture>
             <span class="legenda" aria-hidden="true">Imagem ilustrativa, não contratual.</span>
           </div>
@@ -238,72 +247,65 @@
             <div class="cartao__textos">
               <span class="cartao__numero" aria-hidden="true">03</span>
               <h3 class="cartao__nome">T2+2</h3>
-              <p class="cartao__linha">4 apartamentos. Dois quartos e duas divisões extra.</p>
+              <p class="cartao__linha" data-tipologia-linha="T2+2">&nbsp;</p>
+              <p class="cartao__valor" data-tipologia-valor="T2+2">&nbsp;</p>
             </div>
             <span class="seta" aria-hidden="true"><svg><use href="#seta"></use></svg></span>
           </div>
         </a>
       </li>
     </ul>
-    <p class="nota tipologias__nota">Preços sob consulta. Áreas e plantas de cada fração a pedido.</p>
   </section>
 
-  <!-- ========================================================= FRAÇÕES ====
-       Pronto mas escondido: o principal.js só tira o hidden quando o
-       data/fracoes.json tiver a tipologia das 12 frações. Nenhum valor desta
-       ficha está escrito à mão: vem todo do JSON. -->
-  <section class="seccao envolvente" id="fracoes" aria-labelledby="titulo-fracoes" hidden
-           data-fonte="data/fracoes.json" data-imagens="assets/img/">
+  <!-- ============================================== FRAÇÕES E VALORES ====
+       Tudo o que é número vem do data/fracoes.json (principal.js): resumo,
+       filtros, tabela e cartões. A lista começa fechada. Se o JSON não chegar
+       ou não tiver as 12 frações com tipologia, a secção esconde-se. -->
+  <section class="seccao envolvente" id="fracoes" aria-labelledby="titulo-fracoes" data-fonte="data/fracoes.json">
     <div class="fracoes__cabecalho">
-      <p class="etiqueta">Frações</p>
-      <h2 class="titulo" id="titulo-fracoes">Escolha a sua fração.</h2>
-      <p class="texto">Doze frações, da A à L. Escolha uma letra para ver a tipologia, a área e o estado.</p>
-    </div>
-    <div class="chips" role="group" aria-label="Frações">
-      <button class="chip" type="button" aria-pressed="false" data-fracao="A">A</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="B">B</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="C">C</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="D">D</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="E">E</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="F">F</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="G">G</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="H">H</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="I">I</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="J">J</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="K">K</button>
-      <button class="chip" type="button" aria-pressed="false" data-fracao="L">L</button>
+      <p class="etiqueta">Frações e valores</p>
+      <h2 class="titulo" id="titulo-fracoes">Escolha a sua casa.</h2>
+      <p class="texto">Doze frações, da A à L, com áreas e valores. Abra a lista completa ou descarregue a tabela.</p>
     </div>
 
-    <div class="ficha" data-ficha aria-live="polite">
-      <figure class="figura ficha__imagem">
-        <picture data-f="imagem">
-          <source type="image/avif" srcset="assets/img/quarto-640.avif 640w, assets/img/quarto-1024.avif 1024w, assets/img/quarto-1536.avif 1536w" sizes="(min-width: 900px) 45vw, 100vw">
-          <source type="image/webp" srcset="assets/img/quarto-640.webp 640w, assets/img/quarto-1024.webp 1024w, assets/img/quarto-1536.webp 1536w" sizes="(min-width: 900px) 45vw, 100vw">
-          <img src="assets/img/quarto-1024.webp" width="1536" height="1022" loading="lazy" decoding="async" alt="">
-        </picture>
-        <figcaption class="legenda">Imagem ilustrativa, não contratual.</figcaption>
-      </figure>
-      <div class="ficha__corpo">
-        <div class="ficha__topo">
-          <div class="ficha__linha">
-            <h3 class="etiqueta" data-f="titulo">Fração</h3>
-            <span class="estado" data-f="estado"></span>
-          </div>
-          <p class="ficha__tipologia" data-f="tipologia"></p>
-          <p class="ficha__descricao" data-f="descricao"></p>
-        </div>
-        <dl class="ficha__dados">
-          <div><dt>Quartos</dt><dd data-f="quartos"></dd></div>
-          <div><dt>Área privativa</dt><dd data-f="area"></dd></div>
-          <div><dt>Piso</dt><dd data-f="piso"></dd></div>
+    <div class="valores">
+      <div class="valores__topo">
+        <dl class="valores__resumo">
+          <div><dt>Frações</dt><dd data-resumo="disponiveis">&nbsp;</dd></div>
+          <div><dt>Valores desde</dt><dd data-resumo="desde">&nbsp;</dd></div>
+          <div><dt>Tipologias</dt><dd data-resumo="tipologias">&nbsp;</dd></div>
         </dl>
-        <div class="ficha__base">
-          <span class="ficha__preco" data-f="preco"></span>
-          <div class="grupo-botoes">
-            <a class="btn btn--contorno" href="#registo" data-pre-tipologia="">Pedir planta</a>
-            <a class="btn btn--principal" href="#registo" data-pre-tipologia="">Registar interesse <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
-          </div>
+        <div class="grupo-botoes">
+          <a class="btn btn--contorno" href="assets/docs/OceanView2_Tabela_de_Valores.pdf" type="application/pdf" download><svg aria-hidden="true" focusable="false"><use href="#descarregar"></use></svg>Tabela em PDF</a>
+          <button class="btn btn--principal" type="button" aria-expanded="false" aria-controls="lista-fracoes" data-abrir-lista>
+            <span data-rotulo>Ver as 12 frações</span> <svg class="valores__divisa" aria-hidden="true" focusable="false"><use href="#divisa"></use></svg>
+          </button>
         </div>
+      </div>
+
+      <div class="valores__lista" id="lista-fracoes" hidden>
+        <div class="filtros" role="group" aria-label="Filtrar frações" data-filtros></div>
+        <p class="so-leitor" aria-live="polite" data-contagem></p>
+        <div class="tabela-fracoes">
+          <table>
+            <caption class="so-leitor">Frações do OceanView 2, com áreas em m² e valores</caption>
+            <thead>
+              <tr>
+                <th scope="col">Fração</th>
+                <th scope="col">Tipologia</th>
+                <th scope="col">Piso</th>
+                <th scope="col" class="num">Habitação</th>
+                <th scope="col" class="num">Exterior</th>
+                <th scope="col" class="num">Sótão</th>
+                <th scope="col" class="num">Valor</th>
+                <th scope="col"><span class="so-leitor">Planta</span></th>
+              </tr>
+            </thead>
+            <tbody data-linhas></tbody>
+          </table>
+        </div>
+        <ul class="cartoes-fracoes" data-cartoes></ul>
+        <p class="nota valores__nota">Áreas em m², do quadro de áreas do projeto. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.</p>
       </div>
     </div>
   </section>
@@ -319,32 +321,115 @@
     <a class="btn btn--contorno btn--branco" href="#registo">Pedir plantas e acabamentos <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
   </section>
 
-  <!-- ===================================================== LOCALIZAÇÃO ==== -->
+  <!-- ===================================================== LOCALIZAÇÃO ====
+       Tempos e ligação do Google Maps: escritos pelo ferramentas/preencher.py a
+       partir do dados-lancamento.json (cada <span data-dado>). -->
   <section class="seccao seccao--larga envolvente" id="localizacao" aria-labelledby="titulo-localizacao" data-revelar>
     <div class="metades">
       <div class="localizacao__texto">
         <p class="etiqueta">Localização</p>
-        <!-- TODO: título, texto e tempos dependem das medições (a pé / de carro). -->
-        <h2 class="titulo titulo--grande" id="titulo-localizacao">O mar a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé.</h2>
-        <p class="texto">O OceanView 2 nasce na Consolação, em Peniche, a <span class="todo" data-dado="praia_a_pe_min">[X]</span> minutos a pé da praia e a <span class="todo" data-dado="peniche_carro_min">[Y]</span> minutos de carro do centro de Peniche. A praia da Consolação é conhecida pelo iodo das suas águas e, para norte, um longo areal segue até Peniche, procurado por surfistas.</p>
+        <h2 class="titulo titulo--grande" id="titulo-localizacao">O mar a <span data-dado="praia_a_pe_min">6</span> minutos a pé.</h2>
+        <p class="texto">O OceanView 2 nasce na Consolação, em Peniche, a <span data-dado="praia_a_pe_min">6</span> minutos a pé da praia e a <span data-dado="peniche_carro_min">10</span> minutos de carro do centro de Peniche. A praia da Consolação é conhecida pelo iodo das suas águas e, para norte, um longo areal segue até Peniche, procurado por surfistas.</p>
         <ul class="distancias">
-          <li><span>Praia da Consolação</span><span><span class="todo" data-dado="praia_a_pe_min">[X]</span> min a pé</span></li>
-          <li><span>Peniche</span><span><span class="todo" data-dado="peniche_carro_min">[Y]</span> min de carro</span></li>
-          <li><span>Óbidos</span><span><span class="todo" data-dado="obidos_carro_min">[Z]</span> min de carro</span></li>
-          <li><span>Lisboa</span><span><span class="todo" data-dado="lisboa_carro_min">[W]</span> min de carro</span></li>
+          <li><span>Praia da Consolação</span><span><span data-dado="praia_a_pe_min">6</span> min a pé</span></li>
+          <li><span>Centro de Peniche</span><span><span data-dado="peniche_carro_min">10</span> min de carro</span></li>
+          <li><span>Óbidos</span><span><span data-dado="obidos_carro_min">18</span> min de carro</span></li>
+          <li><span>Lisboa</span><span><span data-dado="lisboa_carro_min">1h15</span> de carro</span></li>
         </ul>
-        <p class="nota localizacao__nota">Tempos medidos em <span class="todo" data-dado="data_medicao">[data]</span>, a partir do edifício.</p>
+        <p class="nota localizacao__nota">Tempos medidos em <span data-dado="data_medicao">outubro de 2026</span>, a partir do edifício.</p>
       </div>
-      <!-- NOTA: quando houver fotografia de drone (material/fotos/), entra aqui
-           no lugar do bloco de espera. Sem mapa incorporado: o site não faz
-           pedidos a outros servidores. -->
-      <div class="mapa-espera">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-        <p>Mapa da Consolação</p>
-        <!-- TODO: ligação do Google Maps para o local exato do edifício. -->
-        <p class="nota"><span class="todo" data-dado="google_maps">Abrir no Google Maps</span></p>
+      <!-- Fotografia editada da zona (foto-1), com a ligação ao Google Maps por
+           cima. Sem mapa incorporado: o site não faz pedidos a outros servidores. -->
+      <div class="mapa-foto">
+        <picture>
+          <source type="image/avif" srcset="assets/img/localizacao-640.avif 640w, assets/img/localizacao-1024.avif 1024w, assets/img/localizacao-1536.avif 1536w" sizes="(min-width: 1320px) 600px, (min-width: 900px) 46vw, 100vw">
+          <source type="image/webp" srcset="assets/img/localizacao-640.webp 640w, assets/img/localizacao-1024.webp 1024w, assets/img/localizacao-1536.webp 1536w" sizes="(min-width: 1320px) 600px, (min-width: 900px) 46vw, 100vw">
+          <img src="assets/img/localizacao-1024.webp" width="1536" height="861" loading="lazy" decoding="async"
+               alt="A Consolação vista do ar: casas de telhado vermelho, o areal e o mar, com Peniche ao fundo.">
+        </picture>
+        <div class="mapa-foto__conteudo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <p>Consolação, Peniche</p>
+          <span data-dado="google_maps"><a class="btn btn--claro" href="https://maps.app.goo.gl/fyuLWXY6xwbT7Fyo8" target="_blank" rel="noopener">Abrir no Google Maps</a></span>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- ====================================================== VIVER AQUI ====
+       Só fotografias editadas pelo Lourenço (material/fotos/), geradas pelo
+       ferramentas/gerar-imagens.py. Sem legenda (decisão de 16/10/2026). -->
+  <section class="seccao seccao--larga envolvente" id="viver" aria-labelledby="titulo-viver" data-revelar>
+    <div class="seccao__titulos viver__topo">
+      <p class="etiqueta">Viver aqui</p>
+      <h2 class="titulo viver__titulo" id="titulo-viver">Mar, surf e Lisboa à distância certa.</h2>
+    </div>
+    <ul class="viver">
+      <li class="viver__cartao">
+        <picture>
+          <source type="image/avif" srcset="assets/img/viver-praia-480.avif 480w, assets/img/viver-praia-800.avif 800w, assets/img/viver-praia-918.avif 918w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <source type="image/webp" srcset="assets/img/viver-praia-480.webp 480w, assets/img/viver-praia-800.webp 800w, assets/img/viver-praia-918.webp 918w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <img src="assets/img/viver-praia-800.webp" width="800" height="1000" loading="lazy" decoding="async"
+               alt="Praia da Consolação vista do ar, com o forte, a areia e o mar.">
+        </picture>
+        <div class="viver__texto">
+          <h3 class="viver__nome">Praia</h3>
+          <p>Seis minutos a pé até à areia, todo o ano.</p>
+        </div>
+      </li>
+      <li class="viver__cartao">
+        <picture>
+          <source type="image/avif" srcset="assets/img/viver-surf-480.avif 480w, assets/img/viver-surf-800.avif 800w, assets/img/viver-surf-1080.avif 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <source type="image/webp" srcset="assets/img/viver-surf-480.webp 480w, assets/img/viver-surf-800.webp 800w, assets/img/viver-surf-1080.webp 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <img src="assets/img/viver-surf-800.webp" width="800" height="1000" loading="lazy" decoding="async"
+               alt="Ondas a rebentar no areal, vistas de cima.">
+        </picture>
+        <div class="viver__texto">
+          <h3 class="viver__nome">Surf</h3>
+          <p>Peniche e o Baleal, dois dos destinos de surf mais conhecidos do país, a <span data-dado="peniche_carro_min">10</span> minutos.</p>
+        </div>
+      </li>
+      <li class="viver__cartao">
+        <picture>
+          <source type="image/avif" srcset="assets/img/viver-consolacao-480.avif 480w, assets/img/viver-consolacao-800.avif 800w, assets/img/viver-consolacao-1080.avif 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <source type="image/webp" srcset="assets/img/viver-consolacao-480.webp 480w, assets/img/viver-consolacao-800.webp 800w, assets/img/viver-consolacao-1080.webp 1080w" sizes="(min-width: 1320px) 390px, (min-width: 900px) 30vw, (min-width: 640px) 50vw, 100vw">
+          <img src="assets/img/viver-consolacao-800.webp" width="800" height="1000" loading="lazy" decoding="async"
+               alt="A Consolação vista do ar, com a baía e Peniche ao fundo.">
+        </picture>
+        <div class="viver__texto">
+          <h3 class="viver__nome">Perto de tudo</h3>
+          <p>Óbidos a <span data-dado="obidos_carro_min">18</span> minutos e Lisboa a <span data-dado="lisboa_carro_min">1h15</span>, sem abdicar da calma.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ======================================================= PARA QUEM ==== -->
+  <section class="envolvente para-quem" aria-labelledby="titulo-para-quem" data-revelar>
+    <h2 class="so-leitor" id="titulo-para-quem">Para quem</h2>
+    <ul class="cartoes">
+      <li>
+        <div class="cartao cartao--perfil">
+          <span class="cartao__numero" aria-hidden="true">01</span>
+          <h3 class="cartao__nome">Para viver todo o ano</h3>
+          <p class="cartao__linha">Dois quartos, estacionamento em cave e a praia como rotina, não como férias.</p>
+        </div>
+      </li>
+      <li>
+        <div class="cartao cartao--perfil">
+          <span class="cartao__numero" aria-hidden="true">02</span>
+          <h3 class="cartao__nome">Para uma segunda casa</h3>
+          <p class="cartao__linha">A <span data-dado="lisboa_carro_min">1h15</span> de Lisboa, pronta para fins de semana e verões inteiros.</p>
+        </div>
+      </li>
+      <li>
+        <div class="cartao cartao--perfil">
+          <span class="cartao__numero" aria-hidden="true">03</span>
+          <h3 class="cartao__nome">Para investir</h3>
+          <p class="cartao__linha">Construção nova numa das zonas de surf mais procuradas da costa portuguesa.</p>
+        </div>
+      </li>
+    </ul>
   </section>
 
   <!-- ================================================ PRÓXIMOS PASSOS ==== -->
@@ -501,7 +586,7 @@
     </a>
     <nav class="rodape__nav" aria-label="Rodapé">
       <a href="#projeto">O projeto</a>
-      <a href="#tipologias">Tipologias</a>
+      <a href="#fracoes">Frações e valores</a>
       <a href="#localizacao">Localização</a>
       <a href="#registo">Contacto</a>
       <a href="en/" lang="en-GB" hreflang="en-GB">English</a>
@@ -533,6 +618,14 @@
     </span>
   </div>
 </footer>
+
+<!-- ==================================================== BARRA FIXA ====
+     Só abaixo de 900 px, depois do hero e fora do formulário (principal.js).
+     O WhatsApp aparece quando houver número no config.js. -->
+<div class="barra-fixa" data-barra-fixa hidden>
+  <a class="btn btn--contorno" data-whatsapp hidden href="#">WhatsApp</a>
+  <a class="btn btn--principal" href="#registo">Registar interesse</a>
+</div>
 
 <!-- ========================================================== COOKIES ==== -->
 <aside class="cookies" id="banner-cookies" hidden aria-label="Cookies">

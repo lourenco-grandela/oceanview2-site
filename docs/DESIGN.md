@@ -108,3 +108,16 @@ Discreto e opcional: entrada das secções com `opacity` e `translateY(16px)` em
 - Abaixo de 900 px: navegação escondida, fica a marca e o botão «Registar interesse» (sem quebra de linha); grelhas a uma coluna; imagem do bloco do formulário passa para baixo com 280 px de altura.
 - Hero com `min-height` de 640 px no telemóvel.
 - Testar a 360, 390 e 430 px de largura, sem barra horizontal.
+
+## Versão 2.1 (15/10/2026): o que muda
+
+A v3 foi posta de parte. **Mantém-se exatamente o estilo da v2** (hero, tipografia, cartões, ordem). Referência: `material/design-v2-1/referencia-v2-1.html` (lista de frações fechada) e `referencia-v2-1-lista-aberta.html` (aberta), com capturas `captura-v21-*.jpg`.
+
+- **Hero**: imagem da **fachada de dia** (`material/imagens-promotor/fachada-dia.png`), `object-position: 50% 45%`. Véu: `linear-gradient(180deg, rgba(20,48,58,.50) 0%, rgba(20,48,58,0) 24%, rgba(20,48,58,0) 40%, rgba(20,48,58,.85) 100%)`. Título igual à v2 mas **mais pequeno**: `clamp(46px, 6.6vw, 98px)`, `line-height: .9`.
+- **Cartões de tipologia**: acrescentar uma linha com o valor (17 px/600): «250.000 €», «Desde 295.000 €», «Desde 490.000 €», calculados do JSON.
+- **Frações e valores (nova)**, entre Tipologias e Arquitetura: cartão branco (raio 24) com um resumo sempre visível (três valores de 26 px/600: frações disponíveis, valores desde, tipologias) e dois botões: «Tabela em PDF» (contorno) e «Ver as 12 frações» (Atlântico, com seta). **A lista começa fechada**; o botão abre-a por baixo, dentro do mesmo cartão (`aria-expanded`, `aria-controls`), e passa a «Fechar a lista». Aberta: filtros em pílula e tabela (letra num círculo de 36 px, valor a 600, «Pedir planta» em pílula). Abaixo de 700 px, cartões em vez de tabela. No telemóvel, o resumo fica numa coluna.
+- **Localização**: tempos reais; o bloco da direita tem «Consolação, Peniche» e o botão «Abrir no Google Maps». Sem mapa incorporado. Quando houver fotografia editada da zona em `material/fotos/`, passa a ser a imagem deste bloco.
+- **Viver aqui (nova)**, depois da Localização: três cartões-fotografia de 500 px de altura, raio 24, véu Atlântico em baixo, título 26 px/600 e frase. **Só fotografias editadas pelo Lourenço, da pasta `material/fotos/`.** Enquanto a pasta estiver vazia, blocos `--pedra` com a indicação da fotografia em falta (não publicar assim).
+- **Para quem (nova)**, logo a seguir: três cartões brancos (raio 18) com número, título 22 px/600 e frase.
+- **Barra fixa no telemóvel** (abaixo de 900 px): «WhatsApp» e «Registar interesse».
+- Fotografias reais: legenda com mês e ano. Renders: sempre «Imagem ilustrativa, não contratual.»
