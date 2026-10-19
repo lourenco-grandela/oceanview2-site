@@ -24,10 +24,11 @@ preencher cada `null`. Cada bloco diz quem dá o quê. Formatos:
 
 | Campo | Exemplo |
 | --- | --- |
-| `whatsapp` | `"+351 912 345 678"` |
+| `whatsapp` | `"+351 912 345 678"` (principal) |
+| `whatsapp_contactos` | `[{"nome": "Inês Caiado", "numero": "+351 ..."}, ...]` — com dois ou mais, os botões abrem a escolha |
+| `comercializacao.agentes` | `[{"nome": ..., "telefone": ..., "email": ...}, ...]` — todos aparecem no rodapé |
 | `comercializacao.ami` | `"12345"` (só algarismos) |
 | `classe_energetica` | `"A"` (A+, A, B, B-, C, D, E ou F) |
-| `politica.responsavel_nif` | `"123456789"` (o script confirma o dígito de controlo) |
 | `politica.prazo_conservacao_meses` | `24` (número, sem aspas) |
 | `politica.texto_aprovado` | `true` quando os clientes e o jurista aprovarem |
 | `avisar` | `["ines@...", "carlos@..."]` |

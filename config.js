@@ -6,7 +6,12 @@
 window.OCEANVIEW = {
   // Número de WhatsApp em formato internacional, só dígitos (ex.: 351912345678).
   // Enquanto estiver vazio, os botões de WhatsApp ficam escondidos.
-  whatsapp: '',
+  whatsapp: '351918559623',
+
+  // Contactos de WhatsApp: nome e número (só dígitos). Com mais de um, os
+  // botões de WhatsApp abrem uma escolha entre eles (clientes, 19/10/2026).
+  // Escrito pelo ferramentas/preencher.py a partir de whatsapp_contactos.
+  whatsappContactos: [{"nome": "Inês Caiado", "numero": "351918559623"}, {"nome": "Carlos Lopes", "numero": "351934915924"}],
 
   // Mensagem pré-preenchida do WhatsApp (fase 2: passa a incluir a fração).
   // A página escolhe a versão pela língua: /en/ usa a inglesa.

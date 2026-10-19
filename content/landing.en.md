@@ -26,7 +26,7 @@ Version 2 as it is, with real data and three new sections. British English. Same
 ## Apartment types
 
 - Title: Three ways to live at OceanView 2.
-- Cards: 01 · T1 — 1 apartment · 56 m² — €250,000 · 02 · T2 — 7 apartments · 75 to 97 m² — From €295,000 · 03 · T2+2 — 4 apartments · 82 to 97 m² plus attic — From €490,000
+- Cards: 01 · T1 — 1 apartment · 56 m² — €250,000 · 02 · T2 — 7 apartments · 75 to 97 m² — From €295,000 · 03 · T2+2 — 4 apartments · 153 to 167 m², including attic — From €490,000
 - Note: In Portugal, "T" plus a number gives the bedrooms; "+2" means two additional rooms.
 
 ## Apartments & prices (new, collapsible)
@@ -37,8 +37,8 @@ Version 2 as it is, with real data and three new sections. British English. Same
 - Summary: Apartments — 12 available · Prices from — €250,000 · Types — T1, T2 and T2+2
 - Buttons: Price list (PDF) · See all 12 apartments / Close the list
 - Filters: All · Ground floor · First floor · Second floor · T2+2
-- Columns: Apartment · Type · Floor · Living area · Outdoor · Attic · Price · "Request floor plan"
-- Note: Areas in m², from the project's area schedule. Outdoor: balconies, terraces and porches. Prices subject to confirmation.
+- Columns: Apartment · Type · Floor · Area · Outdoor · Price · "Request floor plan" (Area = `area_total_m2`; for I to L it includes the attic)
+- Note: Areas in m², from the project's area schedule. For apartments I to L, the area includes the attic. Outdoor: balconies, terraces and porches. Prices subject to confirmation.
 
 ## Architecture
 

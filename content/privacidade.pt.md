@@ -1,10 +1,13 @@
-# Política de privacidade — rascunho
+# Política de privacidade (versão para aprovação, 19/10/2026)
 
-Rascunho para a página do site. Tem de ser validado pelos clientes e, de preferência, por um jurista antes de ir online: eu não sou advogado. Tudo entre `[ ]` depende dos dados que eles ainda têm de dar.
+Os responsáveis pelos dados são a Inês Caiado e o Carlos Lopes, que guardam e tratam os contactos (decisão dos clientes, 19/10/2026). Falta só a aprovação do texto por eles; recomenda-se uma leitura por um jurista, mas não impede a publicação.
 
 ## Quem trata os seus dados
 
-[Nome ou empresa responsável], NIF [ ], [morada], [email], [telefone].
+Os dados que nos envia através deste site são tratados por Inês Caiado e Carlos Lopes, consultores imobiliários da IAD Portugal (AMI n.º 11220), responsáveis pela comercialização do OceanView 2.
+
+- Inês Caiado · ines.caiado@iadportugal.pt · +351 918 559 623
+- Carlos Lopes · c.lopes@iadportugal.pt · +351 934 915 924
 
 ## Que dados recolhemos
 
@@ -22,15 +25,15 @@ O seu consentimento, dado quando submete o formulário e quando aceita os cookie
 
 ## Durante quanto tempo
 
-Até [24] meses depois do último contacto, ou até nos pedir para apagar.
+Até 24 meses depois do último contacto, ou até nos pedir para apagar.
 
 ## Quem pode ter acesso
 
-A equipa comercial do empreendimento, o prestador que gere o site e o formulário e as ferramentas que usamos para guardar contactos e enviar email (Google), que tratam os dados apenas em nosso nome.
+A equipa comercial do empreendimento, o prestador que gere o site e o formulário e as ferramentas que usamos para guardar contactos e enviar email (Google), que tratam os dados apenas em nosso nome. A Google pode tratar dados fora da União Europeia, com as garantias previstas no RGPD.
 
 ## Os seus direitos
 
-Pode pedir para aceder, corrigir, apagar ou limitar o tratamento dos seus dados, opor-se a ele e retirar o consentimento, escrevendo para [email]. Se achar que os seus direitos não foram respeitados, pode reclamar junto da Comissão Nacional de Proteção de Dados.
+Pode pedir para aceder, corrigir, apagar ou limitar o tratamento dos seus dados, opor-se a ele e retirar o consentimento, escrevendo para ines.caiado@iadportugal.pt ou c.lopes@iadportugal.pt. Se achar que os seus direitos não foram respeitados, pode reclamar junto da Comissão Nacional de Proteção de Dados.
 
 ## Cookies
 

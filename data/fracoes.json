@@ -14,7 +14,8 @@
     "preco": 299000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 78.8
   },
   {
     "fracao": "B",
@@ -31,7 +32,8 @@
     "preco": 330000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 97.0
   },
   {
     "fracao": "C",
@@ -48,7 +50,8 @@
     "preco": 295000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 75.0
   },
   {
     "fracao": "D",
@@ -65,7 +68,8 @@
     "preco": 250000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 56.2
   },
   {
     "fracao": "E",
@@ -82,7 +86,8 @@
     "preco": 365000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 97.0
   },
   {
     "fracao": "F",
@@ -99,7 +104,8 @@
     "preco": 335000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 81.3
   },
   {
     "fracao": "G",
@@ -116,7 +122,8 @@
     "preco": 335000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 81.8
   },
   {
     "fracao": "H",
@@ -133,7 +140,8 @@
     "preco": 365000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 97.0
   },
   {
     "fracao": "I",
@@ -150,7 +158,8 @@
     "preco": 520000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 166.7
   },
   {
     "fracao": "J",
@@ -167,7 +176,8 @@
     "preco": 490000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 155.25
   },
   {
     "fracao": "K",
@@ -184,7 +194,8 @@
     "preco": 490000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 153.2
   },
   {
     "fracao": "L",
@@ -201,6 +212,7 @@
     "preco": 520000,
     "estado": "disponivel",
     "planta": null,
-    "ficha_pdf": null
+    "ficha_pdf": null,
+    "area_total_m2": 165.9
   }
 ]

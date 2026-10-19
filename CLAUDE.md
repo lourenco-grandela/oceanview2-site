@@ -119,6 +119,17 @@ Início, Localização, Frações (seletor de A a L com o estado de cada uma e l
 - **Tempos medidos** (outubro de 2026): praia da Consolação 6 min a pé · Peniche 10 min de carro · Óbidos 18 min de carro · Lisboa 1h15 de carro. Google Maps: https://maps.app.goo.gl/fyuLWXY6xwbT7Fyo8
 - **Fotografias**: só as fotografias editadas pelo Lourenço, que ele põe em `material/fotos/`. Nunca usar fotografias de drone sem edição.
 
+## Dados dos clientes (19/10/2026)
+
+- **Áreas**: nas frações I, J, K e L a área apresentada inclui o sótão (pedido dos clientes): I 166,70 · J 155,25 · K 153,20 · L 165,90 m². No site usar sempre `area_total_m2` do `data/fracoes.json`; não mostrar o sótão numa coluna à parte.
+- **Comercialização**: IAD Portugal, AMI n.º 11220. Agentes: Inês Caiado (+351 918 559 623, ines.caiado@iadportugal.pt) e Carlos Lopes (+351 934 915 924, c.lopes@iadportugal.pt). Os dois aparecem no rodapé.
+- **WhatsApp**: os dois números. O botão de WhatsApp deixa escolher entre a Inês e o Carlos (ver `whatsapp_contactos` no `dados-lancamento.json`).
+- **Classe energética**: A+.
+- **Avisos do formulário**: Inês, Carlos e Lourenço.
+- **Domínio**: oceanview2.pt aprovado, ainda por registar.
+- **Política de privacidade**: os responsáveis pelos dados são a Inês Caiado e o Carlos Lopes (são eles que guardam e tratam os contactos). Texto pronto em `content/privacidade.pt.md` e `.en.md`, à espera da aprovação deles. NIF e morada não entram (basta identidade e contactos). Prazo de conservação: 24 meses.
+- **Ainda em falta**: aprovação da política pelos clientes; validação da frase da Arquitetura; tom de azul do logótipo; registo do domínio (só depois da confirmação deles).
+
 ## Pastas
 
 - `material/`: originais, referência de design e fotografias. **Não se publica** (está no `.gitignore`). O site usa só as versões otimizadas em `assets/img/`.

@@ -117,6 +117,9 @@
         <div class="grupo-botoes">
           <a class="btn btn--claro" href="#registo">Register interest <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
           <a class="btn btn--contorno-claro" href="#fracoes">See apartments &amp; prices</a>
+          <!-- Visível de origem (já há número): aparecer depois do JavaScript fazia
+               saltar o hero. O principal.js esconde-o se faltar o número. -->
+          <a class="btn btn--contorno-claro" data-whatsapp href="#registo">Message us on WhatsApp</a>
         </div>
         <p class="hero__nota">Illustrative image, not contractual.</p>
       </div>
@@ -295,9 +298,8 @@
                 <th scope="col">Apartment</th>
                 <th scope="col">Type</th>
                 <th scope="col">Floor</th>
-                <th scope="col" class="num">Living area</th>
+                <th scope="col" class="num">Area</th>
                 <th scope="col" class="num">Outdoor</th>
-                <th scope="col" class="num">Attic</th>
                 <th scope="col" class="num">Price</th>
                 <th scope="col"><span class="so-leitor">Floor plan</span></th>
               </tr>
@@ -306,7 +308,7 @@
           </table>
         </div>
         <ul class="cartoes-fracoes" data-cartoes></ul>
-        <p class="nota valores__nota">Areas in m², from the project’s area schedule. Outdoor: balconies, terraces and porches. Prices subject to confirmation.</p>
+        <p class="nota valores__nota">Areas in m², from the project’s area schedule. For apartments I to L, the area includes the attic. Outdoor: balconies, terraces and porches. Prices subject to confirmation.</p>
       </div>
     </div>
   </section>
@@ -601,8 +603,8 @@
   <div class="rodape__colunas">
     <div>
       <p class="etiqueta">Sales</p>
-      <p><span class="todo" data-dado="mediadora">[agency]</span> · AMI licence no. <span class="todo" data-dado="ami">[ ]</span><br>
-         <span class="todo" data-dado="agente_nome">[agent name]</span> · <span class="todo" data-dado="agente_telefone">[phone]</span> · <span class="todo" data-dado="agente_email">[email]</span></p>
+      <p><span data-dado="mediadora">IAD Portugal</span> · AMI licence no. <span data-dado="ami">11220</span><br>
+         <span data-dado="agentes">Inês Caiado · <a href="tel:+351918559623">+351 918 559 623</a> · <a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a><br>Carlos Lopes · <a href="tel:+351934915924">+351 934 915 924</a> · <a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></span></p>
     </div>
     <div>
       <p class="etiqueta">Developer</p>
@@ -610,7 +612,7 @@
     </div>
     <div>
       <p class="etiqueta">Information</p>
-      <p>Energy rating <span class="todo" data-dado="classe_energetica">[class]</span>, according to the energy pre-certificate. Illustrative images, not contractual. Areas and prices subject to confirmation.</p>
+      <p>Energy rating <span data-dado="classe_energetica">A+</span>, according to the energy pre-certificate. Illustrative images, not contractual. Areas and prices subject to confirmation.</p>
     </div>
   </div>
 

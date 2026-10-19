@@ -6,7 +6,7 @@
     .venv/bin/python ferramentas/preencher.py               # preenche
 
 O que faz:
-- Valida os dados (formatos de email, NIF, datas, domínio, IDs...). Se algum
+- Valida os dados (formatos de email, telefones, datas, domínio, IDs...). Se algum
   estiver mal escrito, pára sem mexer em nada.
 - Preenche cada marcador <span data-dado="..."> das páginas (português e
   inglês, landing e política), os textos da descrição da página, o config.js
@@ -64,19 +64,17 @@ CLASSES = ["A+", "A", "B", "B-", "C", "D", "E", "F"]
 # chave no HTML, caminho no JSON, tipo, obrigatório, quem dá
 CAMPOS = [
     ("whatsapp", ("whatsapp",), "whatsapp", True, "clientes"),
+    ("whatsapp_contactos", ("whatsapp_contactos",), "contactos", False, "clientes"),
     ("mediadora", ("comercializacao", "mediadora"), "texto", True, "clientes"),
     ("ami", ("comercializacao", "ami"), "ami", True, "clientes"),
-    ("agente_nome", ("comercializacao", "agente_nome"), "texto", True, "clientes"),
-    ("agente_telefone", ("comercializacao", "agente_telefone"), "telefone", True, "clientes"),
-    ("agente_email", ("comercializacao", "agente_email"), "email", True, "clientes"),
+    # Os dois agentes (nome, telefone, email) no rodapé: clientes, 19/10/2026.
+    ("agentes", ("comercializacao", "agentes"), "agentes", True, "clientes"),
     ("classe_energetica", ("classe_energetica",), "classe", True, "clientes"),
-    ("responsavel_nome", ("politica", "responsavel_nome"), "texto", True, "clientes"),
-    ("responsavel_nif", ("politica", "responsavel_nif"), "nif", True, "clientes"),
-    ("responsavel_morada", ("politica", "responsavel_morada"), "texto", True, "clientes"),
-    ("responsavel_email", ("politica", "responsavel_email"), "email", True, "clientes"),
-    ("responsavel_telefone", ("politica", "responsavel_telefone"), "telefone", True, "clientes"),
+    # Responsáveis pelo tratamento: a Inês e o Carlos, identificados no próprio
+    # texto da política (content/privacidade.*.md). Sem NIF nem morada
+    # (clientes, 19/10/2026): o script já não os pede nem os escreve.
     ("prazo_conservacao_meses", ("politica", "prazo_conservacao_meses"), "meses", True, "clientes"),
-    ("email_direitos", ("politica", "email_direitos"), "email", True, "clientes"),
+    ("email_direitos", ("politica", "email_direitos"), "emails_texto", True, "clientes"),
     ("texto_aprovado", ("politica", "texto_aprovado"), "sim", True, "clientes (e jurista)"),
     ("data_publicacao_politica", ("politica", "data_publicacao"), "data", False, "tu (fica a data do lançamento)"),
     ("avisar", ("avisar",), "emails", True, "clientes"),
@@ -106,16 +104,6 @@ def ler(dados, caminho):
     return valor
 
 
-def nif_valido(nif):
-    if not re.fullmatch(r"\d{9}", nif):
-        return False
-    soma = sum(int(d) * (9 - i) for i, d in enumerate(nif[:8]))
-    controlo = 11 - soma % 11
-    if controlo >= 10:
-        controlo = 0
-    return controlo == int(nif[8])
-
-
 EMAIL = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]{2,}$")
 
 
@@ -139,6 +127,37 @@ def validar(tipo, valor):
         if not EMAIL.match(str(valor)):
             return None, "não parece um email"
         return str(valor), None
+    if tipo == "emails_texto":
+        # Um ou mais emails separados por «;» (ex.: os dois agentes).
+        emails = [e.strip() for e in str(valor).split(";") if e.strip()]
+        maus = [e for e in emails if not EMAIL.match(e)]
+        if not emails or maus:
+            return None, "emails inválidos: " + ", ".join(maus or [str(valor)])
+        return emails, None
+    if tipo == "agentes":
+        if not isinstance(valor, list) or not valor:
+            return None, None if valor in (None, []) else "tem de ser uma lista de agentes"
+        for a in valor:
+            if not isinstance(a, dict) or not str(a.get("nome") or "").strip():
+                return None, "cada agente precisa de nome, telefone e email"
+            if len(re.sub(r"\D", "", str(a.get("telefone") or ""))) < 9:
+                return None, "telefone de %s com menos de 9 dígitos" % a["nome"]
+            if not EMAIL.match(str(a.get("email") or "")):
+                return None, "email de %s não parece um email" % a["nome"]
+        return [{"nome": a["nome"].strip(), "telefone": str(a["telefone"]).strip(),
+                 "email": str(a["email"]).strip()} for a in valor], None
+    if tipo == "contactos":
+        if not isinstance(valor, list) or not valor:
+            return None, None if valor in (None, []) else "tem de ser uma lista de contactos"
+        saida = []
+        for c in valor:
+            if not isinstance(c, dict) or not str(c.get("nome") or "").strip():
+                return None, "cada contacto precisa de nome e número"
+            numero, erro = validar("whatsapp", c.get("numero"))
+            if erro:
+                return None, "%s: %s" % (c["nome"], erro)
+            saida.append({"nome": c["nome"].strip(), "numero": numero})
+        return saida, None
     if tipo == "emails":
         if not isinstance(valor, list) or not valor:
             return None, None if valor in (None, []) else "tem de ser uma lista de emails"
@@ -154,11 +173,6 @@ def validar(tipo, valor):
         if str(valor) not in CLASSES:
             return None, "tem de ser uma de " + ", ".join(CLASSES)
         return str(valor), None
-    if tipo == "nif":
-        nif = re.sub(r"\s", "", str(valor))
-        if not nif_valido(nif):
-            return None, "NIF inválido (9 algarismos e dígito de controlo)"
-        return nif, None
     if tipo in ("meses", "minutos"):
         if isinstance(valor, bool) or not isinstance(valor, int) or valor <= 0:
             return None, "tem de ser um número inteiro positivo"
@@ -254,10 +268,14 @@ def conteudo(chave, valor, lingua):
         return e(data_por_extenso(valor, lingua))
     if chave.endswith("_min"):
         return e(duracao(valor))
-    if chave in ("agente_telefone", "responsavel_telefone"):
-        return '<a href="%s">%s</a>' % (telefone_href(valor), e(valor))
-    if chave in ("agente_email", "responsavel_email", "email_direitos"):
-        return '<a href="mailto:%s">%s</a>' % (e(valor), e(valor))
+    if chave == "agentes":
+        return "<br>".join('%s · <a href="%s">%s</a> · <a href="mailto:%s">%s</a>' % (
+            e(a["nome"]), telefone_href(a["telefone"]), e(a["telefone"]), e(a["email"]), e(a["email"]))
+            for a in valor)
+    if chave == "email_direitos":
+        ligacoes = ['<a href="mailto:%s">%s</a>' % (e(m), e(m)) for m in valor]
+        e_ou = " ou " if lingua == "pt" else " or "
+        return ", ".join(ligacoes[:-1]) + e_ou + ligacoes[-1] if len(ligacoes) > 1 else ligacoes[0]
     if chave == "google_maps":
         return '<a class="btn btn--claro" href="%s" target="_blank" rel="noopener">%s</a>' % (e(valor), ROTULO_MAPS[lingua])
     if chave == "arquitetura_validada":
@@ -344,6 +362,11 @@ def escrever_config(raiz, valores):
             s, n = re.subn(r"(\n\s*%s: )'[^']*'" % chave_js, lambda m: m.group(1) + "'%s'" % valores[chave], s)
             if n != 1:
                 raise SystemExit("config.js: não encontrei a linha %s" % chave_js)
+    if "whatsapp_contactos" in valores:
+        lista = json.dumps(valores["whatsapp_contactos"], ensure_ascii=False)
+        s, n = re.subn(r"(\n\s*whatsappContactos: )\[[^\]]*\]", lambda m: m.group(1) + lista, s)
+        if n != 1:
+            raise SystemExit("config.js: não encontrei a linha whatsappContactos")
     with open(caminho, "w", encoding="utf-8") as f:
         f.write(s)
 
@@ -495,7 +518,7 @@ def main():
         print("  %-20s %d dados preenchidos%s" % (pagina, len(feitos), (", faltam: " + ", ".join(sorted(falta))) if falta else ""))
 
     escrever_config(raiz, valores)
-    no_config = [k for k in ("whatsapp", "ga4", "meta_pixel") if k in valores]
+    no_config = [k for k in ("whatsapp", "whatsapp_contactos", "ga4", "meta_pixel") if k in valores]
     print("  config.js            " + (", ".join(no_config) if no_config else "nada por preencher ainda"))
 
     if "dominio" in valores:

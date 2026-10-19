@@ -34,7 +34,7 @@ A versão 2.1 é a versão 2 tal como está (mesmo estilo, mesmo hero, mesma ord
 - Cartões (áreas e valores calculados a partir do JSON):
   - 01 · T1 — 1 apartamento · 56 m² — 250.000 €
   - 02 · T2 — 7 apartamentos · 75 a 97 m² — Desde 295.000 €
-  - 03 · T2+2 — 4 apartamentos · 82 a 97 m² e sótão — Desde 490.000 €
+  - 03 · T2+2 — 4 apartamentos · 153 a 167 m², com sótão — Desde 490.000 €
 
 ## Frações e valores (nova, recolhível)
 
@@ -43,8 +43,8 @@ A versão 2.1 é a versão 2 tal como está (mesmo estilo, mesmo hero, mesma ord
 - Texto: Doze frações, da A à L, com áreas e valores. Abra a lista completa ou descarregue a tabela.
 - Resumo sempre visível (cartão branco): Frações — 12 disponíveis · Valores desde — 250.000 € · Tipologias — T1, T2 e T2+2 (calculados a partir do JSON)
 - Botões: Tabela em PDF (→ `assets/docs/OceanView2_Tabela_de_Valores.pdf`) · Ver as 12 frações (abre a lista; quando aberta passa a «Fechar a lista»)
-- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Habitação · Exterior · Sótão · Valor · «Pedir planta».
-- Nota: Áreas em m², do quadro de áreas do projeto. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.
+- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Área · Exterior · Valor · «Pedir planta». A «Área» é o `area_total_m2` do JSON (nas frações I a L inclui o sótão).
+- Nota: Áreas em m², do quadro de áreas do projeto. Nas frações I a L, a área inclui o sótão. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.
 
 ## Arquitetura (como na v2)
 

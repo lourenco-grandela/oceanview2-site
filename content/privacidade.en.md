@@ -1,10 +1,13 @@
-# Privacy policy — English draft
+# Privacy policy — English version (for approval, 19/10/2026)
 
-English version of `content/privacidade.pt.md`, for the page `en/privacy.html`. British English. Same structure and meaning as the Portuguese text, which is the version the clients validate; if the Portuguese changes, this one changes with it. Everything in `[ ]` depends on details the clients still have to provide.
+English version of `content/privacidade.pt.md`, for the page `en/privacy.html`. British English. Same structure and meaning as the Portuguese text, which is the version the clients validate; if the Portuguese changes, this one changes with it.
 
 ## Who is responsible for your data
 
-[Name or company responsible], tax number (NIF) [ ], [address], [email], [phone].
+The data you send us through this website is processed by Inês Caiado and Carlos Lopes, real estate consultants with IAD Portugal (AMI licence no. 11220), who are responsible for the sale of OceanView 2.
+
+- Inês Caiado · ines.caiado@iadportugal.pt · +351 918 559 623
+- Carlos Lopes · c.lopes@iadportugal.pt · +351 934 915 924
 
 ## What data we collect
 
@@ -22,15 +25,15 @@ Your consent, given when you submit the form and when you accept cookies. You ca
 
 ## How long we keep it
 
-Up to [24] months after our last contact with you, or until you ask us to delete it.
+Up to 24 months after our last contact with you, or until you ask us to delete it.
 
 ## Who may have access
 
-The sales team for the development, the provider who manages the website and the form, and the tools we use to store contacts and send email (Google), which process the data only on our behalf.
+The sales team for the development, the provider who manages the website and the form, and the tools we use to store contacts and send email (Google), which process the data only on our behalf. Google may process data outside the European Union, with the safeguards required by the GDPR.
 
 ## Your rights
 
-You can ask to access, correct, delete or restrict the processing of your data, object to it, and withdraw your consent, by writing to [email]. If you believe your rights have not been respected, you can complain to the Portuguese data protection authority, the Comissão Nacional de Proteção de Dados (CNPD).
+You can ask to access, correct, delete or restrict the processing of your data, object to it, and withdraw your consent, by writing to ines.caiado@iadportugal.pt or c.lopes@iadportugal.pt. If you believe your rights have not been respected, you can complain to the Portuguese data protection authority, the Comissão Nacional de Proteção de Dados (CNPD).
 
 ## Cookies
 

@@ -1,8 +1,60 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-16
+Última atualização: 2026-10-19
 
 ## Feito
+
+### Dados dos clientes aplicados (2026-10-19)
+
+- **Área total na lista de frações**: a coluna «Área» usa o `area_total_m2`
+  do `data/fracoes.json` (nas frações I a L inclui o sótão: 166,70 · 155,25 ·
+  153,20 · 165,90 m²); a coluna Sótão saiu, na tabela e nos cartões do
+  telemóvel. Cartão T2+2: «4 apartamentos · 153 a 167 m², com sótão» (EN
+  «…, including attic»). Nota da lista com a frase nova do `content/`. O PDF
+  novo da tabela confere com o JSON.
+- **WhatsApp com os dois agentes**: `whatsapp_contactos` passa para o
+  `config.js` (`whatsappContactos`). Com dois contactos, os botões do hero,
+  dos Próximos passos, da barra do telemóvel e da mensagem de erro do
+  formulário abrem um `<dialog>` com «Inês Caiado» e «Carlos Lopes» (nome e
+  número), cada um com a sua ligação `wa.me` e a mensagem pré-preenchida.
+  Testado só com teclado: Enter e Espaço abrem, o foco vai para o primeiro
+  contacto, Tab passa ao segundo, Esc fecha e o foco volta ao botão de origem;
+  clicar fora também fecha. Leitores de ecrã: os botões têm `role="button"` e
+  `aria-haspopup="dialog"`; cada contacto diz «Falar com … por WhatsApp (abre
+  numa nova janela)».
+- **Botão de WhatsApp de volta ao hero** («Falar por WhatsApp»), ao lado de
+  «Registar interesse» e «Ver frações e valores». Está visível de origem:
+  aparecer depois do JavaScript fazia saltar o hero (CLS 0,045).
+- **Rodapé**: «IAD Portugal · AMI n.º 11220», os dois agentes com telefone e
+  email clicáveis (lista `comercializacao.agentes`, escrita pelo
+  `preencher.py`), classe energética A+.
+- **Políticas de privacidade novas** na `privacidade.html` e na
+  `en/privacy.html`, com o texto do `content/` (responsáveis: Inês Caiado e
+  Carlos Lopes, com email e telefone; frase da Google fora da UE). Prazo de 24
+  meses e emails dos direitos vêm do `dados-lancamento.json`. «Última
+  atualização» fica por preencher até ao lançamento.
+- **`preencher.py`**: já não pede NIF, morada nem os outros campos
+  `responsavel_*` (os responsáveis estão no texto da política); aceita vários
+  emails separados por «;» (`email_direitos`), a lista de agentes e os
+  contactos de WhatsApp. Testado primeiro numa cópia e depois corrido no site.
+  **Domínio não mexido**: sem `CNAME`, `robots.txt` nem `sitemap.xml`.
+  `texto_aprovado` continua `false`.
+- **Diálogos centrados**: o `* { margin: 0 }` tirava a centragem nativa do
+  `<dialog>` (também afetava as definições de cookies, que abriam no canto).
+
+### Qualidade (2026-10-19)
+
+Lighthouse 13.5, servido em local num subcaminho (sem `noindex`):
+
+| Página | Telemóvel | Desktop |
+| --- | --- | --- |
+| `index.html` | 97 / 100 / 100 / 100, CLS 0 | 100 / 100 / 100 / 100 |
+| `en/index.html` | 96 / 100 / 100 / 100, CLS 0 | 100 / 100 / 100 / 100 |
+| `privacidade.html` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| `en/privacy.html` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+
+Sem barra horizontal a 360, 390, 430 e 1440 px nas quatro páginas (lista de
+frações aberta).
 
 ### Versão 2.1 da landing page (2026-10-16)
 
@@ -299,17 +351,16 @@ O que fica diferente, e porquê:
 
 **No domínio, nada é publicado enquanto houver marcadores `.todo` visíveis.**
 Agora é automático: o `preencher.py` só escreve o `CNAME` com os dados todos,
-e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **7 no
-`index.html`, 7 no `en/index.html`, 11 na `privacidade.html` e 11 na
-`en/privacy.html`** (rodapé legal e frase da Arquitetura).
+e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **1 em
+cada página**: a frase da Arquitetura nas landing pages e a data da política
+nas políticas (escrita pelo script quando não faltar nada).
 
 Exceção aprovada a 14/10/2026: a pré-visualização no GitHub Pages, com
 `noindex`, só para mostrar aos clientes.
 
 ## Em curso
 
-- Nada do nosso lado: o site está à espera dos dados. Quando chegarem,
-  `docs/LANCAMENTO.md`.
+- Nada do nosso lado. Falta o que está abaixo; depois, `docs/LANCAMENTO.md`.
 
 ## Falta
 
@@ -317,24 +368,22 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 
 ### Dos clientes
 
-1. Número de WhatsApp.
-2. Mediadora, n.º AMI, nome, telefone e email do agente.
-3. Classe energética.
-4. Política: responsável (nome ou empresa, NIF, morada, email, telefone),
-   prazo de conservação, email para os direitos e aprovação do texto (com
-   jurista).
-5. Emails Google para a linha AVISAR.
-6. Domínio registado em nome deles (os três candidatos estão livres).
-7. Validação da frase da Arquitetura.
-8. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
+1. Aprovação da política de privacidade (`politica.texto_aprovado`).
+2. Validação da frase da Arquitetura.
+3. Registo do domínio `oceanview2.pt` em nome deles (aprovado, por
+   registar).
+4. Tom de azul do logótipo.
+5. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
 
 ### Do Lourenço
 
-9. Imagens novas, sem as ripas de madeira dos renders atuais (o hero de dia
+6. Colar a linha AVISAR no Apps Script (Inês, Carlos e Lourenço) e voltar a
+   implementar a aplicação web.
+7. Imagens novas, sem as ripas de madeira dos renders atuais (o hero de dia
    ainda as tem).
-10. Teste do formulário de ponta a ponta no domínio e apagar as linhas de
-    teste da folha.
-11. Ver no telemóvel real a pré-visualização da v2.1.
+8. Teste do formulário de ponta a ponta no domínio e apagar as linhas de
+   teste da folha.
+9. Ver no telemóvel real a pré-visualização.
 
 ## Decisões (15/10/2026)
 
@@ -356,6 +405,15 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 - Fotografias sem legenda.
 - Localização com a foto-1.
 
+## Decisões (19/10/2026)
+
+- Áreas das frações I a L com o sótão incluído (`area_total_m2`); sem coluna
+  de sótão.
+- Comercialização: IAD Portugal, AMI 11220; Inês Caiado e Carlos Lopes no
+  rodapé e no WhatsApp; classe energética A+.
+- Responsáveis pelos dados: a Inês e o Carlos, sem NIF nem morada; 24 meses.
+- Domínio `oceanview2.pt` aprovado; só se regista depois da confirmação deles.
+
 ## Perguntas
 
 1. O `docs/DESIGN.md` ainda diz «Fotografias reais: legenda com mês e ano».
@@ -363,6 +421,15 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 2. A frase do «Pedir planta» («Gostava de receber a planta da fração K.» /
    «I would like to receive the floor plan for apartment K.») é minha:
    validar no chat de projeto.
+3. Em «O projeto», o número «56–253 m² · Áreas privativas totais» vem do
+   `content/` e soma habitação, exterior e sótão (253 ≈ I: 97 + 86,15 +
+   69,70). A lista mostra agora no máximo 166,70 m². Mantém-se o 253, ou
+   passa a «56–167 m²»?
+4. O botão «Falar por WhatsApp» voltou ao hero (pedido de 19/10), que fica com
+   três botões; o `content/` v2.1 só lista dois. Fica assim?
+5. O PDF novo da tabela tem 3,4 MB (o anterior tinha 1,6 MB). Não pesa na
+   página (só descarrega quando se carrega no botão), mas no telemóvel demora.
+   Peço uma versão mais leve?
 
 ## Registo
 
@@ -404,3 +471,7 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
   (recolhível, tabela/cartões, PDF), tempos e Google Maps aplicados pelo
   `preencher.py`, Localização com fotografia, Viver aqui e Para quem, barra
   fixa no telemóvel. Lighthouse 96–97 no telemóvel e 100 no desktop, CLS 0.
+- 2026-10-19: dados dos clientes — área total nas frações (sem coluna de
+  sótão), WhatsApp com escolha entre a Inês e o Carlos, rodapé IAD Portugal
+  com os dois agentes, classe A+, políticas de privacidade novas (à espera de
+  aprovação), `preencher.py` sem NIF nem morada. Domínio por registar.

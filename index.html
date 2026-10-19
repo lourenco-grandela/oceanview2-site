@@ -117,6 +117,9 @@
         <div class="grupo-botoes">
           <a class="btn btn--claro" href="#registo">Registar interesse <svg aria-hidden="true" focusable="false"><use href="#seta"></use></svg></a>
           <a class="btn btn--contorno-claro" href="#fracoes">Ver frações e valores</a>
+          <!-- Visível de origem (já há número): aparecer depois do JavaScript fazia
+               saltar o hero. O principal.js esconde-o se faltar o número. -->
+          <a class="btn btn--contorno-claro" data-whatsapp href="#registo">Falar por WhatsApp</a>
         </div>
         <p class="hero__nota">Imagem ilustrativa, não contratual.</p>
       </div>
@@ -294,9 +297,8 @@
                 <th scope="col">Fração</th>
                 <th scope="col">Tipologia</th>
                 <th scope="col">Piso</th>
-                <th scope="col" class="num">Habitação</th>
+                <th scope="col" class="num">Área</th>
                 <th scope="col" class="num">Exterior</th>
-                <th scope="col" class="num">Sótão</th>
                 <th scope="col" class="num">Valor</th>
                 <th scope="col"><span class="so-leitor">Planta</span></th>
               </tr>
@@ -305,7 +307,7 @@
           </table>
         </div>
         <ul class="cartoes-fracoes" data-cartoes></ul>
-        <p class="nota valores__nota">Áreas em m², do quadro de áreas do projeto. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.</p>
+        <p class="nota valores__nota">Áreas em m², do quadro de áreas do projeto. Nas frações I a L, a área inclui o sótão. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.</p>
       </div>
     </div>
   </section>
@@ -597,8 +599,8 @@
   <div class="rodape__colunas">
     <div>
       <p class="etiqueta">Comercialização</p>
-      <p><span class="todo" data-dado="mediadora">[mediadora]</span> · AMI n.º <span class="todo" data-dado="ami">[ ]</span><br>
-         <span class="todo" data-dado="agente_nome">[nome do agente]</span> · <span class="todo" data-dado="agente_telefone">[telefone]</span> · <span class="todo" data-dado="agente_email">[email]</span></p>
+      <p><span data-dado="mediadora">IAD Portugal</span> · AMI n.º <span data-dado="ami">11220</span><br>
+         <span data-dado="agentes">Inês Caiado · <a href="tel:+351918559623">+351 918 559 623</a> · <a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a><br>Carlos Lopes · <a href="tel:+351934915924">+351 934 915 924</a> · <a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></span></p>
     </div>
     <div>
       <p class="etiqueta">Promotor</p>
@@ -606,7 +608,7 @@
     </div>
     <div>
       <p class="etiqueta">Informação</p>
-      <p>Classe energética <span class="todo" data-dado="classe_energetica">[classe]</span>, conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.</p>
+      <p>Classe energética <span data-dado="classe_energetica">A+</span>, conforme pré-certificado energético. Imagens ilustrativas, não contratuais. Áreas e preços sujeitos a confirmação.</p>
     </div>
   </div>
 

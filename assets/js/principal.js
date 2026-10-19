@@ -30,6 +30,10 @@
       peloWhatsApp: ' Fale connosco pelo WhatsApp',
       maisTarde: ' Tente novamente mais tarde.',
       whatsapp: 'Olá, gostava de receber informação sobre o OceanView 2.',
+      whatsappTitulo: 'Falar por WhatsApp',
+      whatsappEscolha: 'Escolha com quem quer falar.',
+      whatsappCom: 'Falar com {nome} por WhatsApp (abre numa nova janela)',
+      fechar: 'Fechar',
       faltam: 'Faltam {n} caracteres.',
       limite: 'Chegou ao limite de 500 caracteres.',
       fracao: 'Fração',
@@ -38,7 +42,7 @@
       // Frações e valores (versão 2.1)
       apartamentos: function (n) { return n === 1 ? '1 apartamento' : n + ' apartamentos'; },
       areas: function (a, b) { return a === b ? a + ' m²' : a + ' a ' + b + ' m²'; },
-      comSotao: ' e sótão',
+      comSotao: ', com sótão',
       desde: 'Desde {v}',
       disponiveis: '{n} disponíveis',
       e: ' e ',
@@ -47,9 +51,8 @@
       todas: 'Todas',
       piso: function (n) { return 'Piso ' + n; },
       aMostrar: function (n) { return n === 1 ? 'A mostrar 1 fração.' : 'A mostrar ' + n + ' frações.'; },
-      habitacao: 'Habitação',
+      area: 'Área',
       exterior: 'Exterior',
-      sotao: 'Sótão',
       pedirPlanta: 'Pedir planta',
       pedirPlantaDe: 'Pedir planta da fração {f}',
       mensagemPlanta: 'Gostava de receber a planta da fração {f}.',
@@ -72,6 +75,10 @@
       peloWhatsApp: ' Message us on WhatsApp',
       maisTarde: ' Please try again later.',
       whatsapp: 'Hello, I would like to receive information about OceanView 2.',
+      whatsappTitulo: 'Message us on WhatsApp',
+      whatsappEscolha: 'Choose who you would like to talk to.',
+      whatsappCom: 'Message {nome} on WhatsApp (opens in a new window)',
+      fechar: 'Close',
       faltam: '{n} characters left.',
       limite: 'You have reached the 500-character limit.',
       fracao: 'Apartment',
@@ -79,7 +86,7 @@
       precoConsulta: 'On request',
       apartamentos: function (n) { return n === 1 ? '1 apartment' : n + ' apartments'; },
       areas: function (a, b) { return a === b ? a + ' m²' : a + ' to ' + b + ' m²'; },
-      comSotao: ' plus attic',
+      comSotao: ', including attic',
       desde: 'From {v}',
       disponiveis: '{n} available',
       e: ' and ',
@@ -88,9 +95,8 @@
       todas: 'All',
       piso: function (n) { return ['Ground floor', 'First floor', 'Second floor', 'Third floor'][n] || 'Floor ' + n; },
       aMostrar: function (n) { return n === 1 ? 'Showing 1 apartment.' : 'Showing ' + n + ' apartments.'; },
-      habitacao: 'Living area',
+      area: 'Area',
       exterior: 'Outdoor',
-      sotao: 'Attic',
       pedirPlanta: 'Request floor plan',
       pedirPlantaDe: 'Request the floor plan for apartment {f}',
       mensagemPlanta: 'I would like to receive the floor plan for apartment {f}.',
@@ -110,29 +116,128 @@
     return porIdioma || T.whatsapp;
   }
 
+  function soDigitos(n) { return String(n || '').replace(/\D/g, ''); }
+
+  function urlWhatsApp(numero) {
+    return 'https://wa.me/' + numero + '?text=' + encodeURIComponent(mensagemWhatsApp());
+  }
+
+  // Contactos do config.js; sem lista, vale o número principal.
+  function contactosWhatsApp() {
+    var lista = (CFG.whatsappContactos || []).map(function (c) {
+      return { nome: c.nome || '', numero: soDigitos(c.numero) };
+    }).filter(function (c) { return c.numero; });
+    if (!lista.length && soDigitos(CFG.whatsapp)) lista = [{ nome: '', numero: soDigitos(CFG.whatsapp) }];
+    return lista;
+  }
+
+  // +351 918 559 623, a partir dos dígitos (indicativo de 3 algarismos).
+  function numeroLegivel(d) {
+    return '+' + d.slice(0, 3) + ' ' + d.slice(3).replace(/(\d{3})(?=\d)/g, '$1 ');
+  }
+
+  /* Com dois ou mais contactos (a Inês e o Carlos), qualquer botão de
+     WhatsApp abre um <dialog> com a escolha: foco preso no diálogo, Esc
+     fecha, clicar fora fecha e o foco volta ao botão de origem. Os botões
+     continuam a ser ligações (href para o primeiro contacto, caso o diálogo
+     falhe), com role="button" e espaço a ativar, como um botão. */
+  function criarEscolhaWhatsApp(contactos) {
+    var dialogo = el('dialog', 'escolha-whatsapp');
+    dialogo.setAttribute('aria-labelledby', 'titulo-escolha-whatsapp');
+    var interior = el('div', 'escolha-whatsapp__interior');
+    var titulo = el('h2', '', T.whatsappTitulo);
+    titulo.id = 'titulo-escolha-whatsapp';
+    interior.appendChild(titulo);
+    interior.appendChild(el('p', 'nota', T.whatsappEscolha));
+    var lista = el('ul', 'escolha-whatsapp__lista');
+    contactos.forEach(function (c) {
+      var a = el('a', 'escolha-whatsapp__contacto');
+      a.href = urlWhatsApp(c.numero);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('aria-label', T.whatsappCom.replace('{nome}', c.nome || numeroLegivel(c.numero)));
+      var textos = el('span', 'escolha-whatsapp__textos');
+      textos.appendChild(el('span', 'escolha-whatsapp__nome', c.nome || numeroLegivel(c.numero)));
+      if (c.nome) textos.appendChild(el('span', 'escolha-whatsapp__numero', numeroLegivel(c.numero)));
+      a.appendChild(textos);
+      var seta = el('span', 'seta');
+      seta.setAttribute('aria-hidden', 'true');
+      seta.innerHTML = '<svg><use href="#seta"></use></svg>';
+      a.appendChild(seta);
+      a.addEventListener('click', function () { fechar(); });
+      var li = el('li');
+      li.appendChild(a);
+      lista.appendChild(li);
+    });
+    interior.appendChild(lista);
+    var botaoFechar = el('button', 'btn btn--contorno btn--pequeno', T.fechar);
+    botaoFechar.type = 'button';
+    interior.appendChild(botaoFechar);
+    dialogo.appendChild(interior);
+    document.body.appendChild(dialogo);
+
+    var origem = null;
+    function fechar() { if (dialogo.open) dialogo.close(); }
+    botaoFechar.addEventListener('click', fechar);
+    dialogo.addEventListener('click', function (ev) { if (ev.target === dialogo) fechar(); });
+    dialogo.addEventListener('close', function () {
+      if (origem && document.contains(origem)) origem.focus();
+      origem = null;
+    });
+
+    return function abrir(botao) {
+      origem = botao;
+      if (typeof dialogo.showModal === 'function') dialogo.showModal();
+      else dialogo.setAttribute('open', '');
+      var primeiro = $('.escolha-whatsapp__contacto', dialogo);
+      if (primeiro) primeiro.focus();
+    };
+  }
+
   function iniciarWhatsApp() {
-    var numero = String(CFG.whatsapp || '').replace(/\D/g, '');
+    var contactos = contactosWhatsApp();
     var ligacoes = $$('[data-whatsapp]');
     var alternativas = $$('[data-sem-whatsapp]');
 
-    if (!numero) {
+    if (!contactos.length) {
       // TODO: sem número em config.js os botões ficam escondidos, para não
       // publicar ligações partidas. Preencher antes do lançamento.
+      ligacoes.forEach(function (a) { a.hidden = true; });
       if (window.console) console.warn('[OceanView 2] Falta o número de WhatsApp em config.js.');
       return;
     }
 
-    var url = 'https://wa.me/' + numero + '?text=' +
-      encodeURIComponent(mensagemWhatsApp());
+    var escolha = contactos.length > 1 && window.HTMLDialogElement ? criarEscolhaWhatsApp(contactos) : null;
 
     ligacoes.forEach(function (a) {
-      a.href = url;
+      a.href = urlWhatsApp(contactos[0].numero);
       a.target = '_blank';
       a.rel = 'noopener';
       a.hidden = false;
+      if (escolha) {
+        a.setAttribute('role', 'button');
+        a.setAttribute('aria-haspopup', 'dialog');
+        a.removeAttribute('target');
+      }
     });
     alternativas.forEach(function (el) { el.hidden = true; });
     $$('[data-whatsapp-item]').forEach(function (el) { el.hidden = false; });
+
+    if (!escolha) return;
+    // Delegação: serve também a ligação criada na mensagem de erro do formulário.
+    document.addEventListener('click', function (ev) {
+      var alvo = ev.target.closest ? ev.target.closest('[data-whatsapp]') : null;
+      if (!alvo) return;
+      ev.preventDefault();
+      escolha(alvo);
+    });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key !== ' ' && ev.key !== 'Spacebar') return;
+      var alvo = ev.target.closest ? ev.target.closest('[data-whatsapp]') : null;
+      if (!alvo) return;
+      ev.preventDefault();
+      escolha(alvo);
+    });
   }
 
   /* ------------------------------------------------- origem da visita (utm) */
@@ -266,10 +371,11 @@
   }
 
   function mensagemAlternativa(texto) {
-    var numero = String(CFG.whatsapp || '').replace(/\D/g, '');
-    if (!numero) return '';
-    var url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(mensagemWhatsApp());
-    return '<a href="' + url + '" target="_blank" rel="noopener">' +
+    var contactos = contactosWhatsApp();
+    if (!contactos.length) return '';
+    var url = urlWhatsApp(contactos[0].numero);
+    // data-whatsapp: com dois contactos, abre a mesma escolha dos outros botões.
+    return '<a href="' + url + '" target="_blank" rel="noopener" data-whatsapp>' +
       (texto || ' Pode também falar connosco por WhatsApp') + '</a>';
   }
 
@@ -547,8 +653,10 @@
   /* ------------------------------------------------ frações e valores */
   /* Versão 2.1: tudo o que é número na secção #fracoes e nos cartões de
      tipologia vem do data/fracoes.json — resumo, «desde», áreas, filtros,
-     tabela (acima de 700 px) e cartões (abaixo). Nada fica escrito à mão no
-     HTML. A secção está visível de origem (para não saltar ao carregar) e só
+     tabela (acima de 700 px) e cartões (abaixo). A área mostrada é sempre o
+     area_total_m2 (nas frações I a L inclui o sótão: pedido dos clientes,
+     19/10/2026); o sótão não tem coluna própria.
+     Nada fica escrito à mão no HTML. A secção está visível de origem (para não saltar ao carregar) e só
      se esconde se o JSON não chegar ou não tiver as 12 frações com tipologia.
      O caminho do JSON vem de data-fonte, para servir as duas línguas. */
   var TIPOLOGIAS = ['T1', 'T2', 'T2+2'];
@@ -605,7 +713,7 @@
       var linha = $('[data-tipologia-linha="' + tipo + '"]');
       var valor = $('[data-tipologia-valor="' + tipo + '"]');
       if (!dela.length) return;
-      var areas = dela.map(function (f) { return f.area_privativa_m2; }).filter(function (a) { return !vazio(a); })
+      var areas = dela.map(function (f) { return f.area_total_m2; }).filter(function (a) { return !vazio(a); })
         .map(function (a) { return Math.round(Number(a)); });
       var texto = T.apartamentos(dela.length);
       if (areas.length) {
@@ -660,9 +768,8 @@
     tr.appendChild(td);
     tr.appendChild(el('td', 'forte', f.tipologia));
     tr.appendChild(el('td', 'fraco', vazio(f.piso) ? '—' : T.piso(f.piso)));
-    tr.appendChild(el('td', 'num', formatarArea(f.area_privativa_m2)));
+    tr.appendChild(el('td', 'num', formatarArea(f.area_total_m2)));
     tr.appendChild(el('td', 'num fraco', formatarArea(f.area_exterior_m2)));
-    tr.appendChild(el('td', 'num fraco', formatarArea(f.area_sotao_m2)));
     tr.appendChild(el('td', 'num forte', valorOuEstado(f)));
     td = el('td');
     td.appendChild(botaoPlanta(f));
@@ -684,7 +791,7 @@
     li.appendChild(topo);
 
     var dl = el('dl', 'cartao-fracao__areas');
-    [[T.habitacao, f.area_privativa_m2], [T.exterior, f.area_exterior_m2], [T.sotao, f.area_sotao_m2]].forEach(function (par) {
+    [[T.area, f.area_total_m2], [T.exterior, f.area_exterior_m2]].forEach(function (par) {
       var d = el('div');
       d.appendChild(el('dt', '', par[0]));
       d.appendChild(el('dd', '', formatarArea(par[1])));
