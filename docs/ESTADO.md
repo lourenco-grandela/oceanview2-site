@@ -1,8 +1,45 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-19
+Última atualização: 2026-10-20
 
 ## Feito
+
+### Lançamento no domínio (2026-10-20)
+
+- **No ar em <https://oceanview2.pt/>** (e `/en/`, `/privacidade.html`,
+  `/en/privacy.html`), sem `noindex`.
+- `preencher.py --verificar` deu «PRONTO para lançar» (só os IDs do GA4 e da
+  Meta como recomendados). Corrido completo: 0 marcadores `.todo` nas quatro
+  páginas (o portão do `grep` devolve vazio), domínio em todos os endereços
+  absolutos, data da política fixada em 20/10/2026, `robots.txt`,
+  `sitemap.xml` (quatro páginas com `hreflang`), QR codes em `qr/` e `CNAME`.
+- Revisto em local: rodapé (IAD Portugal, AMI 11220, os dois agentes com
+  telefone e email clicáveis, A+), tempos em todos os sítios, Google Maps,
+  resumo e lista de frações iguais ao JSON, três botões de WhatsApp com a
+  escolha, frase da Arquitetura sem marcador, políticas com prazo, emails e
+  data.
+- **Cor do logótipo #0F2E4C** («Azul oceano»): símbolo e palavra no rodapé e
+  nos cabeçalhos das políticas e da 404 (variável `--logo`); branco no hero.
+  Fundo do favicon e do ícone do iPhone regenerados. A imagem de partilha não
+  mudou: o logótipo está sobre fotografia, por isso fica branco.
+- Commit «Lançamento: dados finais e domínio» (`3efcd54`). Actions: run
+  [39445047302](https://github.com/lourenco-grandela/oceanview2-site/actions/runs/39445047302),
+  «Modo: DOMÍNIO (oceanview2.pt)», verde.
+- **DNS** (PTisp, `ns5`/`ns6.mydnspt.net`): os quatro A `185.199.108–111.153`
+  e `www` CNAME `lourenco-grandela.github.io.`. **Sem registos AAAA** (IPv6):
+  o site funciona, mas o `docs/LANCAMENTO.md` recomenda os quatro.
+- **GitHub Pages**: Custom domain `oceanview2.pt` definido pela API,
+  certificado `approved`, **Enforce HTTPS ligado**.
+- **Verificações do passo 8**:
+  - `https://oceanview2.pt/` abre com certificado válido.
+  - `https://www.oceanview2.pt/`, `http://www.oceanview2.pt/` e o antigo
+    `lourenco-grandela.github.io/oceanview2-site/` levam a
+    `https://oceanview2.pt/` (o `/en/` também).
+  - `https://oceanview2.pt/qualquer-coisa` e `/en/qualquer/coisa`: 404 com a
+    página bilingue (`<base href="/">`).
+  - Sem `noindex` nas landing pages; `robots.txt` e `sitemap.xml` abrem.
+  - `http://oceanview2.pt/` → 301 para `https://oceanview2.pt/` (demorou
+    cerca de 20 minutos a propagar depois de ligar o Enforce HTTPS).
 
 ### Dados dos clientes aplicados (2026-10-19)
 
@@ -351,16 +388,15 @@ O que fica diferente, e porquê:
 
 **No domínio, nada é publicado enquanto houver marcadores `.todo` visíveis.**
 Agora é automático: o `preencher.py` só escreve o `CNAME` com os dados todos,
-e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **1 em
-cada página**: a frase da Arquitetura nas landing pages e a data da política
-nas políticas (escrita pelo script quando não faltar nada).
+e o workflow recusa publicar no domínio se encontrar um `.todo`. Hoje: **0 nas
+quatro páginas** (20/10/2026).
 
 Exceção aprovada a 14/10/2026: a pré-visualização no GitHub Pages, com
 `noindex`, só para mostrar aos clientes.
 
 ## Em curso
 
-- Nada do nosso lado. Falta o que está abaixo; depois, `docs/LANCAMENTO.md`.
+- Nada do nosso lado: o que falta está abaixo.
 
 ## Falta
 
@@ -368,22 +404,23 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 
 ### Dos clientes
 
-1. Aprovação da política de privacidade (`politica.texto_aprovado`).
-2. Validação da frase da Arquitetura.
-3. Registo do domínio `oceanview2.pt` em nome deles (aprovado, por
-   registar).
-4. Tom de azul do logótipo.
-5. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
+1. IDs do GA4 e do píxel da Meta (recomendado; ou tu, se gerires os anúncios).
 
 ### Do Lourenço
 
-6. Colar a linha AVISAR no Apps Script (Inês, Carlos e Lourenço) e voltar a
-   implementar a aplicação web.
-7. Imagens novas, sem as ripas de madeira dos renders atuais (o hero de dia
+2. Colar a linha AVISAR no Apps Script (Inês, Carlos e Lourenço) e fazer uma
+   nova implementação da aplicação web (passo 5 do `docs/LANCAMENTO.md`).
+3. Teste do formulário de ponta a ponta em `https://oceanview2.pt/` e `/en/`,
+   e apagar as linhas de teste da folha (passo 10).
+4. Recomendado: os quatro registos AAAA no DNS da PTisp e verificar o domínio
+   na conta do GitHub (registo TXT), passo 6.
+5. Google Search Console: propriedade de domínio, sitemap e pedido de
+   indexação (passo 9).
+6. Ler os QR codes de `qr/` com o telemóvel e enviar os `.svg` à gráfica
+   (passo 11).
+7. Lighthouse no endereço final e teste num telemóvel real (passo 12).
+8. Imagens novas, sem as ripas de madeira dos renders atuais (o hero de dia
    ainda as tem).
-8. Teste do formulário de ponta a ponta no domínio e apagar as linhas de
-   teste da folha.
-9. Ver no telemóvel real a pré-visualização.
 
 ## Decisões (15/10/2026)
 
@@ -475,3 +512,6 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
   sótão), WhatsApp com escolha entre a Inês e o Carlos, rodapé IAD Portugal
   com os dois agentes, classe A+, políticas de privacidade novas (à espera de
   aprovação), `preencher.py` sem NIF nem morada. Domínio por registar.
+- 2026-10-20: lançamento em https://oceanview2.pt/ — dados finais, política
+  aprovada, logótipo #0F2E4C, `CNAME`, run em modo DOMÍNIO, Custom domain e
+  Enforce HTTPS no Pages.
