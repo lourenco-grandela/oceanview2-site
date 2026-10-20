@@ -21,7 +21,7 @@ Fotografias: só as editadas pelo Lourenço, em material/fotos/ (CLAUDE.md).
 
 Para gerar só algumas imagens, dar os nomes de saída como argumentos:
     .venv/bin/python ferramentas/gerar-imagens.py fachada-dia og
-("og" refaz as imagens de partilha; sem argumentos gera tudo.)
+("og" refaz as imagens de partilha, "favicon" os ícones; sem argumentos gera tudo.)
 """
 import io
 import math
@@ -36,6 +36,7 @@ ORIGEM = os.path.join(RAIZ, "material")
 DESTINO = os.path.join(RAIZ, "assets", "img")
 
 ATLANTICO = (20, 48, 58)
+LOGO = (15, 46, 76)  # #0F2E4C, cor do logótipo (clientes, 19/10/2026)
 LUZ = (201, 142, 69)
 BRANCO = (255, 255, 255)
 
@@ -155,7 +156,7 @@ def icone_png(lado, caminho, raio):
     escala = 8
     grande = Image.new("RGBA", (lado * escala, lado * escala), (0, 0, 0, 0))
     d = ImageDraw.Draw(grande)
-    d.rounded_rectangle((0, 0, lado * escala - 1, lado * escala - 1), radius=raio * escala, fill=ATLANTICO)
+    d.rounded_rectangle((0, 0, lado * escala - 1, lado * escala - 1), radius=raio * escala, fill=LOGO)
     margem = lado * escala * 0.14
     desenhar_vigia(d, margem, margem, lado * escala - 2 * margem, BRANCO, 1.7)
     grande.resize((lado, lado), Image.LANCZOS).save(caminho, "PNG", optimize=True)
@@ -163,7 +164,7 @@ def icone_png(lado, caminho, raio):
 
 
 FAVICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#14303A"/>
+  <rect width="32" height="32" rx="7" fill="#0F2E4C"/>
   <g transform="translate(4.5 4.5) scale(0.958)">
     <circle cx="12" cy="12" r="10.5" fill="none" stroke="#FFFFFF" stroke-width="1.7"/>
     <path d="M1.53 12.8 L22.47 12.8 A10.5 10.5 0 0 1 1.53 12.8 Z" fill="#FFFFFF"/>
@@ -259,6 +260,8 @@ def main():
     escolha = set(sys.argv[1:])
     renders(escolha)
     fotos(escolha)
+    if "favicon" in escolha:
+        favicons()
     if escolha and "og" not in escolha:
         return
     if not escolha:

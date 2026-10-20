@@ -20,6 +20,9 @@
   --texto-claro: #B7C5C4;
   --luz: #C98E45;
   --pedra: #E6E2D8;
+  /* Logótipo (clientes, 19/10/2026: opção 2, «Azul oceano»): símbolo Vigia e
+     palavra OCEANVIEW 2. Sobre fotografia fica branco; o sol é sempre --luz. */
+  --logo: #0F2E4C;
   /* Fora da paleta: só para mensagens de erro sobre o bloco Atlântico
      (8,1:1 sobre #14303A). A cor nunca é o único sinal: há sempre texto. */
   --erro-escuro: #F6B9AE;
@@ -138,9 +141,10 @@ h1, h2, h3 { font-weight: 600; text-wrap: balance; }
 /* --- Marca ---------------------------------------------------------------- */
 .marca {
   display: inline-flex; align-items: center; gap: 12px;
-  color: inherit; white-space: nowrap;
+  color: var(--logo); white-space: nowrap;
 }
-.marca:hover { color: inherit; }
+.marca:hover { color: var(--logo); }
+.hero .marca, .hero .marca:hover { color: #FFFFFF; }
 .marca svg { flex: none; width: 30px; height: 30px; }
 .marca__nome {
   font-size: 15px; font-weight: 600; letter-spacing: .16em; font-stretch: 125%;

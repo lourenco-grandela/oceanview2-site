@@ -1,0 +1,8 @@
+QR codes do OceanView 2, gerados pelo ferramentas/preencher.py.
+SVG para a gráfica (vetorial), PNG para pré-visualizar. Testar sempre
+com o telemóvel antes de imprimir. Tamanho mínimo impresso: 2 cm na
+brochura; na lona, pelo menos 1/10 da distância de leitura.
+
+qr-lona  https://oceanview2.pt/?utm_source=lona&utm_medium=qr&utm_campaign=lancamento-2026-09
+qr-brochura  https://oceanview2.pt/?utm_source=brochura&utm_medium=qr&utm_campaign=lancamento-2026-09
+qr-brochura-en  https://oceanview2.pt/en/?utm_source=brochura&utm_medium=qr&utm_campaign=lancamento-2026-09

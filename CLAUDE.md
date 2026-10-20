@@ -126,9 +126,11 @@ Início, Localização, Frações (seletor de A a L com o estado de cada uma e l
 - **WhatsApp**: os dois números. O botão de WhatsApp deixa escolher entre a Inês e o Carlos (ver `whatsapp_contactos` no `dados-lancamento.json`).
 - **Classe energética**: A+.
 - **Avisos do formulário**: Inês, Carlos e Lourenço.
-- **Domínio**: oceanview2.pt aprovado, ainda por registar.
-- **Política de privacidade**: os responsáveis pelos dados são a Inês Caiado e o Carlos Lopes (são eles que guardam e tratam os contactos). Texto pronto em `content/privacidade.pt.md` e `.en.md`, à espera da aprovação deles. NIF e morada não entram (basta identidade e contactos). Prazo de conservação: 24 meses.
-- **Ainda em falta**: aprovação da política pelos clientes; validação da frase da Arquitetura; tom de azul do logótipo; registo do domínio (só depois da confirmação deles).
+- **Política de privacidade**: os responsáveis pelos dados são a Inês Caiado e o Carlos Lopes (são eles que guardam e tratam os contactos). Texto em `content/privacidade.pt.md` e `.en.md`, **aprovado pelos clientes** (20/10/2026). NIF e morada não entram (basta identidade e contactos). Prazo de conservação: 24 meses.
+- **Frase da Arquitetura validada** pelos clientes (19/10).
+- **Logótipo**: opção 2, «Azul oceano» **#0F2E4C**, para o símbolo Vigia e a palavra OCEANVIEW 2 (rodapé, favicon, imagem de partilha). O sol mantém #C98E45. Sobre fotografia continua branco. O resto da paleta do site não muda.
+- **Domínio**: oceanview2.pt **registado e ativo** (20/10/2026), na PTisp; DNS para o GitHub Pages e `dominio` no `dados-lancamento.json`. O site publica-se no domínio (ficheiro `CNAME`, sem `noindex`).
+- **Ainda em falta**: IDs do GA4 e do píxel da Meta (recomendado).
 
 ## Pastas
 
