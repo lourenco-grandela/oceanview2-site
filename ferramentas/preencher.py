@@ -239,11 +239,13 @@ def mes_por_extenso(data, lingua):
     return "%s de %d" % (mes, data.year) if lingua == "pt" else "%s %d" % (mes, data.year)
 
 
-def duracao(minutos):
-    """Até 59 min só o número (a página escreve «min» ou «minutos» a seguir);
-    a partir de 60, «1h15» (a página não acrescenta unidade)."""
+def duracao(minutos, unidade=None):
+    """A partir de 60 min, «1h15» (sem unidade). Até 59: o número, seguido da
+    unidade do marcador (data-unidade=" minutos", " min", "-minute"...), para
+    o mesmo marcador servir «50 minutos» e «1h15» sem mexer no HTML. Sem
+    data-unidade, só o número (a página escreve a unidade a seguir)."""
     if minutos < 60:
-        return str(minutos)
+        return str(minutos) + (unidade or "")
     return "%dh%02d" % divmod(minutos, 60) if minutos % 60 else "%dh" % (minutos // 60)
 
 
@@ -259,7 +261,7 @@ def telefone_href(numero):
     return "tel:+" + digitos
 
 
-def conteudo(chave, valor, lingua):
+def conteudo(chave, valor, lingua, unidade=None):
     """HTML a pôr dentro do <span data-dado>. None = não mexer no conteúdo."""
     e = html.escape
     if chave == "data_medicao":
@@ -267,7 +269,7 @@ def conteudo(chave, valor, lingua):
     if chave == "data_publicacao_politica":
         return e(data_por_extenso(valor, lingua))
     if chave.endswith("_min"):
-        return e(duracao(valor))
+        return e(duracao(valor, unidade))
     if chave == "agentes":
         return "<br>".join('%s · <a href="%s">%s</a> · <a href="mailto:%s">%s</a>' % (
             e(a["nome"]), telefone_href(a["telefone"]), e(a["telefone"]), e(a["email"]), e(a["email"]))
@@ -283,7 +285,7 @@ def conteudo(chave, valor, lingua):
     return e(str(valor))
 
 
-MARCADOR = re.compile(r'<span(?: class="todo")? data-dado="([a-z_]+)">(.*?)</span>', re.S)
+MARCADOR = re.compile(r'<span(?: class="todo")? data-dado="([a-z_]+)"(?: data-unidade="([^"]*)")?>(.*?)</span>', re.S)
 
 
 def preco_minimo(raiz):
@@ -319,7 +321,7 @@ def preencher_pagina(texto, lingua, valores):
     preenchidos, por_preencher = set(), set()
 
     def trocar(m):
-        chave, dentro = m.group(1), m.group(2)
+        chave, unidade, dentro = m.group(1), m.group(2), m.group(3)
         if chave == "arquitetura_validada":
             if valores.get(chave):
                 preenchidos.add(chave)
@@ -330,7 +332,8 @@ def preencher_pagina(texto, lingua, valores):
             por_preencher.add(chave)
             return m.group(0)
         preenchidos.add(chave)
-        return '<span data-dado="%s">%s</span>' % (chave, conteudo(chave, valores[chave], lingua))
+        atributo = ' data-unidade="%s"' % unidade if unidade is not None else ""
+        return '<span data-dado="%s"%s>%s</span>' % (chave, atributo, conteudo(chave, valores[chave], lingua, unidade))
 
     texto = MARCADOR.sub(trocar, texto)
 

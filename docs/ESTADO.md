@@ -1,8 +1,29 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-20
+Última atualização: 2026-10-21
 
 ## Feito
+
+### Alterações dos clientes (2026-10-21)
+
+- **Tempos novos** (Inês e Carlos): praia 5 min a pé, Peniche 10, Óbidos 15,
+  Lisboa 50 min de carro, no `dados-lancamento.json` e aplicados pelo
+  `preencher.py` no hero, O projeto (número e texto), Localização (título,
+  texto e lista), Viver aqui, Para quem e descrição da página, nas duas
+  línguas. Nota «Tempos medidos em…» / «Times measured…» retirada.
+- **Marcadores de tempo com a unidade lá dentro** (`data-unidade=" minutos"`,
+  `" min"`, `"-minute"`, `" minutes"`): o `preencher.py` escreve «50 minutos»
+  ou «1h15» conforme o valor, sem mexer no HTML. Antes, «Lisboa — 1h15 de
+  carro» passaria a «50 de carro».
+- **Textos novos** em PT, com tradução para inglês britânico: subtítulo do
+  hero (garagem / garage parking), O projeto, Frações e valores (dois
+  parágrafos), Arquitetura («Linhas simples. / Maré de luz.» — «Simple
+  lines. / A tide of light.»), Localização, Viver aqui (Praia — A 5 minutos a
+  pé · Lisboa — A 50 minutos de carro · Estacionamento — Interior e privado;
+  fotografias iguais) e Próximos passos. `content/landing.*.md` atualizados.
+- Verificado em local: 0 `.todo` nas quatro páginas; nenhum «6 min»,
+  «6-minute», «18 min», «1h15», «Seis minutos» nem «six-minute» em PT ou EN;
+  sem barra horizontal a 360, 390, 430 e 1440 px.
 
 ### Lançamento no domínio (2026-10-20)
 
@@ -467,6 +488,16 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 5. O PDF novo da tabela tem 3,4 MB (o anterior tinha 1,6 MB). Não pesa na
    página (só descarrega quando se carrega no botão), mas no telemóvel demora.
    Peço uma versão mais leve?
+6. **«Empreendimento exclusivo» / «exclusive development»** (texto de O
+   projeto, pedido dos clientes a 21/10): o CLAUDE.md proíbe «exclusivo» no
+   tom do site. Apliquei como pediram; confirmar se fica.
+7. **Tempos sem medição**: os novos (5 a pé, 15 e 50 de carro) vêm dos
+   clientes; os medidos a 15/10 eram 6, 18 e 75 (1h15). A regra do CLAUDE.md
+   é «distâncias só medidas». Confirmar com eles, sobretudo Lisboa em 50 min.
+8. **Viver aqui**: o título continua «Mar, surf e Lisboa à distância certa.»,
+   mas o cartão Surf saiu. E, com as fotografias mantidas, o cartão Lisboa
+   mostra as ondas no areal (foto-4) e o Estacionamento a Consolação vista do
+   ar (foto-3). Mudar o título ou as fotografias?
 
 ## Registo
 
@@ -515,3 +546,6 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 - 2026-10-20: lançamento em https://oceanview2.pt/ — dados finais, política
   aprovada, logótipo #0F2E4C, `CNAME`, run em modo DOMÍNIO, Custom domain e
   Enforce HTTPS no Pages.
+- 2026-10-21: alterações dos clientes — tempos 5/10/15/50, textos novos em PT
+  e EN (hero, O projeto, Frações e valores, Arquitetura, Localização, Viver
+  aqui, Próximos passos), nota da medição retirada.

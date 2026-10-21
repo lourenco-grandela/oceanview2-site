@@ -132,6 +132,11 @@ Início, Localização, Frações (seletor de A a L com o estado de cada uma e l
 - **Domínio**: oceanview2.pt **registado e ativo** (20/10/2026), na PTisp; DNS para o GitHub Pages e `dominio` no `dados-lancamento.json`. O site publica-se no domínio (ficheiro `CNAME`, sem `noindex`).
 - **Ainda em falta**: IDs do GA4 e do píxel da Meta (recomendado).
 
+## Alterações dos clientes (21/10/2026)
+
+- **Tempos** indicados pela Inês e pelo Carlos (substituem os medidos a 15/10): praia da Consolação 5 min a pé · Peniche 10 min de carro · Óbidos 15 min de carro · Lisboa 50 min de carro. Estão no `dados-lancamento.json`; a nota «Tempos medidos em…» saiu do site.
+- Textos novos do hero, O projeto, Frações e valores, Arquitetura («Linhas simples. / Maré de luz.»), Localização, Viver aqui (Praia, Lisboa, Estacionamento) e Próximos passos: em `content/landing.*.md`.
+
 ## Pastas
 
 - `material/`: originais, referência de design e fotografias. **Não se publica** (está no `.gitignore`). O site usa só as versões otimizadas em `assets/img/`.
