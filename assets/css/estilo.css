@@ -655,6 +655,32 @@ dialog.escolha-whatsapp::backdrop { background: rgba(20, 48, 58, .6); }
 .escolha-whatsapp__numero { font-size: 14px; color: var(--texto-2); font-variant-numeric: tabular-nums; }
 .escolha-whatsapp .btn { justify-self: end; }
 
+/* --- Planta da fração (22/10/2026) -----------------------------------------
+   «Ver planta» na lista de frações abre este diálogo (principal.js). */
+.btn__nota { font-weight: 400; color: var(--texto-2); }
+dialog.dialogo-planta {
+  border: 1px solid var(--borda-cartao); border-radius: var(--raio-grande); padding: 0;
+  width: min(40rem, calc(100vw - 24px)); max-height: calc(100dvh - 24px);
+  background: var(--cartao); color: var(--atlantico);
+}
+dialog.dialogo-planta::backdrop { background: rgba(20, 48, 58, .6); }
+.dialogo-planta__interior { display: grid; gap: 14px; padding: clamp(16px, 3vw, 28px); }
+.dialogo-planta__topo { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.dialogo-planta__titulo { font-size: 26px; letter-spacing: -0.03em; line-height: 1.1; }
+.dialogo-planta__fechar {
+  flex: none; width: 44px; height: 44px; border-radius: 999px;
+  border: 1px solid var(--contorno); background: var(--cartao); color: var(--atlantico);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.dialogo-planta__fechar:hover { border-color: var(--atlantico); }
+.dialogo-planta__fechar svg { width: 18px; height: 18px; }
+/* A imagem ocupa o que sobra do ecrã sem obrigar a deslizar para ver os botões. */
+.dialogo-planta__imagem {
+  width: 100%; height: auto; max-height: calc(100dvh - 230px); object-fit: contain;
+  border: 1px solid var(--borda-cartao); border-radius: var(--raio-imagem); background: #FFFFFF;
+}
+.dialogo-planta__botoes .btn { flex: 1 1 auto; }
+
 /* --- Páginas de texto (política de privacidade) --------------------------- */
 .cabecalho--pagina { max-width: calc(var(--maxw) + 2 * var(--margem)); margin-inline: auto; padding: 22px var(--margem); }
 .cabecalho--pagina .idiomas { display: block; }

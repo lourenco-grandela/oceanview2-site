@@ -1,8 +1,30 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-21
+Última atualização: 2026-10-22
 
 ## Feito
+
+### Plantas por fração (2026-10-22)
+
+- `data/fracoes.json`: `planta_pdf` e `planta_img` em cada fração
+  (`assets/docs/plantas/oceanview2-fracao-*.pdf` e
+  `assets/img/plantas/fracao-*.webp`). Conferido: cada imagem e cada PDF é o
+  da fração certa; os 12 PDFs têm uma página e abrem; o conjunto
+  (`OceanView2_Fracoes_e_Plantas.pdf`) tem 15 páginas.
+- **«Ver planta»** em cada linha (tabela e cartões do telemóvel) abre um
+  `<dialog>` com a planta (alt «Planta da fração X»; a imagem só é pedida ao
+  abrir), «Abrir PDF» (nova janela, `download`) e «Pedir condições», que fecha,
+  desce até ao formulário, põe o foco no Nome e escolhe a tipologia, com a
+  mensagem «Gostava de receber as condições da fração X.» (frase minha, a
+  validar). Esc, ✕ e clicar fora fecham; o foco volta ao botão da linha.
+  Testado com teclado. A imagem (1075 px) fica nítida: é mostrada a cerca de
+  470 px no computador e 316 px no telemóvel.
+- **«Plantas em PDF»** ao lado de «Tabela em PDF».
+- **Inglês**: «See floor plan», «Open PDF», «Request details», «Floor plans
+  (PDF)», com «(in Portuguese)» nos três PDFs (e `hreflang="pt"`).
+- **Arquitetura**: «Ver plantas» / «See floor plans» leva a Frações e valores
+  e abre a lista.
+- Sem barra horizontal a 360, 390, 430 e 1440 px, com a lista aberta.
 
 ### Alterações dos clientes (2026-10-21)
 
@@ -499,6 +521,14 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
    mostra as ondas no areal (foto-4) e o Estacionamento a Consolação vista do
    ar (foto-3). Mudar o título ou as fotografias?
 
+9. **Áreas das plantas diferentes das do site**: a «Área total» de cada
+   planta soma habitação, exterior e sótão (E 137,95 · F 101,40 · G 101,40 ·
+   H 137,15 · I 252,85 · J 195,45 · K 191,70 · L 252,15 m²), mas a coluna
+   «Área» do site usa o `area_total_m2` (habitação + sótão: E 97,00 ·
+   I 166,70 m²…), como pedido a 19/10. Um comprador vê dois «totais»
+   diferentes para a mesma fração. Qual fica? Ou muda-se o rótulo no site
+   (ex.: «Área habitável»)?
+
 ## Registo
 
 - 2026-09-20: repositório criado com o CLAUDE.md e este ficheiro.
@@ -549,3 +579,5 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 - 2026-10-21: alterações dos clientes — tempos 5/10/15/50, textos novos em PT
   e EN (hero, O projeto, Frações e valores, Arquitetura, Localização, Viver
   aqui, Próximos passos), nota da medição retirada.
+- 2026-10-22: plantas por fração — «Ver planta» com diálogo, PDF por fração e
+  PDF conjunto, «Ver plantas» na Arquitetura.

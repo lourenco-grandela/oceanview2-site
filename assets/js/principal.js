@@ -55,7 +55,14 @@
       exterior: 'Exterior',
       pedirPlanta: 'Pedir planta',
       pedirPlantaDe: 'Pedir planta da fração {f}',
-      mensagemPlanta: 'Gostava de receber a planta da fração {f}.',
+      verPlanta: 'Ver planta',
+      verPlantaDe: 'Ver planta da fração {f}',
+      plantaAlt: 'Planta da fração {f}',
+      abrirPdf: 'Abrir PDF',
+      emPortugues: '',
+      pedirCondicoes: 'Pedir condições',
+      fecharPlanta: 'Fechar a planta',
+      mensagemPlanta: 'Gostava de receber as condições da fração {f}.',
       milhares: '.',
       decimal: ',',
       moeda: function (n) { return n + ' €'; }
@@ -99,7 +106,14 @@
       exterior: 'Outdoor',
       pedirPlanta: 'Request floor plan',
       pedirPlantaDe: 'Request the floor plan for apartment {f}',
-      mensagemPlanta: 'I would like to receive the floor plan for apartment {f}.',
+      verPlanta: 'See floor plan',
+      verPlantaDe: 'See the floor plan for apartment {f}',
+      plantaAlt: 'Floor plan of apartment {f}',
+      abrirPdf: 'Open PDF',
+      emPortugues: '(in Portuguese)',
+      pedirCondicoes: 'Request details',
+      fecharPlanta: 'Close the floor plan',
+      mensagemPlanta: 'I would like to receive the details for apartment {f}.',
       milhares: ',',
       decimal: '.',
       moeda: function (n) { return '€' + n; }
@@ -747,13 +761,117 @@
     return e;
   }
 
+  /* «Ver planta» abre o diálogo da planta (22/10/2026). Sem planta no JSON,
+     fica o «Pedir planta» de antes, que leva ao formulário. */
   function botaoPlanta(f) {
+    if (f.planta_img && f.planta_pdf && abrirPlanta) {
+      var b = el('button', 'btn btn--contorno btn--planta', T.verPlanta);
+      b.type = 'button';
+      b.setAttribute('aria-haspopup', 'dialog');
+      b.setAttribute('aria-label', T.verPlantaDe.replace('{f}', f.fracao));
+      b.addEventListener('click', function () { abrirPlanta(f, b); });
+      return b;
+    }
     var a = el('a', 'btn btn--contorno btn--planta', T.pedirPlanta);
     a.href = '#registo';
     a.setAttribute('data-pre-tipologia', f.tipologia);
     a.setAttribute('data-pre-fracao', f.fracao);
     a.setAttribute('aria-label', T.pedirPlantaDe.replace('{f}', f.fracao));
     return a;
+  }
+
+  /* Diálogo da planta: imagem (só se pede ao abrir), «Abrir PDF» e «Pedir
+     condições». Esc, o ✕ e clicar fora fecham, e o foco volta ao botão da
+     linha; «Pedir condições» fecha e segue para o formulário com a tipologia
+     e a fração indicadas (mesma delegação do data-pre-tipologia). Os caminhos
+     do JSON são relativos à raiz do site: a base vem do data-fonte, para
+     servir /en/ e qualquer subcaminho. */
+  var abrirPlanta = null;
+
+  function criarDialogoPlanta(base) {
+    if (!window.HTMLDialogElement) return null;
+    var dialogo = el('dialog', 'dialogo-planta');
+    dialogo.setAttribute('aria-labelledby', 'titulo-planta');
+    var interior = el('div', 'dialogo-planta__interior');
+    var topo = el('div', 'dialogo-planta__topo');
+    var titulos = el('div');
+    var titulo = el('h2', 'dialogo-planta__titulo');
+    titulo.id = 'titulo-planta';
+    var detalhe = el('p', 'nota');
+    titulos.appendChild(titulo);
+    titulos.appendChild(detalhe);
+    topo.appendChild(titulos);
+    var fecharBotao = el('button', 'dialogo-planta__fechar');
+    fecharBotao.type = 'button';
+    fecharBotao.setAttribute('aria-label', T.fecharPlanta);
+    fecharBotao.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    topo.appendChild(fecharBotao);
+    interior.appendChild(topo);
+
+    var imagem = el('img', 'dialogo-planta__imagem');
+    imagem.width = 1075;
+    imagem.height = 1521;
+    imagem.loading = 'lazy';
+    imagem.decoding = 'async';
+    interior.appendChild(imagem);
+
+    var botoes = el('div', 'grupo-botoes dialogo-planta__botoes');
+    var pdf = el('a', 'btn btn--contorno');
+    pdf.target = '_blank';
+    pdf.rel = 'noopener';
+    pdf.type = 'application/pdf';
+    if (T.emPortugues) pdf.hreflang = 'pt';
+    var pedir = el('a', 'btn btn--principal', T.pedirCondicoes);
+    pedir.href = '#registo';
+    botoes.appendChild(pdf);
+    botoes.appendChild(pedir);
+    interior.appendChild(botoes);
+    dialogo.appendChild(interior);
+    document.body.appendChild(dialogo);
+
+    var origem = null;
+    function fechar() { if (dialogo.open) dialogo.close(); }
+    fecharBotao.addEventListener('click', fechar);
+    dialogo.addEventListener('click', function (ev) { if (ev.target === dialogo) fechar(); });
+    // O foco volta ao botão da linha; depois de «Pedir condições», vai para
+    // o campo Nome (origem aponta para ele). No evento close, e não antes,
+    // porque o próprio browser devolve o foco ao fechar.
+    dialogo.addEventListener('close', function () {
+      if (origem && document.contains(origem)) origem.focus({ preventScroll: origem.id === 'nome' });
+      origem = null;
+    });
+    pdf.addEventListener('click', fechar);
+    pedir.addEventListener('click', function (ev) {
+      // Segue para o formulário em vez de voltar à linha. Desce sempre até
+      // ele (um link para o #registo onde já se está não desloca a página).
+      // A tipologia e a mensagem são escritas pela delegação do data-pre-*.
+      var registo = document.getElementById('registo');
+      origem = document.getElementById('nome');
+      fechar();
+      if (!registo) return;
+      ev.preventDefault();
+      registo.scrollIntoView();
+    });
+
+    return function (f, botao) {
+      origem = botao;
+      titulo.textContent = T.fracao + ' ' + f.fracao;
+      detalhe.textContent = f.tipologia + (vazio(f.piso) ? '' : ' · ' + T.piso(f.piso));
+      imagem.alt = T.plantaAlt.replace('{f}', f.fracao);
+      imagem.src = base + f.planta_img;
+      pdf.href = base + f.planta_pdf;
+      pdf.setAttribute('download', '');
+      pdf.innerHTML = '<svg aria-hidden="true" focusable="false"><use href="#descarregar"></use></svg>';
+      pdf.appendChild(document.createTextNode(T.abrirPdf));
+      if (T.emPortugues) {
+        pdf.appendChild(document.createTextNode(' '));
+        pdf.appendChild(el('span', 'btn__nota', T.emPortugues));
+      }
+      pedir.setAttribute('data-pre-tipologia', f.tipologia);
+      pedir.setAttribute('data-pre-fracao', f.fracao);
+      dialogo.showModal();
+      fecharBotao.focus();
+    };
   }
 
   function valorOuEstado(f) {
@@ -811,6 +929,7 @@
     if (!seccao || !window.fetch) return;
     var fonte = seccao.getAttribute('data-fonte');
     if (!fonte) return;
+    abrirPlanta = criarDialogoPlanta(fonte.replace(/data\/fracoes\.json$/, ''));
 
     fetch(fonte, { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -867,6 +986,13 @@
           botao.setAttribute('aria-expanded', abrir ? 'true' : 'false');
           rotulo.textContent = abrir ? T.fecharLista : textoAbrir;
           listaEl.hidden = !abrir;
+        });
+
+        // «Ver plantas» (Arquitetura): vai à secção e abre a lista.
+        $$('[data-mostrar-lista]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            if (botao.getAttribute('aria-expanded') !== 'true') botao.click();
+          });
         });
       })
       .catch(function (erro) {

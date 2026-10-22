@@ -35,16 +35,17 @@ Version 2 as it is, with real data and three new sections. British English. Same
 - Title: Choose your home.
 - Text (two paragraphs): Discover the 12 apartments at OceanView 2, labelled A to L, with detailed information on their areas and prices. / See the full list of apartments or download the price list to explore all the options available and find the ideal apartment for you.
 - Summary: Apartments — 12 available · Prices from — €250,000 · Types — T1, T2 and T2+2
-- Buttons: Price list (PDF) · See all 12 apartments / Close the list
+- Buttons: Price list (PDF) (in Portuguese) · Floor plans (PDF) (in Portuguese) · See all 12 apartments / Close the list
 - Filters: All · Ground floor · First floor · Second floor · T2+2
-- Columns: Apartment · Type · Floor · Area · Outdoor · Price · "Request floor plan" (Area = `area_total_m2`; for I to L it includes the attic)
+- Columns: Apartment · Type · Floor · Area · Outdoor · Price · "See floor plan" (Area = `area_total_m2`; for I to L it includes the attic)
+- "See floor plan" opens the floor plan with "Open PDF (in Portuguese)" and "Request details", which goes to the form with the type and the message "I would like to receive the details for apartment X."
 - Note: Areas in m², from the project's area schedule. For apartments I to L, the area includes the attic. Outdoor: balconies, terraces and porches. Prices subject to confirmation.
 
 ## Architecture
 
 - Title: Simple lines. / A tide of light.
 - Text: Contemporary architecture with the essence of Portuguese tradition. Generous balconies, a traditional tiled roof and a light-toned façade that reflect the local character.
-- Button: Request plans and finishes
+- Button: See floor plans (goes to Apartments & prices with the list open)
 
 ## Location
 

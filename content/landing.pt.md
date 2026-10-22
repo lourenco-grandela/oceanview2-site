@@ -42,15 +42,16 @@ A versão 2.1 é a versão 2 tal como está (mesmo estilo, mesmo hero, mesma ord
 - Título: Escolha a sua casa.
 - Texto (dois parágrafos): Conheça as 12 frações do OceanView 2, identificadas de A a L, com informação detalhada sobre as áreas e os respetivos preços. / Consulte a lista completa de frações ou descarregue a tabela para conhecer todas as opções disponíveis e encontrar o apartamento ideal para si.
 - Resumo sempre visível (cartão branco): Frações — 12 disponíveis · Valores desde — 250.000 € · Tipologias — T1, T2 e T2+2 (calculados a partir do JSON)
-- Botões: Tabela em PDF (→ `assets/docs/OceanView2_Tabela_de_Valores.pdf`) · Ver as 12 frações (abre a lista; quando aberta passa a «Fechar a lista»)
-- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Área · Exterior · Valor · «Pedir planta». A «Área» é o `area_total_m2` do JSON (nas frações I a L inclui o sótão).
+- Botões: Tabela em PDF (→ `assets/docs/OceanView2_Tabela_de_Valores.pdf`) · Plantas em PDF (→ `assets/docs/OceanView2_Fracoes_e_Plantas.pdf`, 22/10/2026) · Ver as 12 frações (abre a lista; quando aberta passa a «Fechar a lista»)
+- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Área · Exterior · Valor · «Ver planta». A «Área» é o `area_total_m2` do JSON (nas frações I a L inclui o sótão).
+- «Ver planta» (22/10/2026) abre a planta da fração (`planta_img` do JSON) com «Abrir PDF» (`planta_pdf`) e «Pedir condições», que leva ao formulário com a tipologia e a mensagem «Gostava de receber as condições da fração X.»
 - Nota: Áreas em m², do quadro de áreas do projeto. Nas frações I a L, a área inclui o sótão. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.
 
 ## Arquitetura (como na v2)
 
 - Título: Linhas simples. / Maré de luz.
 - Texto: Arquitetura contemporânea, com a essência da tradição portuguesa. Varandas generosas, cobertura tradicional em telha e uma fachada de tons claros, que refletem a identidade local.
-- Botão: Pedir plantas e acabamentos
+- Botão: Ver plantas (leva a Frações e valores, com a lista aberta; 22/10/2026)
 
 ## Localização (como na v2, com dados)
 
@@ -79,7 +80,7 @@ A versão 2.1 é a versão 2 tal como está (mesmo estilo, mesmo hero, mesma ord
 ## Próximos passos, Registo de interesse e Rodapé
 
 - Próximos passos: Pedir plantas — Consulte as plantas e as áreas da fração que melhor se adequa às suas necessidades. · Marcar visita — Descubra o local e a zona na nossa companhia, no dia e hora que mais lhe convier. · Falar por WhatsApp — Respondemos em português e inglês, garantindo uma comunicação clara e personalizada.
-- Registo de interesse e rodapé como na v2. Opções de tipologia no formulário: T1 · T2 · T2+2 · Ainda não sei. «Pedir planta» na lista leva ao formulário com a fração indicada.
+- Registo de interesse e rodapé como na v2. Opções de tipologia no formulário: T1 · T2 · T2+2 · Ainda não sei. «Pedir condições», na planta de cada fração, leva ao formulário com a fração indicada.
 
 ## Título e descrição da página
 

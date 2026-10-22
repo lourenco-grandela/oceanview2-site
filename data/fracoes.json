@@ -15,7 +15,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 78.8
+    "area_total_m2": 78.8,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-a.pdf",
+    "planta_img": "assets/img/plantas/fracao-a.webp"
   },
   {
     "fracao": "B",
@@ -33,7 +35,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 97.0
+    "area_total_m2": 97.0,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-b.pdf",
+    "planta_img": "assets/img/plantas/fracao-b.webp"
   },
   {
     "fracao": "C",
@@ -51,7 +55,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 75.0
+    "area_total_m2": 75.0,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-c.pdf",
+    "planta_img": "assets/img/plantas/fracao-c.webp"
   },
   {
     "fracao": "D",
@@ -69,7 +75,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 56.2
+    "area_total_m2": 56.2,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-d.pdf",
+    "planta_img": "assets/img/plantas/fracao-d.webp"
   },
   {
     "fracao": "E",
@@ -87,7 +95,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 97.0
+    "area_total_m2": 97.0,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-e.pdf",
+    "planta_img": "assets/img/plantas/fracao-e.webp"
   },
   {
     "fracao": "F",
@@ -105,7 +115,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 81.3
+    "area_total_m2": 81.3,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-f.pdf",
+    "planta_img": "assets/img/plantas/fracao-f.webp"
   },
   {
     "fracao": "G",
@@ -123,7 +135,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 81.8
+    "area_total_m2": 81.8,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-g.pdf",
+    "planta_img": "assets/img/plantas/fracao-g.webp"
   },
   {
     "fracao": "H",
@@ -141,7 +155,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 97.0
+    "area_total_m2": 97.0,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-h.pdf",
+    "planta_img": "assets/img/plantas/fracao-h.webp"
   },
   {
     "fracao": "I",
@@ -159,7 +175,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 166.7
+    "area_total_m2": 166.7,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-i.pdf",
+    "planta_img": "assets/img/plantas/fracao-i.webp"
   },
   {
     "fracao": "J",
@@ -177,7 +195,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 155.25
+    "area_total_m2": 155.25,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-j.pdf",
+    "planta_img": "assets/img/plantas/fracao-j.webp"
   },
   {
     "fracao": "K",
@@ -195,7 +215,9 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 153.2
+    "area_total_m2": 153.2,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-k.pdf",
+    "planta_img": "assets/img/plantas/fracao-k.webp"
   },
   {
     "fracao": "L",
@@ -213,6 +235,8 @@
     "estado": "disponivel",
     "planta": null,
     "ficha_pdf": null,
-    "area_total_m2": 165.9
+    "area_total_m2": 165.9,
+    "planta_pdf": "assets/docs/plantas/oceanview2-fracao-l.pdf",
+    "planta_img": "assets/img/plantas/fracao-l.webp"
   }
 ]
