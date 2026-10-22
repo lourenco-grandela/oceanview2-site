@@ -43,7 +43,8 @@ A versão 2.1 é a versão 2 tal como está (mesmo estilo, mesmo hero, mesma ord
 - Texto (dois parágrafos): Conheça as 12 frações do OceanView 2, identificadas de A a L, com informação detalhada sobre as áreas e os respetivos preços. / Consulte a lista completa de frações ou descarregue a tabela para conhecer todas as opções disponíveis e encontrar o apartamento ideal para si.
 - Resumo sempre visível (cartão branco): Frações — 12 disponíveis · Valores desde — 250.000 € · Tipologias — T1, T2 e T2+2 (calculados a partir do JSON)
 - Botões: Tabela em PDF (→ `assets/docs/OceanView2_Tabela_de_Valores.pdf`) · Plantas em PDF (→ `assets/docs/OceanView2_Fracoes_e_Plantas.pdf`, 22/10/2026) · Ver as 12 frações (abre a lista; quando aberta passa a «Fechar a lista»)
-- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Área · Exterior · Valor · «Ver planta». A «Área» é o `area_total_m2` do JSON (nas frações I a L inclui o sótão).
+- **A lista começa fechada.** Aberta: filtros (Todas · Piso 0 · Piso 1 · Piso 2 · T2+2) e tabela: Fração · Tipologia · Piso · Área · Exterior · Estacionamento · Valor · «Ver planta». A «Área» é o `area_total_m2` do JSON (nas frações I a L inclui o sótão).
+- Estacionamento (clientes, 22/10/2026): 14 m² nas frações C a L, «—» na A e na B. Não entra na área nem em nenhum total. No telemóvel aparece no cartão de cada fração e no diálogo da planta.
 - «Ver planta» (22/10/2026) abre a planta da fração (`planta_img` do JSON) com «Abrir PDF» (`planta_pdf`) e «Pedir condições», que leva ao formulário com a tipologia e a mensagem «Gostava de receber as condições da fração X.»
 - Nota: Áreas em m², do quadro de áreas do projeto. Nas frações I a L, a área inclui o sótão. Exterior: varandas, terraços e alpendres. Valores sujeitos a confirmação.
 

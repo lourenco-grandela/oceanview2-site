@@ -4,6 +4,22 @@
 
 ## Feito
 
+### Estacionamento 14 m² (C a L) (2026-10-22)
+
+- `data/fracoes.json`: `estacionamento` = 14 nas frações C a L, `null` na A e
+  na B. Plantas (PDF e imagens) e PDF conjunto substituídos pelo Lourenço;
+  conferido que a C diz «Estacionamento 14,00 m²» fora da área total e que a
+  A não tem estacionamento.
+- Lista de Frações e valores: coluna «Estacionamento» / «Parking» com «14 m²»
+  ou «—». Não entra na área nem em nenhum total. No telemóvel (cartões, abaixo
+  de 700 px) aparece ao lado de Área e Exterior; no diálogo da planta, na
+  linha de detalhe («T2 · Piso 1 · Estacionamento 14 m²»).
+- Corrigido: entre 700 e 900 px, com a lista aberta, a página ganhava 5 px de
+  barra horizontal (texto «so-leitor» da última coluna fora da caixa com
+  deslocamento). Verificado a 360, 390, 430, 700, 768, 820, 900, 1024 e
+  1440 px nas duas línguas. Entre 700 e ~830 px a tabela desliza na
+  horizontal dentro do cartão.
+
 ### Plantas por fração (2026-10-22)
 
 - `data/fracoes.json`: `planta_pdf` e `planta_img` em cada fração
@@ -579,5 +595,6 @@ Tudo no `dados-lancamento.json`; `--verificar` dá a lista atualizada.
 - 2026-10-21: alterações dos clientes — tempos 5/10/15/50, textos novos em PT
   e EN (hero, O projeto, Frações e valores, Arquitetura, Localização, Viver
   aqui, Próximos passos), nota da medição retirada.
+- 2026-10-22: estacionamento 14 m² (C a L) na lista e nas plantas.
 - 2026-10-22: plantas por fração — «Ver planta» com diálogo, PDF por fração e
   PDF conjunto, «Ver plantas» na Arquitetura.

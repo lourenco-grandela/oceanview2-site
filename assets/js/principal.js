@@ -53,6 +53,7 @@
       aMostrar: function (n) { return n === 1 ? 'A mostrar 1 fração.' : 'A mostrar ' + n + ' frações.'; },
       area: 'Área',
       exterior: 'Exterior',
+      estacionamento: 'Estacionamento',
       pedirPlanta: 'Pedir planta',
       pedirPlantaDe: 'Pedir planta da fração {f}',
       verPlanta: 'Ver planta',
@@ -104,6 +105,7 @@
       aMostrar: function (n) { return n === 1 ? 'Showing 1 apartment.' : 'Showing ' + n + ' apartments.'; },
       area: 'Area',
       exterior: 'Outdoor',
+      estacionamento: 'Parking',
       pedirPlanta: 'Request floor plan',
       pedirPlantaDe: 'Request the floor plan for apartment {f}',
       verPlanta: 'See floor plan',
@@ -699,6 +701,13 @@
     return agrupar(partes[0]) + T.decimal + partes[1] + ' m²';
   }
 
+  // «14 m²» (sem casas decimais), ou «—» sem estacionamento.
+  function formatarEstacionamento(valor) {
+    if (vazio(valor)) return '—';
+    var n = Number(valor);
+    return (n % 1 ? formatarArea(n).replace(' m²', '') : agrupar(n)) + ' m²';
+  }
+
   function juntar(lista) {
     if (lista.length < 2) return lista.join('');
     return lista.slice(0, -1).join(', ') + T.e + lista[lista.length - 1];
@@ -856,7 +865,8 @@
     return function (f, botao) {
       origem = botao;
       titulo.textContent = T.fracao + ' ' + f.fracao;
-      detalhe.textContent = f.tipologia + (vazio(f.piso) ? '' : ' · ' + T.piso(f.piso));
+      detalhe.textContent = f.tipologia + (vazio(f.piso) ? '' : ' · ' + T.piso(f.piso)) +
+        (vazio(f.estacionamento) ? '' : ' · ' + T.estacionamento + ' ' + formatarEstacionamento(f.estacionamento));
       imagem.alt = T.plantaAlt.replace('{f}', f.fracao);
       imagem.src = base + f.planta_img;
       pdf.href = base + f.planta_pdf;
@@ -888,6 +898,9 @@
     tr.appendChild(el('td', 'fraco', vazio(f.piso) ? '—' : T.piso(f.piso)));
     tr.appendChild(el('td', 'num', formatarArea(f.area_total_m2)));
     tr.appendChild(el('td', 'num fraco', formatarArea(f.area_exterior_m2)));
+    // Estacionamento em m² (clientes, 22/10/2026): só informação, não entra
+    // na área nem em nenhum total.
+    tr.appendChild(el('td', 'num fraco', formatarEstacionamento(f.estacionamento)));
     tr.appendChild(el('td', 'num forte', valorOuEstado(f)));
     td = el('td');
     td.appendChild(botaoPlanta(f));
@@ -909,10 +922,11 @@
     li.appendChild(topo);
 
     var dl = el('dl', 'cartao-fracao__areas');
-    [[T.area, f.area_total_m2], [T.exterior, f.area_exterior_m2]].forEach(function (par) {
+    [[T.area, formatarArea(f.area_total_m2)], [T.exterior, formatarArea(f.area_exterior_m2)],
+      [T.estacionamento, formatarEstacionamento(f.estacionamento)]].forEach(function (par) {
       var d = el('div');
       d.appendChild(el('dt', '', par[0]));
-      d.appendChild(el('dd', '', formatarArea(par[1])));
+      d.appendChild(el('dd', '', par[1]));
       dl.appendChild(d);
     });
     li.appendChild(dl);

@@ -37,7 +37,8 @@ Version 2 as it is, with real data and three new sections. British English. Same
 - Summary: Apartments — 12 available · Prices from — €250,000 · Types — T1, T2 and T2+2
 - Buttons: Price list (PDF) (in Portuguese) · Floor plans (PDF) (in Portuguese) · See all 12 apartments / Close the list
 - Filters: All · Ground floor · First floor · Second floor · T2+2
-- Columns: Apartment · Type · Floor · Area · Outdoor · Price · "See floor plan" (Area = `area_total_m2`; for I to L it includes the attic)
+- Columns: Apartment · Type · Floor · Area · Outdoor · Parking · Price · "See floor plan" (Area = `area_total_m2`; for I to L it includes the attic)
+- Parking (clients, 22/10/2026): 14 m² for apartments C to L, "—" for A and B. Not added to the area or any total.
 - "See floor plan" opens the floor plan with "Open PDF (in Portuguese)" and "Request details", which goes to the form with the type and the message "I would like to receive the details for apartment X."
 - Note: Areas in m², from the project's area schedule. For apartments I to L, the area includes the attic. Outdoor: balconies, terraces and porches. Prices subject to confirmation.
 
