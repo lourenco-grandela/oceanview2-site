@@ -1,0 +1,166 @@
+/* OceanView 2 (v3) — explorador de frações. */
+.explorador { padding: clamp(80px, 10vw, 152px) 0 clamp(80px, 10vw, 152px); }
+.explorador-pagina .explorador { padding-top: calc(var(--altura-cabecalho) + clamp(40px, 7vw, 96px)); }
+.explorador__cabeca { margin-bottom: clamp(40px, 5vw, 72px); }
+.explorador__grelha {
+  display: grid;
+  grid-template-columns: minmax(0, 2.15fr) minmax(320px, 1fr);
+  gap: clamp(32px, 4.5vw, 88px);
+  align-items: start;
+}
+
+/* ---------- Palco (planta) ---------- */
+.explorador__palco {
+  position: relative;
+  background: #FBF9F5;
+  border: 1px solid var(--filete);
+  padding: clamp(150px, 13vw, 210px) clamp(16px, 2.6vw, 44px) clamp(32px, 4vw, 56px);
+  position: sticky; top: calc(var(--altura-cabecalho) + 16px);
+}
+.explorador__planta {
+  transition: opacity .35s ease, transform .5s var(--curva-saida);
+}
+.explorador.is-a-mudar .explorador__planta { opacity: 0; transform: translateY(10px); }
+.exp-planta { width: 100%; height: auto; overflow: hidden; }
+
+/* Polígonos das frações */
+.exp-fracao { cursor: pointer; }
+.exp-fracao polygon {
+  fill: var(--oceano); fill-opacity: 0;
+  stroke: var(--oceano); stroke-opacity: 0; stroke-width: 2.4; stroke-linejoin: round;
+  transition: fill-opacity .35s ease, stroke-opacity .35s ease;
+}
+.exp-fracao text {
+  font-family: var(--l-titulo); font-weight: var(--l-titulo-peso);
+  fill: var(--oceano); text-anchor: middle; dominant-baseline: central;
+  paint-order: stroke; stroke: #FBF9F5; stroke-width: 6px; stroke-linejoin: round;
+  pointer-events: none;
+  transition: fill .35s ease;
+}
+.exp-fracao.is-destaque polygon { fill-opacity: .07; stroke-opacity: .55; }
+.exp-fracao.is-selecionada polygon { fill: var(--dourado); fill-opacity: .16; stroke: var(--oceano); stroke-opacity: 1; }
+.exp-fracao--vendida polygon { fill: var(--oceano); fill-opacity: .1; }
+.exp-fracao--vendida text { fill: var(--texto-2); }
+.exp-fracao.is-fora { opacity: .25; pointer-events: none; }
+
+/* Marcador da fração selecionada (canto superior esquerdo) */
+.explorador__marcador {
+  position: absolute; left: clamp(16px, 2vw, 28px); top: clamp(16px, 2vw, 28px);
+  display: inline-flex; align-items: center; gap: 18px;
+  padding: 12px 18px; background: var(--oceano); color: var(--creme);
+  font-size: 11px; letter-spacing: var(--l-etiqueta-espaco); text-transform: uppercase;
+}
+.exp-marcador__letra { font-family: var(--l-titulo); font-size: 26px; letter-spacing: 0; line-height: 1; }
+.exp-marcador--reservada { background: var(--dourado); color: var(--oceano); }
+
+/* Miniatura da fachada com o piso assinalado */
+.explorador__fachada {
+  position: absolute; right: clamp(16px, 2vw, 28px); top: clamp(16px, 2vw, 28px);
+  width: clamp(150px, 15vw, 230px); margin: 0;
+  border: 1px solid var(--filete);
+}
+.explorador__fachada img { width: 100%; height: auto; filter: saturate(.75); }
+.explorador__faixa {
+  position: absolute; left: 11.5%; top: 72.5%; width: 81.5%; height: 15.5%;
+  background: rgba(201, 142, 69, .32);
+  box-shadow: inset 0 0 0 1.5px var(--dourado);
+  transition: top .6s var(--curva), height .6s var(--curva), left .6s var(--curva), width .6s var(--curva);
+}
+.explorador__nota { margin: 24px 0 0; }
+
+/* ---------- Painel ---------- */
+.explorador__bloco { padding-bottom: clamp(28px, 3vw, 40px); }
+.explorador__bloco + .explorador__bloco { padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--filete); }
+
+.explorador__pisos { display: grid; gap: 6px; }
+.exp-piso {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 50px; padding: 0 20px;
+  border: 1px solid var(--pedra); background: transparent; cursor: pointer;
+  font-size: 12px; letter-spacing: var(--l-botao-espaco); text-transform: uppercase; color: var(--oceano);
+  transition: background-color .4s, color .4s, border-color .4s;
+}
+.exp-piso__conta { color: var(--texto-2); letter-spacing: .12em; font-size: 11px; transition: color .4s; }
+.exp-piso:hover { border-color: var(--oceano); }
+.exp-piso[aria-pressed="true"] { background: var(--oceano); border-color: var(--oceano); color: var(--creme); }
+.exp-piso[aria-pressed="true"] .exp-piso__conta { color: var(--texto-claro); }
+
+.explorador__fracoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.exp-res {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 72px; padding: 0 18px;
+  border: 1px solid var(--pedra); background: transparent; cursor: pointer; color: var(--oceano); text-align: right;
+  transition: background-color .4s, color .4s, border-color .4s;
+}
+.exp-res__letra { font-family: var(--l-titulo); font-weight: var(--l-titulo-peso); font-size: 34px; line-height: 1; }
+.exp-res__info { display: grid; gap: 2px; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--texto-2); }
+.exp-res:hover, .exp-res.is-destaque { border-color: var(--oceano); background: var(--areia); }
+.exp-res--vendida { background: var(--areia); }
+.exp-res[aria-pressed="true"] { background: var(--oceano); border-color: var(--oceano); color: var(--creme); }
+.exp-res[aria-pressed="true"] .exp-res__info { color: var(--texto-claro); }
+
+.exp-sel__topo { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.exp-sel__topo .etiqueta { margin: 0; }
+.exp-sel__letra {
+  font-family: var(--l-titulo); font-weight: var(--l-titulo-peso);
+  font-size: calc(clamp(96px, 10vw, 168px) * var(--l-titulo-escala)); line-height: .9;
+  margin: 18px 0 28px;
+}
+.estado {
+  display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px;
+  font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap;
+  border: 1px solid var(--oceano); color: var(--oceano);
+}
+.estado--reservada { border-color: var(--dourado); background: var(--dourado); color: var(--oceano); }
+.estado--vendida { background: var(--oceano); color: var(--creme); }
+.exp-sel__dados { margin: 0 0 32px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--filete); }
+.exp-sel__dados div { padding: 14px 0; border-bottom: 1px solid var(--filete); }
+.exp-sel__dados div:nth-child(odd) { padding-right: 16px; }
+.exp-sel__dados div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.exp-sel__dados dt { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--texto-2); margin-bottom: 4px; }
+.exp-sel__dados dd { margin: 0; font-size: 17px; font-weight: var(--l-texto-forte); color: var(--oceano); font-variant-numeric: tabular-nums; }
+.exp-sel__dados small { font-size: 12px; font-weight: var(--l-texto-peso); color: var(--texto-2); }
+.exp-sel__acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.exp-sel__acoes .botao { padding: 0 16px; }
+.exp-sel__planta {
+  display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 20px;
+  width: 100%; margin-top: 24px; padding: 12px; text-align: left;
+  border: 1px solid var(--filete); background: #FBF9F5; cursor: pointer; color: var(--oceano);
+}
+.exp-sel__planta img { width: 96px; height: 96px; object-fit: cover; object-position: 50% 42%; background: #fff; }
+.exp-sel__planta .ligacao-seta { justify-self: start; }
+.exp-sel__whatsapp { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 20px; }
+
+/* ---------- Diálogo da planta ---------- */
+.planta-dialogo {
+  width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+  padding: clamp(20px, 3vw, 40px); border: 0; border-radius: 0;
+  background: var(--creme); color: var(--oceano);
+}
+.planta-dialogo::backdrop { background: rgba(15, 46, 76, .72); }
+.planta-dialogo__barra { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.planta-dialogo__acoes { display: flex; align-items: center; gap: 12px; }
+.planta-dialogo__img { width: 100%; height: auto; max-height: calc(100vh - 220px); object-fit: contain; background: #fff; }
+.planta-dialogo .legenda { margin: 12px 0 0; }
+
+.explorador.is-erro .explorador__palco::after {
+  content: "Não foi possível carregar o explorador."; display: block; padding: 40px; text-align: center; color: var(--texto-2);
+}
+
+/* ---------- Ecrãs pequenos ---------- */
+@media (max-width: 1080px) {
+  .explorador__grelha { grid-template-columns: 1fr; }
+  .explorador__palco { position: relative; top: 0; }
+}
+@media (max-width: 640px) {
+  .explorador__palco { padding: 96px 8px 20px; margin: 0 calc(var(--margem) * -1); border-left: 0; border-right: 0; }
+  .explorador__fachada { width: 112px; top: 12px; right: 12px; }
+  .explorador__marcador { top: 12px; left: 12px; }
+  .explorador__marcador { padding: 10px 14px; gap: 12px; }
+  .exp-res { min-height: 64px; padding: 0 14px; }
+  .exp-res__letra { font-size: 28px; }
+  .exp-sel__acoes { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .explorador__planta, .explorador__faixa, .exp-fracao polygon { transition: none; }
+}

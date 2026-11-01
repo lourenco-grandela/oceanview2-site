@@ -1,0 +1,34 @@
+{
+  "site": {
+    "nome": "OceanView 2",
+    "descricao": "OceanView 2, na Consolação (Peniche): 12 apartamentos T1, T2 e T2+2 a 5 minutos a pé da praia."
+  },
+  "nav": {
+    "saltar": "Saltar para o conteúdo",
+    "menu": "Menu",
+    "fechar": "Fechar",
+    "abrir_menu": "Abrir o menu",
+    "fechar_menu": "Fechar o menu",
+    "lingua": "Língua",
+    "lingua_outra": "English",
+    "marca_inicio": "OceanView 2, ir para o início",
+    "menu_titulo": "Navegação principal",
+    "contactos": "Comercialização",
+    "local": "Consolação, Peniche",
+    "contactar": "Contactar",
+    "atalhos": "Atalhos",
+    "email": "Email",
+    "telefone": "Telefone"
+  },
+  "legal": {
+    "mediadora": "Comercialização: IAD Portugal, AMI n.º 11220",
+    "energia": "Classe energética A+",
+    "ilustrativa": "Imagem ilustrativa, não contratual.",
+    "privacidade": "Política de privacidade",
+    "cookies": "Definições de cookies"
+  },
+  "agentes": {
+    "ines": "Inês Caiado",
+    "carlos": "Carlos Lopes"
+  }
+}

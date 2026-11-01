@@ -1,0 +1,35 @@
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contentor contacto__grelha">
+    <div>
+      <span class="etiqueta">{% pt %}Contacto{% en %}Contact{% fim %}</span>
+      <h2 class="titulo-1" id="contacto-titulo">{% pt %}Registar<br>interesse{% en %}Register<br>interest{% fim %}</h2>
+      <!-- TODO (próxima entrega): formulário em 4 passos ligado ao mesmo Apps Script (FORM_URL em config.js). -->
+    </div>
+    <div class="contacto__agentes">
+      <p><span class="etiqueta">{{ t.agentes.ines }}</span><a href="tel:+351918559623">+351 918 559 623</a><a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a></p>
+      <p><span class="etiqueta">{{ t.agentes.carlos }}</span><a href="tel:+351934915924">+351 934 915 924</a><a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></p>
+    </div>
+  </div>
+</section>
+<footer class="rodape">
+  <div class="contentor">
+    <div class="rodape__grelha">
+      <a class="marca marca--rodape" href="{% pt %}{{ url:/ }}{% en %}{{ url:/en/ }}{% fim %}"><img src="{{ base }}assets/img/logo-horizontal-azul.svg" alt="{{ t.nav.marca_inicio }}" width="229" height="34" loading="lazy"></a>
+      <div>
+        <span class="etiqueta">{{ t.nav.contactos }}</span>
+        <p>IAD Portugal · AMI 11220</p>
+        <p>{{ t.agentes.ines }} · <a href="tel:+351918559623">+351 918 559 623</a></p>
+        <p>{{ t.agentes.carlos }} · <a href="tel:+351934915924">+351 934 915 924</a></p>
+      </div>
+      <div>
+        <span class="etiqueta">{{ t.nav.local }}</span>
+        <p>{{ t.legal.energia }}</p>
+        <p>{{ t.legal.ilustrativa }}</p>
+      </div>
+    </div>
+    <div class="rodape__base">
+      <p>{{ t.legal.mediadora }} · {{ t.legal.energia }}</p>
+      <p><a href="{% pt %}{{ url:/privacidade/ }}{% en %}{{ url:/en/privacy/ }}{% fim %}">{{ t.legal.privacidade }}</a> · <button class="ligacao-botao" type="button" data-cookies-abrir>{{ t.legal.cookies }}</button> · © {{ ano }} OceanView 2</p>
+    </div>
+  </div>
+</footer>

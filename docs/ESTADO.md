@@ -1,6 +1,69 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-10-22
+Última atualização: 2026-11-01
+
+## Site v3 (ramo `v3`, não publicado)
+
+Brief: `referencia-v3/REFERENCIA.md` (linguagem Bellevue Cascais com a marca
+OceanView 2). O site publicado em oceanview2.pt (ramo `main`) não mexe até
+aprovação.
+
+### Feito (2026-11-01) — primeira entrega
+
+- **Tecnologia**: gerador estático em Python, sem dependências
+  (`ferramentas/construir.py`). Fontes em `src/` (páginas, partes comuns,
+  textos PT/EN, CSS, JS, letras); o site sai em `_site/` (ignorado pelo git).
+  PT em `/`, EN em `/en/`. Ver `src/LEIA-ME.md`. Ver localmente:
+  `python3 ferramentas/construir.py --servir` → http://localhost:8000/teste/
+- **Teste de letras** (`/teste/letras/`): 3 pares do brief, alojados no site
+  (OFL): 1 Italiana + Archivo Light · 2 Cormorant Garamond Light + Archivo
+  Light · 3 Marcellus + Inter Tight Light. Cada par com título enorme,
+  parágrafo, botões (cheio, linha, ligação ↗) e faixa azul. «Aplicar ao site»
+  muda as letras em todas as páginas de teste (menu e explorador incluídos),
+  guardado só neste browser.
+- **Cabeçalho**: emblema à esquerda; EN, «Contactar» (retangular fino) e três
+  linhas à direita; transparente sobre fotografia, creme ao descer, esconde ao
+  descer e volta ao subir.
+- **Menu em ecrã inteiro** (azul oceano): Início · Projeto · Apartamentos ·
+  Localização · Galeria · Contactos (âncora `#contacto`; Vídeo escondido até
+  haver vídeo), contactos da Inês e do Carlos e atalhos ↗. Esc fecha, foco
+  preso no menu, volta ao botão; `prefers-reduced-motion` desliga animações.
+- **Explorador de frações, fase 1** (`/teste/explorador/`, parte comum
+  `src/parciais/explorador.html`): plantas reais por piso
+  (`data/explorador/*.svg`, otimizadas por `ferramentas/otimizar_plantas.py` a
+  partir de `referencia-v3/explorador/`, de ~1,3 MB para ~0,8 MB, ~65 KB
+  comprimidas) com os polígonos de `fracoes-poligonos.json`. Escolha do piso
+  (Sótão, 2, 1, 0), grelha de residências, painel «Residência selecionada»
+  (estado, tipologia, piso, área bruta privativa, área total, exterior,
+  estacionamento, valor), «Ver planta ↗» (PDF), «Pedir informação ↗» (guarda a
+  fração para o formulário), miniatura da planta com diálogo e WhatsApp com
+  escolha entre Inês e Carlos. Sincronia nos dois sentidos lista ↔ planta,
+  setas do teclado na grelha, `?fracao=E` na morada. Miniatura da fachada com
+  faixa no piso ativo. Fase 2 (axonométrica): mudar `modo` em
+  `data/explorador/explorador.json`; o resto não muda.
+- `data/site.json`: `mostrar_precos` (false → «Sob consulta» em todas).
+- Logótipos oficiais (sem metadados) em `src/assets/img/logo-*.svg`.
+
+### Falta (v3)
+
+- Escolha das letras pelo Lourenço → depois Início e Apartamentos.
+- Formulário em 4 passos (mesmo Apps Script; atualizar `formulario/Codigo.gs`
+  com o campo da fração e pedir nova versão publicada), banner de cookies,
+  política de privacidade, OG/sitemap/hreflang por página, workflow de
+  publicação a partir de `_site/`.
+- Projeto, Localização, Galeria, EN completo; atualizar CLAUDE.md e
+  `docs/DESIGN.md` com o sistema v3.
+
+### Perguntas (v3)
+
+- Faixas da fachada no explorador: posições estimadas a olho
+  (`faixa` em `explorador.json`); confirmar que assinalam bem cada piso.
+- Painel da fração: o brief pede «área bruta privativa» e «área total»; nas
+  frações I a L a área total inclui o sótão (marcado «inclui sótão»). Serve?
+- Botão do cabeçalho: «Contactar» (regra dos botões no infinitivo) em vez de
+  «Contacte-nos». Serve?
+
+## Site v2.1 (publicado)
 
 ## Feito
 

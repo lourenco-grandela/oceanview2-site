@@ -1,0 +1,9 @@
+[
+  {"id": "inicio", "pt": {"nome": "Início", "url": "/"}, "en": {"nome": "Home", "url": "/en/"}},
+  {"id": "projeto", "pt": {"nome": "Projeto", "url": "/projeto/"}, "en": {"nome": "Project", "url": "/en/project/"}, "atalho": 2},
+  {"id": "apartamentos", "pt": {"nome": "Apartamentos", "url": "/apartamentos/"}, "en": {"nome": "Apartments", "url": "/en/apartments/"}, "atalho": 3},
+  {"id": "localizacao", "pt": {"nome": "Localização", "url": "/localizacao/"}, "en": {"nome": "Location", "url": "/en/location/"}, "atalho": 1},
+  {"id": "galeria", "pt": {"nome": "Galeria", "url": "/galeria/"}, "en": {"nome": "Gallery", "url": "/en/gallery/"}},
+  {"id": "video", "escondido": true, "pt": {"nome": "Vídeo", "url": "/video/"}, "en": {"nome": "Video", "url": "/en/video/"}},
+  {"id": "contactos", "pt": {"nome": "Contactos", "url": "#contacto"}, "en": {"nome": "Contact", "url": "#contacto"}}
+]

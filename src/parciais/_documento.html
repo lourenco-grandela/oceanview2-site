@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{% pt %}pt-PT{% en %}en-GB{% fim %}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titulo }} · OceanView 2</title>
+<meta name="description" content="{{ descricao }}">
+{{ robots }}
+<link rel="alternate" hreflang="pt-PT" href="{{ url_pt }}">
+<link rel="alternate" hreflang="en-GB" href="{{ url_en }}">
+<meta name="theme-color" content="#0F2E4C">
+<link rel="icon" href="{{ base }}assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{ base }}assets/img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ base }}assets/img/apple-touch-icon.png">
+<link rel="preload" href="{{ base }}assets/fonts/italiana.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ base }}assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ base }}assets/css/letras.css">
+<link rel="stylesheet" href="{{ base }}assets/css/base.css">
+{{ css_extra }}
+<script>
+  // Par de letras em teste (só na fase de escolha): aplica-se antes de pintar.
+  try { var p = localStorage.getItem('ov2-par'); if (p) document.documentElement.dataset.par = p; } catch (e) {}
+</script>
+<script src="{{ base }}config.js" defer></script>
+<script src="{{ base }}assets/js/cabecalho.js" defer></script>
+{{ js_extra }}
+</head>
+<body class="{{ classe }}" data-lang="{{ lang }}" data-base="{{ base }}">
+<a class="saltar" href="#conteudo">{{ t.nav.saltar }}</a>
+{% incluir cabecalho %}
+<main id="conteudo" tabindex="-1">
+{{ conteudo }}
+</main>
+{% incluir rodape %}
+</body>
+</html>

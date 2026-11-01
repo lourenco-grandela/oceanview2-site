@@ -1,0 +1,168 @@
+---
+url_pt: /teste/letras/
+url_en: /en/test/fonts/
+titulo_pt: Teste de letras
+titulo_en: Font test
+cabecalho: escuro
+css: teste
+js: teste
+---
+<nav class="teste-seletor" aria-label="{% pt %}Pares de letras{% en %}Font pairs{% fim %}">
+  <span class="teste-seletor__rotulo">{% pt %}Letras do site{% en %}Site fonts{% fim %}</span>
+  <button type="button" data-par-escolher="1" aria-pressed="false">1 · Italiana</button>
+  <button type="button" data-par-escolher="2" aria-pressed="false">2 · Cormorant</button>
+  <button type="button" data-par-escolher="3" aria-pressed="false">3 · Marcellus</button>
+</nav>
+
+<section class="teste-par par-1" id="par-1" aria-labelledby="par-1-nome">
+  <div class="teste-hero">
+    <picture>
+      <source type="image/avif" srcset="{{ base }}assets/img/fachada-dia-1024.avif 1024w, {{ base }}assets/img/fachada-dia-1536.avif 1536w" sizes="100vw">
+      <img class="teste-hero__img" src="{{ base }}assets/img/fachada-dia-1536.webp" srcset="{{ base }}assets/img/fachada-dia-1024.webp 1024w, {{ base }}assets/img/fachada-dia-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="{% pt %}Fachada do OceanView 2 de dia{% en %}OceanView 2 façade by day{% fim %}" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="teste-hero__conteudo">
+      <p class="titulo-ecra teste-hero__nome">OceanView&nbsp;2</p>
+      <p class="etiqueta teste-hero__sub">Consolação · Peniche</p>
+    </div>
+    <p class="legenda teste-hero__legenda">{{ t.legal.ilustrativa }}</p>
+  </div>
+
+  <div class="contentor teste-ficha">
+    <div class="teste-ficha__rotulo">
+      <span class="etiqueta">{% pt %}Par{% en %}Pair{% fim %} 01</span>
+      <h2 class="teste-ficha__nome" id="par-1-nome">Italiana<span> + Archivo Light</span></h2>
+      <button class="botao botao--linha botao--pequeno" type="button" data-par-escolher="1" aria-pressed="false">{% pt %}Aplicar ao site{% en %}Apply to the site{% fim %}</button>
+    </div>
+    <div class="teste-ficha__corpo" data-revelar>
+      <h3 class="titulo-1">{% pt %}Uma nova<br>forma de<br>chegar a casa.{% en %}A new<br>way of<br>coming home.{% fim %}</h3>
+      <div class="teste-ficha__texto">
+        <p class="paragrafo--grande">{% pt %}Doze apartamentos a 5 minutos a pé da praia, com varandas, terraços e garagem.{% en %}Twelve apartments a 5-minute walk from the beach, with balconies, terraces and garage parking.{% fim %}</p>
+        <p class="paragrafo">{% pt %}Arquitetura contemporânea, com a essência da tradição portuguesa. Varandas generosas, cobertura tradicional em telha e uma fachada de tons claros, que refletem a identidade local.{% en %}Contemporary architecture with the essence of Portuguese tradition. Generous balconies, a traditional tiled roof and a light-toned façade that reflect the local character.{% fim %}</p>
+        <div class="teste-botoes">
+          <a class="botao" href="#contacto">{% pt %}Registar interesse{% en %}Register interest{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+          <a class="botao botao--linha" href="{% pt %}{{ url:/teste/explorador/ }}{% en %}{{ url:/en/test/explorer/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+          <a class="ligacao-seta" href="#par-1">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="teste-faixa">
+    <div class="contentor">
+      <h3 class="titulo-2" data-revelar>{% pt %}Linhas simples.<br>Maré de luz.{% en %}Simple lines.<br>A tide of light.{% fim %}</h3>
+      <ul class="teste-caracteristicas" data-revelar>
+        <li><span class="teste-caracteristicas__valor">12</span>{% pt %}Apartamentos{% en %}Apartments{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">T1 · T2 · T2+2</span>{% pt %}Tipologias{% en %}Types{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">{% pt %}Cave{% en %}Basement{% fim %}</span>{% pt %}Estacionamento{% en %}Parking{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">A+</span>{% pt %}Classe energética{% en %}Energy rating{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">5 min</span>{% pt %}A pé da praia{% en %}On foot to the beach{% fim %}</li>
+      </ul>
+      <div class="teste-botoes">
+        <a class="botao botao--claro" href="#contacto">{% pt %}Marcar visita{% en %}Book a visit{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        <a class="botao botao--linha-clara" href="#contacto">{% pt %}Pedir plantas{% en %}Request floor plans{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="teste-par par-2" id="par-2" aria-labelledby="par-2-nome">
+  <div class="teste-hero">
+    <picture>
+      <source type="image/avif" srcset="{{ base }}assets/img/fachada-dia-1024.avif 1024w, {{ base }}assets/img/fachada-dia-1536.avif 1536w" sizes="100vw">
+      <img class="teste-hero__img" src="{{ base }}assets/img/fachada-dia-1536.webp" srcset="{{ base }}assets/img/fachada-dia-1024.webp 1024w, {{ base }}assets/img/fachada-dia-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="{% pt %}Fachada do OceanView 2 de dia{% en %}OceanView 2 façade by day{% fim %}" loading="lazy" decoding="async">
+    </picture>
+    <div class="teste-hero__conteudo">
+      <p class="titulo-ecra teste-hero__nome">OceanView&nbsp;2</p>
+      <p class="etiqueta teste-hero__sub">Consolação · Peniche</p>
+    </div>
+    <p class="legenda teste-hero__legenda">{{ t.legal.ilustrativa }}</p>
+  </div>
+
+  <div class="contentor teste-ficha">
+    <div class="teste-ficha__rotulo">
+      <span class="etiqueta">{% pt %}Par{% en %}Pair{% fim %} 02</span>
+      <h2 class="teste-ficha__nome" id="par-2-nome">Cormorant Garamond Light<span> + Archivo Light</span></h2>
+      <button class="botao botao--linha botao--pequeno" type="button" data-par-escolher="2" aria-pressed="false">{% pt %}Aplicar ao site{% en %}Apply to the site{% fim %}</button>
+    </div>
+    <div class="teste-ficha__corpo" data-revelar>
+      <h3 class="titulo-1">{% pt %}Uma nova<br>forma de<br>chegar a casa.{% en %}A new<br>way of<br>coming home.{% fim %}</h3>
+      <div class="teste-ficha__texto">
+        <p class="paragrafo--grande">{% pt %}Doze apartamentos a 5 minutos a pé da praia, com varandas, terraços e garagem.{% en %}Twelve apartments a 5-minute walk from the beach, with balconies, terraces and garage parking.{% fim %}</p>
+        <p class="paragrafo">{% pt %}Arquitetura contemporânea, com a essência da tradição portuguesa. Varandas generosas, cobertura tradicional em telha e uma fachada de tons claros, que refletem a identidade local.{% en %}Contemporary architecture with the essence of Portuguese tradition. Generous balconies, a traditional tiled roof and a light-toned façade that reflect the local character.{% fim %}</p>
+        <div class="teste-botoes">
+          <a class="botao" href="#contacto">{% pt %}Registar interesse{% en %}Register interest{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+          <a class="botao botao--linha" href="{% pt %}{{ url:/teste/explorador/ }}{% en %}{{ url:/en/test/explorer/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+          <a class="ligacao-seta" href="#par-2">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="teste-faixa">
+    <div class="contentor">
+      <h3 class="titulo-2" data-revelar>{% pt %}Linhas simples.<br>Maré de luz.{% en %}Simple lines.<br>A tide of light.{% fim %}</h3>
+      <ul class="teste-caracteristicas" data-revelar>
+        <li><span class="teste-caracteristicas__valor">12</span>{% pt %}Apartamentos{% en %}Apartments{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">T1 · T2 · T2+2</span>{% pt %}Tipologias{% en %}Types{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">{% pt %}Cave{% en %}Basement{% fim %}</span>{% pt %}Estacionamento{% en %}Parking{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">A+</span>{% pt %}Classe energética{% en %}Energy rating{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">5 min</span>{% pt %}A pé da praia{% en %}On foot to the beach{% fim %}</li>
+      </ul>
+      <div class="teste-botoes">
+        <a class="botao botao--claro" href="#contacto">{% pt %}Marcar visita{% en %}Book a visit{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        <a class="botao botao--linha-clara" href="#contacto">{% pt %}Pedir plantas{% en %}Request floor plans{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="teste-par par-3" id="par-3" aria-labelledby="par-3-nome">
+  <div class="teste-hero">
+    <picture>
+      <source type="image/avif" srcset="{{ base }}assets/img/fachada-dia-1024.avif 1024w, {{ base }}assets/img/fachada-dia-1536.avif 1536w" sizes="100vw">
+      <img class="teste-hero__img" src="{{ base }}assets/img/fachada-dia-1536.webp" srcset="{{ base }}assets/img/fachada-dia-1024.webp 1024w, {{ base }}assets/img/fachada-dia-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="{% pt %}Fachada do OceanView 2 de dia{% en %}OceanView 2 façade by day{% fim %}" loading="lazy" decoding="async">
+    </picture>
+    <div class="teste-hero__conteudo">
+      <p class="titulo-ecra teste-hero__nome">OceanView&nbsp;2</p>
+      <p class="etiqueta teste-hero__sub">Consolação · Peniche</p>
+    </div>
+    <p class="legenda teste-hero__legenda">{{ t.legal.ilustrativa }}</p>
+  </div>
+
+  <div class="contentor teste-ficha">
+    <div class="teste-ficha__rotulo">
+      <span class="etiqueta">{% pt %}Par{% en %}Pair{% fim %} 03</span>
+      <h2 class="teste-ficha__nome" id="par-3-nome">Marcellus<span> + Inter Tight Light</span></h2>
+      <button class="botao botao--linha botao--pequeno" type="button" data-par-escolher="3" aria-pressed="false">{% pt %}Aplicar ao site{% en %}Apply to the site{% fim %}</button>
+    </div>
+    <div class="teste-ficha__corpo" data-revelar>
+      <h3 class="titulo-1">{% pt %}Uma nova<br>forma de<br>chegar a casa.{% en %}A new<br>way of<br>coming home.{% fim %}</h3>
+      <div class="teste-ficha__texto">
+        <p class="paragrafo--grande">{% pt %}Doze apartamentos a 5 minutos a pé da praia, com varandas, terraços e garagem.{% en %}Twelve apartments a 5-minute walk from the beach, with balconies, terraces and garage parking.{% fim %}</p>
+        <p class="paragrafo">{% pt %}Arquitetura contemporânea, com a essência da tradição portuguesa. Varandas generosas, cobertura tradicional em telha e uma fachada de tons claros, que refletem a identidade local.{% en %}Contemporary architecture with the essence of Portuguese tradition. Generous balconies, a traditional tiled roof and a light-toned façade that reflect the local character.{% fim %}</p>
+        <div class="teste-botoes">
+          <a class="botao" href="#contacto">{% pt %}Registar interesse{% en %}Register interest{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+          <a class="botao botao--linha" href="{% pt %}{{ url:/teste/explorador/ }}{% en %}{{ url:/en/test/explorer/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+          <a class="ligacao-seta" href="#par-3">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="teste-faixa">
+    <div class="contentor">
+      <h3 class="titulo-2" data-revelar>{% pt %}Linhas simples.<br>Maré de luz.{% en %}Simple lines.<br>A tide of light.{% fim %}</h3>
+      <ul class="teste-caracteristicas" data-revelar>
+        <li><span class="teste-caracteristicas__valor">12</span>{% pt %}Apartamentos{% en %}Apartments{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">T1 · T2 · T2+2</span>{% pt %}Tipologias{% en %}Types{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">{% pt %}Cave{% en %}Basement{% fim %}</span>{% pt %}Estacionamento{% en %}Parking{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">A+</span>{% pt %}Classe energética{% en %}Energy rating{% fim %}</li>
+        <li><span class="teste-caracteristicas__valor">5 min</span>{% pt %}A pé da praia{% en %}On foot to the beach{% fim %}</li>
+      </ul>
+      <div class="teste-botoes">
+        <a class="botao botao--claro" href="#contacto">{% pt %}Marcar visita{% en %}Book a visit{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        <a class="botao botao--linha-clara" href="#contacto">{% pt %}Pedir plantas{% en %}Request floor plans{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>

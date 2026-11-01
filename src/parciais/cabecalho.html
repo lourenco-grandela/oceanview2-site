@@ -1,0 +1,41 @@
+<header class="cabecalho" data-tema="{{ cabecalho_tema }}" data-cabecalho>
+  <div class="cabecalho__barra">
+    <a class="marca" href="{% pt %}{{ url:/ }}{% en %}{{ url:/en/ }}{% fim %}" aria-label="{{ t.nav.marca_inicio }}">{% incluir marca %}</a>
+    <div class="cabecalho__acoes">
+      <a class="cabecalho__lingua" href="{{ url_outra }}" hreflang="{% pt %}en{% en %}pt{% fim %}" lang="{% pt %}en{% en %}pt{% fim %}" aria-label="{{ t.nav.lingua_outra }}">{{ lang_outra }}</a>
+      <a class="botao botao--linha botao--pequeno cabecalho__contactar" href="#contacto">{{ t.nav.contactar }}</a>
+      <button class="cabecalho__menu" type="button" aria-expanded="false" aria-controls="menu-ecra" aria-label="{{ t.nav.abrir_menu }}" data-menu-abrir>
+        <span class="hamburguer" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-ecra" id="menu-ecra" role="dialog" aria-modal="true" aria-label="{{ t.nav.menu_titulo }}" hidden data-menu>
+  <div class="cabecalho__barra menu-ecra__topo">
+    <a class="marca" href="{% pt %}{{ url:/ }}{% en %}{{ url:/en/ }}{% fim %}" aria-label="{{ t.nav.marca_inicio }}">{% incluir marca %}</a>
+    <div class="cabecalho__acoes">
+      <a class="cabecalho__lingua" href="{{ url_outra }}" hreflang="{% pt %}en{% en %}pt{% fim %}" lang="{% pt %}en{% en %}pt{% fim %}" aria-label="{{ t.nav.lingua_outra }}">{{ lang_outra }}</a>
+      <a class="botao botao--linha-clara botao--pequeno cabecalho__contactar" href="#contacto">{{ t.nav.contactar }}</a>
+      <button class="cabecalho__menu" type="button" aria-label="{{ t.nav.fechar_menu }}" data-menu-fechar>
+        <span class="cruz" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+  <div class="menu-ecra__corpo">
+    <nav class="menu-ecra__nav" aria-label="{{ t.nav.menu_titulo }}">
+      <ol class="menu-ecra__lista">
+{{ menu_links }}
+      </ol>
+    </nav>
+    <div class="menu-ecra__rodape">
+      <div class="menu-ecra__contactos">
+        <p><span class="etiqueta">{{ t.agentes.ines }}</span><a href="tel:+351918559623">+351 918 559 623</a><a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a></p>
+        <p><span class="etiqueta">{{ t.agentes.carlos }}</span><a href="tel:+351934915924">+351 934 915 924</a><a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></p>
+      </div>
+      <ul class="menu-ecra__atalhos" aria-label="{{ t.nav.atalhos }}">
+{{ menu_atalhos }}
+      </ul>
+    </div>
+  </div>
+</div>
