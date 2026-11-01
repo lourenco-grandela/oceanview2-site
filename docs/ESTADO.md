@@ -8,6 +8,37 @@ Brief: `referencia-v3/REFERENCIA.md` (linguagem Bellevue Cascais com a marca
 OceanView 2). O site publicado em oceanview2.pt (ramo `main`) não mexe até
 aprovação.
 
+### Feito (2026-11-01) — segunda entrega: Início e Apartamentos
+
+- **Letras escolhidas**: par 01, Italiana + Archivo Light, em todo o site. As
+  outras letras saíram; as páginas de teste estão em `src/arquivo/` (fora do
+  build).
+- **«2» do hero**: a Italiana só tem algarismos de estilo antigo (altura 500
+  contra 700 das maiúsculas, sem «lnum»). Nos títulos, os algarismos vão em
+  `<span class="alg">` a 1,4 em, na mesma linha de base. Medido: o «2» ocupa
+  exatamente a altura das maiúsculas a 1440 e a 390 px.
+- **Cabeçalho**: «Contacte-nos» (exceção à regra do infinitivo, decisão do
+  Lourenço).
+- **Explorador, fase 2**: a axonometria branca (`assets/img/axonometrica-*`,
+  AVIF/WebP) é a imagem principal, com um polígono por piso
+  (`axonometrica.pisos` em `data/explorador/explorador.json`). Escolher um
+  piso ou uma fração acende o piso. Por baixo, a planta do piso com a fração
+  acesa e a etiqueta escura «C · Disponível». Frações isoladas na
+  axonometria: preparado (`axonometrica.fracoes`, opcional), desligado até se
+  confirmar que fachada corresponde a que lado das plantas.
+- **Início** (`/`, `/en/`): hero com a fachada de dia em ecrã inteiro e zoom
+  lento, abertura, faixa azul com 5 características, «O projeto», resumo das
+  tipologias calculado do JSON, localização com citação, tempos e fotografia
+  foto-5, contacto.
+- **Apartamentos** (`/apartamentos/`, `/en/apartments/`): entrada com números
+  do JSON, tipologias com imagem, «Do primeiro olhar ao último detalhe»,
+  explorador completo, tabela das 12 frações gerada do JSON (cartões no
+  telemóvel), PDFs da tabela de valores e das plantas.
+- Gerador: blocos de dados (`ferramentas/dados_site.py`) e `{% imagem %}`
+  (picture com AVIF/WebP e srcset). Imagens novas por
+  `ferramentas/imagens_v3.py` (axonometria, casa de banho, foto-1 a foto-7).
+- `data/site.json`: `tempos` (5/10/15/50 min) e `google_maps`.
+
 ### Feito (2026-11-01) — primeira entrega
 
 - **Tecnologia**: gerador estático em Python, sem dependências
@@ -46,7 +77,8 @@ aprovação.
 
 ### Falta (v3)
 
-- Escolha das letras pelo Lourenço → depois Início e Apartamentos.
+- Aprovação do Início e do Apartamentos → depois Projeto, Localização,
+  Galeria.
 - Formulário em 4 passos (mesmo Apps Script; atualizar `formulario/Codigo.gs`
   com o campo da fração e pedir nova versão publicada), banner de cookies,
   política de privacidade, OG/sitemap/hreflang por página, workflow de
@@ -56,12 +88,17 @@ aprovação.
 
 ### Perguntas (v3)
 
-- Faixas da fachada no explorador: posições estimadas a olho
-  (`faixa` em `explorador.json`); confirmar que assinalam bem cada piso.
+- Que fachada da axonometria corresponde a que lado das plantas? Com isso
+  ligam-se os polígonos por fração na axonometria.
+- Fotografias foto-1 a foto-7: mês e ano para a legenda (regra das
+  fotografias reais). Por agora a legenda diz só o lugar.
+- Traduções inglesas a validar: «Elegance in every detail», «Consolação is
+  not just a destination. It is a way of life.», «Twelve homes, three ways to
+  live.», «From the first glance to the last detail.»
+- Os tempos estão também em `data/site.json`; o `preencher.py` ainda não os
+  escreve lá (se mudarem, mudar nos dois sítios até ser automatizado).
 - Painel da fração: o brief pede «área bruta privativa» e «área total»; nas
   frações I a L a área total inclui o sótão (marcado «inclui sótão»). Serve?
-- Botão do cabeçalho: «Contactar» (regra dos botões no infinitivo) em vez de
-  «Contacte-nos». Serve?
 
 ## Site v2.1 (publicado)
 

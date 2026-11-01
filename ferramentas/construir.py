@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import functools
+import html
 import http.server
 import json
 import os
@@ -38,6 +39,9 @@ import sys
 import threading
 import time
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import dados_site  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
 SRC = RAIZ / "src"
@@ -51,6 +55,50 @@ RE_CABECALHO = re.compile(r"\A---\n(.*?)\n---\n", re.S)
 RE_INCLUIR = re.compile(r"{%\s*incluir\s+([\w\-/]+)\s*%}")
 RE_LINGUA = re.compile(r"{%\s*pt\s*%}(.*?){%\s*en\s*%}(.*?){%\s*fim\s*%}", re.S)
 RE_VAR = re.compile(r"{{\s*([^{}]+?)\s*}}")
+RE_IMAGEM = re.compile(r"{%\s*imagem\s+(.*?)%}", re.S)
+RE_ATRIB = re.compile(r'([\w\-]+)(?:="([^"]*)")?')
+
+
+def tamanho_webp(caminho: Path) -> tuple[int, int]:
+    """Largura e altura de um WebP (VP8, VP8L ou VP8X), sem bibliotecas."""
+    b = caminho.read_bytes()[:40]
+    tipo = b[12:16]
+    if tipo == b"VP8 ":
+        return int.from_bytes(b[26:28], "little") & 0x3FFF, int.from_bytes(b[28:30], "little") & 0x3FFF
+    if tipo == b"VP8L":
+        v = int.from_bytes(b[21:25], "little")
+        return (v & 0x3FFF) + 1, ((v >> 14) & 0x3FFF) + 1
+    if tipo == b"VP8X":
+        return int.from_bytes(b[24:27], "little") + 1, int.from_bytes(b[27:30], "little") + 1
+    raise ValueError(f"WebP desconhecido: {caminho}")
+
+
+def imagem_html(atributos: str, lang: str, base: str) -> str:
+    """{% imagem nome="foto-5" sizes="100vw" alt_pt="…" alt_en="…" classe="…" prioridade %}
+    Usa todas as larguras que existirem em assets/img/<nome>-<largura>.webp
+    (e .avif). Sem «prioridade», a imagem é carregada só quando se aproxima."""
+    a = {k: (v if v is not None else True) for k, v in RE_ATRIB.findall(atributos)}
+    nome = a["nome"]
+    larguras = sorted(int(f.stem.rsplit("-", 1)[1]) for f in (RAIZ / "assets" / "img").glob(f"{nome}-*.webp")
+                      if f.stem.rsplit("-", 1)[1].isdigit())
+    if not larguras:
+        raise SystemExit(f"imagem «{nome}» não existe em assets/img/")
+    w, h = tamanho_webp(RAIZ / "assets" / "img" / f"{nome}-{larguras[-1]}.webp")
+    sizes = a.get("sizes", "100vw")
+    alt = html_escape(a.get(f"alt_{lang}", ""))
+    url = lambda l, ext: f"{base}assets/img/{nome}-{l}.{ext}"
+    srcset = lambda ext: ", ".join(f"{url(l, ext)} {l}w" for l in larguras)
+    meio = larguras[min(1, len(larguras) - 1)]
+    carregar = ' fetchpriority="high"' if a.get("prioridade") else ' loading="lazy"'
+    classe = f' class="{a["classe"]}"' if a.get("classe") else ""
+    tem_avif = (RAIZ / "assets" / "img" / f"{nome}-{larguras[0]}.avif").exists()
+    fonte = f'<source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">' if tem_avif else ""
+    return (f'<picture>{fonte}<img{classe} src="{url(meio, "webp")}" srcset="{srcset("webp")}" sizes="{sizes}" '
+            f'width="{w}" height="{h}" alt="{alt}"{carregar} decoding="async"></picture>')
+
+
+def html_escape(texto: str) -> str:
+    return html.escape(texto, quote=True)
 
 
 def ler_cabecalho(texto: str) -> tuple[dict, str]:
@@ -94,6 +142,7 @@ def ligacao(base: str, url: str) -> str:
 
 def preencher(texto: str, lang: str, ctx: dict, origem: str) -> str:
     texto = RE_LINGUA.sub(lambda m: m.group(1 if lang == "pt" else 2), texto)
+    texto = RE_IMAGEM.sub(lambda m: imagem_html(m.group(1), lang, ctx["base"]), texto)
 
     def sub(m):
         expr = m.group(1)
@@ -178,6 +227,7 @@ def construir(base: str = "/") -> int:
                         titulo_pt=item["pt"]["nome"], titulo_en=item["en"]["nome"])
             lista.append((SRC / "paginas" / "_em-preparacao.html", meta, corpo_eb))
 
+    dados = {l: dados_site.calcular(RAIZ, l, base) for l in LINGUAS}
     n = 0
     for caminho, meta, corpo in lista:
         for lang in LINGUAS:
@@ -210,6 +260,7 @@ def construir(base: str = "/") -> int:
                 "menu_links": menu_html(menu, lang, meta.get("menu", ""), base),
                 "menu_atalhos": atalhos_html(menu, lang, base),
                 "ano": time.strftime("%Y"),
+                "d": dados[lang],
             }
             conteudo = preencher(incluir(corpo), lang, ctx, caminho.name)
             ctx["conteudo"] = conteudo
@@ -279,7 +330,7 @@ def main():
     threading.Thread(target=vigiar, daemon=True).start()
     servidor = http.server.ThreadingHTTPServer(
         ("127.0.0.1", args.porta), functools.partial(Pedido, directory=str(SAIDA)))
-    print(f"\n  Abrir: http://localhost:{args.porta}/teste/\n  (Ctrl+C para parar)\n")
+    print(f"\n  Abrir: http://localhost:{args.porta}/\n  (Ctrl+C para parar)\n")
     try:
         servidor.serve_forever()
     except KeyboardInterrupt:

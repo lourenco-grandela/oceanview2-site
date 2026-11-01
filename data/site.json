@@ -1,4 +1,11 @@
 {
-  "_nota": "Opções do site v3. mostrar_precos: false passa todos os valores a «Sob consulta» (decisão pendente dos clientes, brief v3 §8).",
-  "mostrar_precos": true
+  "_nota": "Opções e dados públicos do site v3. mostrar_precos: false passa todos os valores a «Sob consulta» (decisão pendente dos clientes, brief v3 §9). tempos: indicados pela Inês e pelo Carlos a 21/10/2026 (iguais ao dados-lancamento.json).",
+  "mostrar_precos": true,
+  "tempos": [
+    { "minutos": 5,  "modo": "a_pe",     "pt": "Praia da Consolação", "en": "Consolação beach" },
+    { "minutos": 10, "modo": "de_carro", "pt": "Centro de Peniche",   "en": "Peniche town centre" },
+    { "minutos": 15, "modo": "de_carro", "pt": "Óbidos",              "en": "Óbidos" },
+    { "minutos": 50, "modo": "de_carro", "pt": "Lisboa",              "en": "Lisbon" }
+  ],
+  "google_maps": "https://maps.app.goo.gl/fyuLWXY6xwbT7Fyo8"
 }

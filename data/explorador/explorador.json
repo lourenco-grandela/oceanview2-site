@@ -1,14 +1,28 @@
 {
-  "_nota": "Explorador de frações. Fase 1: plantas vetoriais por piso (data/explorador/*.svg, geradas por ferramentas/otimizar_plantas.py a partir de referencia-v3/explorador/) com os polígonos de fracoes-poligonos.json (coordenadas no viewBox de cada SVG). Fase 2: trocar «modo» para «axonometrica» e preencher o bloco «axonometrica» ({imagem, largura, altura, fracoes: {A: [[x,y],…]}}); o resto do componente não muda. «faixa» = [x, y, largura, altura] em % da miniatura da fachada (só assinala o piso).",
-  "fase": 1,
-  "modo": "pisos",
-  "provisorio": false,
-  "poligonos": "data/explorador/fracoes-poligonos.json",
-  "fachada": {
-    "imagem": "assets/img/fachada-dia-640.webp",
-    "largura": 640,
-    "altura": 427
+  "_nota": "Explorador de frações (fase 2). Imagem principal: axonometria branca do edifício (assets/img/axonometrica-*, gerada por ferramentas/imagens_v3.py a partir de referencia-v3/imagens/axonometrica-branca-oceanview2.png), com um polígono por piso em «axonometrica.pisos» (coordenadas em px da imagem de 1536×1024). Escolher um piso ou uma fração acende o piso. «axonometrica.fracoes» é opcional ({\"A\": [[x,y],…]}): quando se confirmar que fachada corresponde a que lado das plantas, os polígonos por fração acendem a fração na axonometria. Por baixo, a planta do piso (data/explorador/<piso>.svg, de ferramentas/otimizar_plantas.py) com os polígonos de fracoes-poligonos.json.",
+  "fase": 2,
+  "modo": "axonometrica",
+  "axonometrica": {
+    "imagem": "axonometrica",
+    "largura": 1536,
+    "altura": 1024,
+    "pisos": {
+      "sotao": [
+        [152,300], [255,272], [440,112], [800,148], [1185,172], [1250,135], [1390,318], [1445,322], [1445,400], [1150,490], [905,437], [785,447], [152,372]
+      ],
+      "piso-2": [
+        [152,372], [785,447], [905,437], [1150,490], [1445,400], [1445,545], [1150,680], [955,640], [905,600], [152,505]
+      ],
+      "piso-1": [
+        [152,505], [905,600], [955,640], [1150,680], [1445,545], [1445,690], [1150,840], [955,780], [905,735], [152,640]
+      ],
+      "piso-0": [
+        [185,640], [905,735], [955,780], [1150,840], [1445,690], [1445,830], [1400,855], [1120,990], [700,890], [185,790]
+      ]
+    },
+    "fracoes": null
   },
+  "poligonos": "data/explorador/fracoes-poligonos.json",
   "pisos": [
     {
       "id": "sotao",
@@ -16,13 +30,7 @@
         "pt": "Sótão",
         "en": "Attic"
       },
-      "planta": "data/explorador/sotao.svg",
-      "faixa": [
-        12,
-        21,
-        80,
-        21.5
-      ]
+      "planta": "data/explorador/sotao.svg"
     },
     {
       "id": "piso-2",
@@ -30,13 +38,7 @@
         "pt": "Piso 2",
         "en": "Second floor"
       },
-      "planta": "data/explorador/piso-2.svg",
-      "faixa": [
-        11.5,
-        42.5,
-        81.5,
-        16
-      ]
+      "planta": "data/explorador/piso-2.svg"
     },
     {
       "id": "piso-1",
@@ -44,13 +46,7 @@
         "pt": "Piso 1",
         "en": "First floor"
       },
-      "planta": "data/explorador/piso-1.svg",
-      "faixa": [
-        11.5,
-        58.5,
-        81.5,
-        14
-      ]
+      "planta": "data/explorador/piso-1.svg"
     },
     {
       "id": "piso-0",
@@ -58,15 +54,8 @@
         "pt": "Piso 0",
         "en": "Ground floor"
       },
-      "planta": "data/explorador/piso-0.svg",
-      "faixa": [
-        11.5,
-        72.5,
-        81.5,
-        15.5
-      ]
+      "planta": "data/explorador/piso-0.svg"
     }
   ],
-  "piso_inicial": "piso-0",
-  "axonometrica": null
+  "piso_inicial": "piso-0"
 }

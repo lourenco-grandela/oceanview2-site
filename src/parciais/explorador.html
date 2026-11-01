@@ -5,14 +5,21 @@
   </div>
 
   <div class="contentor explorador__grelha">
-    <div class="explorador__palco">
-      <figure class="explorador__fachada" aria-hidden="true">
-        <img src="{{ base }}assets/img/fachada-dia-640.webp" width="640" height="427" alt="" loading="lazy" decoding="async">
-        <span class="explorador__faixa" data-faixa></span>
+    <div class="explorador__visual">
+      <figure class="explorador__axo">
+        <div class="explorador__axo-imagem">
+          {% imagem nome="axonometrica" sizes="(max-width: 1080px) 100vw, 62vw" alt_pt="Axonometria do edifício OceanView 2, com os pisos assinaláveis" alt_en="Axonometric view of the OceanView 2 building, with selectable floors" %}
+          <svg class="exp-axo" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" data-axo></svg>
+          <span class="explorador__piso-ativo" data-piso-ativo aria-hidden="true"></span>
+        </div>
+        <figcaption class="legenda">{{ t.legal.ilustrativa }}</figcaption>
       </figure>
-      <div class="explorador__planta" data-palco aria-hidden="true"></div>
-      <div class="explorador__marcador" data-marcador hidden></div>
-      <p class="legenda explorador__nota" data-nota-provisoria hidden>{% pt %}Planta esquemática provisória, só para testar o explorador. As plantas reais por piso entram assim que chegarem.{% en %}Provisional schematic plan, only for testing the explorer. The real floor plans will replace it.{% fim %}</p>
+
+      <figure class="explorador__planta-caixa">
+        <div class="explorador__marcador" data-marcador hidden></div>
+        <div class="explorador__planta" data-palco aria-hidden="true"></div>
+        <figcaption class="legenda" data-planta-legenda></figcaption>
+      </figure>
     </div>
 
     <div class="explorador__painel">
@@ -38,8 +45,7 @@
         <button class="cabecalho__menu" type="button" aria-label="{% pt %}Fechar a planta{% en %}Close the floor plan{% fim %}" data-planta-fechar><span class="cruz" aria-hidden="true"><span></span><span></span></span></button>
       </div>
     </div>
-    <img class="planta-dialogo__img" src="" alt="" width="1075" height="1521" data-planta-img>
-    <p class="legenda">{{ t.legal.ilustrativa }}</p>
+    <img class="planta-dialogo__img" src="data:," alt="" width="1075" height="1521" data-planta-img>
   </dialog>
 
   <script type="application/json" data-explorador-textos>
@@ -50,6 +56,7 @@
     "incluiSotao": "inclui sótão", "exterior": "Exterior", "estacionamento": "Estacionamento", "valor": "Valor",
     "sobConsulta": "Sob consulta", "verPlanta": "Ver planta", "pedirInfo": "Pedir informação",
     "verPlantaImagem": "Ver a planta da fração", "whatsapp": "WhatsApp",
+    "plantaDoPiso": "Planta do {p} · desenho do projeto",
     "estados": { "disponivel": "Disponível", "reservada": "Reservada", "vendida": "Vendida" },
     "whatsappMensagem": "Olá, gostava de receber informação sobre a fração {f} do OceanView 2.",
     "selecionarFracao": "Selecionar a fração {f}"
@@ -60,6 +67,7 @@
     "incluiSotao": "includes attic", "exterior": "Outdoor", "estacionamento": "Parking", "valor": "Price",
     "sobConsulta": "Price on request", "verPlanta": "See floor plan", "pedirInfo": "Request information",
     "verPlantaImagem": "See the unit floor plan", "whatsapp": "WhatsApp",
+    "plantaDoPiso": "{p} plan · project drawing",
     "estados": { "disponivel": "Available", "reservada": "Reserved", "vendida": "Sold" },
     "whatsappMensagem": "Hello, I would like to receive information about unit {f} at OceanView 2.",
     "selecionarFracao": "Select unit {f}"

@@ -319,3 +319,9 @@ main:focus { outline: none; }
 .marca--rodape { color: var(--oceano); align-self: start; }
 .marca--rodape img { width: clamp(180px, 16vw, 240px); height: auto; }
 @media (max-width: 900px) { .rodape__grelha { grid-template-columns: 1fr; } }
+
+/* Botões com texto longo no telemóvel: podem partir a linha. */
+@media (max-width: 480px) {
+  .botao { white-space: normal; text-align: center; line-height: 1.4; padding-top: 12px; padding-bottom: 12px; }
+  .botao--pequeno { white-space: nowrap; }
+}

@@ -1,15 +1,10 @@
 /* OceanView 2 (v3) — letras alojadas no site (licença OFL, ficheiros e
-   licenças em assets/fonts/). Três pares em teste (brief v3, secção 2);
-   depois da escolha ficam só os ficheiros do par escolhido. */
+   licenças em assets/fonts/). Escolhidas a 01/11/2026: Italiana (títulos) e
+   Archivo Light (texto; também é a letra do logótipo). */
 @font-face { font-family: "Italiana"; src: url("../fonts/italiana.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Cormorant Garamond"; src: url("../fonts/cormorant-garamond.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
-@font-face { font-family: "Marcellus"; src: url("../fonts/marcellus.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Archivo"; src: url("../fonts/archivo.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
-@font-face { font-family: "Inter Tight"; src: url("../fonts/inter-tight.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 
-/* Par 1 (por omissão): Italiana + Archivo — fina e de alto contraste, a mais próxima da referência. */
-:root,
-.par-1 {
+:root {
   --l-titulo: "Italiana", "Didot", "Times New Roman", serif;
   --l-titulo-peso: 400;
   --l-titulo-espaco: 0.01em;
@@ -24,36 +19,8 @@
   --l-botao-peso: 400;
 }
 
-/* Par 2: Cormorant Garamond Light + Archivo — clássico, mais literário. */
-[data-par="2"],
-.par-2 {
-  --l-titulo: "Cormorant Garamond", "Times New Roman", serif;
-  --l-titulo-peso: 300;
-  --l-titulo-espaco: 0;
-  --l-titulo-altura: 0.88;
-  --l-titulo-escala: 1.02;
-  --l-texto: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --l-texto-peso: 300;
-  --l-texto-forte: 500;
-  --l-etiqueta-espaco: 0.28em;
-  --l-botao-espaco: 0.2em;
-  --l-botao-tamanho: 12px;
-  --l-botao-peso: 400;
-}
-
-/* Par 3: Marcellus + Inter Tight Light — romano gravado em pedra, mais firme. */
-[data-par="3"],
-.par-3 {
-  --l-titulo: "Marcellus", "Trajan Pro", "Times New Roman", serif;
-  --l-titulo-peso: 400;
-  --l-titulo-espaco: 0.02em;
-  --l-titulo-altura: 0.95;
-  --l-titulo-escala: 0.84;
-  --l-texto: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
-  --l-texto-peso: 300;
-  --l-texto-forte: 500;
-  --l-etiqueta-espaco: 0.26em;
-  --l-botao-espaco: 0.18em;
-  --l-botao-tamanho: 12px;
-  --l-botao-peso: 400;
-}
+/* A Italiana só tem algarismos de estilo antigo (altura 500 contra 700 das
+   maiúsculas, sem variante «lnum»). Nos títulos, os algarismos vão dentro de
+   <span class="alg"> e sobem à altura das maiúsculas: 700 / 500 = 1,4, na
+   mesma linha de base. */
+.alg { font-size: 1.4em; line-height: 0; letter-spacing: 0; }

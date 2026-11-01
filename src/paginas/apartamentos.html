@@ -1,0 +1,101 @@
+---
+url_pt: /apartamentos/
+url_en: /en/apartments/
+titulo_pt: Apartamentos, plantas e valores
+titulo_en: Apartments, floor plans and prices
+descricao_pt: As 12 frações do OceanView 2, de A a L: tipologias T1, T2 e T2+2, plantas, áreas, estacionamento e valores.
+descricao_en: The 12 apartments at OceanView 2, A to L: T1, T2 and T2+2 types, floor plans, areas, parking and prices.
+menu: apartamentos
+css: paginas explorador
+js: explorador
+---
+<section class="entrada" aria-labelledby="entrada-titulo">
+  <div class="contentor">
+    <span class="etiqueta">{% pt %}Apartamentos{% en %}Apartments{% fim %}</span>
+    <h1 class="titulo-1" id="entrada-titulo">{% pt %}Doze casas,<br>três formas de viver.{% en %}Twelve homes,<br>three ways to live.{% fim %}</h1>
+    <div class="entrada__grelha">
+      <p class="paragrafo--grande">{% pt %}Conheça as 12 frações do OceanView 2, identificadas de A a L, com informação detalhada sobre as áreas e os respetivos preços.{% en %}Discover the 12 apartments at OceanView 2, labelled A to L, with detailed information on their areas and prices.{% fim %}</p>
+      <dl class="numeros">
+        <div><dt>{% pt %}Frações{% en %}Apartments{% fim %}</dt><dd><span class="alg">{{ d.n_disponiveis }}</span> <small>{% pt %}disponíveis{% en %}available{% fim %}</small></dd></div>
+        <div><dt>{% pt %}Valores desde{% en %}Prices from{% fim %}</dt><dd>{{ d.preco_desde }}</dd></div>
+        <div><dt>{% pt %}Tipologias{% en %}Types{% fim %}</dt><dd>T1 · T2 · T2+2</dd></div>
+      </dl>
+    </div>
+  </div>
+  <figure class="entrada__figura">
+    {% imagem nome="fachada-noite" classe="imagem-cobrir" sizes="100vw" alt_pt="OceanView 2 ao anoitecer, com as janelas iluminadas" alt_en="OceanView 2 at dusk, with lit windows" prioridade %}
+    <figcaption class="legenda">{{ t.legal.ilustrativa }}</figcaption>
+  </figure>
+</section>
+
+<section class="tipologias" aria-labelledby="tipologias-titulo">
+  <div class="contentor">
+    <div class="tipologias__cabeca" data-revelar>
+      <span class="etiqueta">{% pt %}Tipologias{% en %}Apartment types{% fim %}</span>
+      <h2 class="titulo-2" id="tipologias-titulo">{% pt %}Três formas de viver o OceanView&nbsp;<span class="alg">2</span>.{% en %}Three ways to live at OceanView&nbsp;<span class="alg">2</span>.{% fim %}</h2>
+    </div>
+    <ul class="tipologias__lista">
+      <li class="cartao-tip" data-revelar>
+        <a href="?fracao=D#explorador">
+          <figure>{% imagem nome="quarto" classe="imagem-cobrir" sizes="(max-width: 900px) 100vw, 33vw" alt_pt="Quarto com roupeiro e janela para a varanda" alt_en="Bedroom with wardrobe and a window onto the balcony" %}</figure>
+          <span class="cartao-tip__num">01</span>
+          <h3 class="titulo-2 cartao-tip__nome">T<span class="alg">1</span></h3>
+          <p class="cartao-tip__linha">{{ d.tip.T1.contagem }} · {{ d.tip.T1.area }}</p>
+          <p class="cartao-tip__preco">{{ d.tip.T1.preco }}</p>
+          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %} <span class="seta" aria-hidden="true">↗</span></span>
+        </a>
+      </li>
+      <li class="cartao-tip" data-revelar>
+        <a href="?fracao=A#explorador">
+          <figure>{% imagem nome="sala" classe="imagem-cobrir" sizes="(max-width: 900px) 100vw, 33vw" alt_pt="Sala e cozinha em open space" alt_en="Open-plan living room and kitchen" %}</figure>
+          <span class="cartao-tip__num">02</span>
+          <h3 class="titulo-2 cartao-tip__nome">T<span class="alg">2</span></h3>
+          <p class="cartao-tip__linha">{{ d.tip.T2.contagem }} · {{ d.tip.T2.area }}</p>
+          <p class="cartao-tip__preco">{{ d.tip.T2.preco }}</p>
+          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %} <span class="seta" aria-hidden="true">↗</span></span>
+        </a>
+      </li>
+      <li class="cartao-tip" data-revelar>
+        <a href="?fracao=I#explorador">
+          <figure>{% imagem nome="fachada-dia" classe="imagem-cobrir cartao-tip__img-topo" sizes="(max-width: 900px) 100vw, 33vw" alt_pt="Último piso e sótão do OceanView 2, com terraços" alt_en="Top floor and attic of OceanView 2, with terraces" %}</figure>
+          <span class="cartao-tip__num">03</span>
+          <h3 class="titulo-2 cartao-tip__nome">T<span class="alg">2</span>+<span class="alg">2</span></h3>
+          <p class="cartao-tip__linha">{{ d.tip.T22.contagem }} · {{ d.tip.T22.area }}</p>
+          <p class="cartao-tip__preco">{{ d.tip.T22.preco }}</p>
+          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %} <span class="seta" aria-hidden="true">↗</span></span>
+        </a>
+      </li>
+    </ul>
+    <p class="legenda">{% pt %}Imagens ilustrativas, não contratuais.{% en %}Illustrative images, not contractual.{% fim %}{% pt %}{% en %} In Portugal, “T” plus a number gives the bedrooms; “+2” means two additional rooms.{% fim %}</p>
+  </div>
+</section>
+
+<section class="olhar" aria-label="{% pt %}Interiores{% en %}Interiors{% fim %}">
+  <figure class="olhar__figura">
+    {% imagem nome="wc" classe="imagem-cobrir" sizes="100vw" alt_pt="Casa de banho com base de duche, móvel suspenso em madeira e pedra clara" alt_en="Bathroom with a walk-in shower, floating wooden vanity and light stone" %}
+    <figcaption class="legenda">{% pt %}Casa de banho{% en %}Bathroom{% fim %} · {{ t.legal.ilustrativa }}</figcaption>
+  </figure>
+  <blockquote class="olhar__frase contentor" data-revelar>
+    <p class="titulo-2">{% pt %}Do primeiro olhar ao último detalhe.{% en %}From the first glance to the last detail.{% fim %}</p>
+  </blockquote>
+</section>
+
+{% incluir explorador %}
+
+<section class="valores" id="valores" aria-labelledby="valores-titulo">
+  <div class="contentor">
+    <div class="valores__cabeca" data-revelar>
+      <div>
+        <span class="etiqueta">{% pt %}Frações e valores{% en %}Apartments and prices{% fim %}</span>
+        <h2 class="titulo-2" id="valores-titulo">{% pt %}As <span class="alg">{{ d.n_fracoes }}</span> frações.{% en %}All <span class="alg">{{ d.n_fracoes }}</span> apartments.{% fim %}</h2>
+      </div>
+      <div class="acoes">
+        <a class="botao botao--linha" href="{{ base }}assets/docs/OceanView2_Tabela_de_Valores.pdf" target="_blank" rel="noopener">{% pt %}Tabela de valores (PDF){% en %}Price list (PDF, in Portuguese){% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+        <a class="botao botao--linha" href="{{ base }}assets/docs/OceanView2_Fracoes_e_Plantas.pdf" target="_blank" rel="noopener">{% pt %}Plantas (PDF){% en %}Floor plans (PDF, in Portuguese){% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="valores__tabela">{{ d.tabela }}</div>
+    {{ d.cartoes }}
+    <p class="legenda valores__nota">{{ d.nota_tabela }}</p>
+  </div>
+</section>
