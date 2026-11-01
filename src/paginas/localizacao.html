@@ -1,0 +1,84 @@
+---
+url_pt: /localizacao/
+url_en: /en/location/
+titulo_pt: Localização · Consolação, Peniche
+titulo_en: Location · Consolação, Peniche
+descricao_pt: O OceanView 2 fica na Consolação, em Peniche: praia a 5 minutos a pé, Peniche a 10, Óbidos a 15 e Lisboa a 50 minutos de carro.
+descricao_en: OceanView 2 is in Consolação, Peniche: the beach is a 5-minute walk, Peniche 10, Óbidos 15 and Lisbon 50 minutes by car.
+menu: localizacao
+css: paginas
+---
+<!-- Textos: aprovado de 21/10 (Localização) e textos da Inês (referencia-v3/textos-cliente.md,
+     «Página 3» e «Peniche»). Traduções inglesas a validar. Fotografias: só as do Lourenço. -->
+<section class="entrada" aria-labelledby="entrada-titulo">
+  <div class="contentor">
+    <span class="etiqueta">{% pt %}Localização{% en %}Location{% fim %}</span>
+    <h1 class="titulo-1" id="entrada-titulo">{% pt %}O mar a <span class="alg">5</span><br>minutos a pé.{% en %}The sea, a <span class="alg">5</span>-minute<br>walk away.{% fim %}</h1>
+    <div class="entrada__grelha">
+      <p class="paragrafo">{% pt %}O OceanView 2 situa-se na Consolação, em Peniche, a apenas 5 minutos a pé da praia e a 10 minutos de carro do centro da cidade. A praia da Consolação é reconhecida pelas características das suas águas, tradicionalmente associadas à riqueza em iodo. Para norte, estende-se um vasto areal em direção a Peniche, região muito apreciada pelos amantes do surf e da natureza. Um lugar onde viver perto do mar faz parte de todos os dias.{% en %}OceanView 2 is in Consolação, Peniche, just a 5-minute walk from the beach and 10 minutes by car from the town centre. Consolação beach is known for the qualities of its waters, traditionally associated with a high iodine content. To the north, a long stretch of sand runs towards Peniche, an area much loved by surfers and nature lovers. A place where living by the sea is part of every day.{% fim %}</p>
+      <div>
+        <ul class="tempos">{{ d.tempos }}</ul>
+        <a class="botao botao--linha" href="{{ d.maps }}" target="_blank" rel="noopener">{% pt %}Abrir no Google Maps{% en %}Open in Google Maps{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+  <figure class="entrada__figura">
+    {% imagem nome="foto-3" classe="imagem-cobrir" sizes="100vw" alt_pt="Vista aérea da Consolação, com a baía e o areal até Peniche" alt_en="Aerial view of Consolação, with the bay and the long beach towards Peniche" prioridade %}
+    <figcaption class="legenda">{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}</figcaption>
+  </figure>
+</section>
+
+<section class="secao lugar" aria-labelledby="consolacao-titulo">
+  <div class="contentor lugar__grelha">
+    <div class="lugar__texto">
+      <span class="etiqueta" data-revelar>Consolação</span>
+      <h2 class="titulo-2" id="consolacao-titulo" data-revelar>{% pt %}O lugar onde o Atlântico encontra a vida.{% en %}Where the Atlantic meets everyday life.{% fim %}</h2>
+      <p class="paragrafo" data-revelar>{% pt %}Entre o azul infinito do Atlântico e a autenticidade da costa de Peniche, a Praia da Consolação ocupa um lugar verdadeiramente especial. Aqui, viver é estar perto do mar sem abdicar da comodidade de ter tudo por perto. A poucos minutos encontra Peniche, com a sua marina, comércio, restauração e todos os serviços necessários para o dia a dia, enquanto Óbidos, Caldas da Rainha e Lourinhã permitem chegar rapidamente a outros centros de referência da região. Lisboa e o aeroporto internacional estão também a uma distância confortável, tornando a Consolação uma localização particularmente interessante tanto para residência permanente como para segunda habitação ou investimento.{% en %}Between the endless blue of the Atlantic and the authentic coast of Peniche, Consolação beach holds a truly special place. Living here means being close to the sea without giving up the convenience of having everything nearby. A few minutes away is Peniche, with its marina, shops, restaurants and every service you need day to day, while Óbidos, Caldas da Rainha and Lourinhã are within easy reach. Lisbon and its international airport are also a comfortable distance away, making Consolação a particularly good choice for a permanent home, a second home or an investment.{% fim %}</p>
+      <p class="paragrafo" data-revelar>{% pt %}Mas a verdadeira riqueza desta localização está naquilo que não se mede em quilómetros: o privilégio de viver junto ao oceano. Caminhar pela praia ao nascer do sol, sentir a maresia, assistir ao pôr do sol sobre o Atlântico, praticar surf ou simplesmente desfrutar da tranquilidade de uma comunidade costeira. A Consolação oferece uma combinação rara entre natureza, autenticidade, acessibilidade e qualidade de vida, um lugar onde cada dia pode ser vivido com mais tempo, mais liberdade e mais ligação ao mar.{% en %}But the real wealth of this location is what cannot be measured in kilometres: the privilege of living by the ocean. Walking on the beach at sunrise, breathing the sea air, watching the sun set over the Atlantic, surfing, or simply enjoying the calm of a coastal community. Consolação offers a rare mix of nature, authenticity, easy access and quality of life, a place where every day can be lived with more time, more freedom and a closer bond with the sea.{% fim %}</p>
+    </div>
+    <figure class="lugar__figura" data-revelar>
+      {% imagem nome="foto-5" classe="imagem-cobrir" sizes="(max-width: 900px) 100vw, 45vw" alt_pt="Praia da Consolação vista do ar, com o forte sobre as rochas" alt_en="Aerial view of Consolação beach, with the fort on the rocks" %}
+      <figcaption class="legenda">{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}</figcaption>
+    </figure>
+  </div>
+  <blockquote class="contentor lugar__citacao" data-revelar>
+    <p class="titulo-2">{% pt %}«Consolação não é apenas um destino. É uma escolha de vida.»{% en %}“Consolação is not just a destination. It is a way of life.”{% fim %}</p>
+  </blockquote>
+</section>
+
+<figure class="faixa-imagem">
+  {% imagem nome="foto-6" classe="imagem-cobrir" sizes="100vw" alt_pt="Forte sobre uma ponta rochosa, rodeado pelo Atlântico" alt_en="A fort on a rocky point, surrounded by the Atlantic" %}
+  <figcaption class="legenda">{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}</figcaption>
+</figure>
+
+<section class="secao lugar" aria-labelledby="peniche-titulo">
+  <div class="contentor">
+    <div class="lugar__cabeca" data-revelar>
+      <span class="etiqueta">Peniche</span>
+      <h2 class="titulo-1" id="peniche-titulo">{% pt %}Onde o Atlântico<br>conta histórias.{% en %}Where the Atlantic<br>tells stories.{% fim %}</h2>
+    </div>
+    <div class="peniche__grelha">
+      <p class="paragrafo--grande" data-revelar>{% pt %}Entre o oceano e a terra, Peniche é um território de paisagens extraordinárias, onde a força do Atlântico se cruza com séculos de história, tradição e cultura. Uma península moldada pelo mar, com praias de areia dourada, falésias, enseadas e horizontes que parecem não ter fim.{% en %}Between ocean and land, Peniche is a place of extraordinary landscapes, where the strength of the Atlantic meets centuries of history, tradition and culture. A peninsula shaped by the sea, with golden beaches, cliffs, coves and horizons that seem to go on forever.{% fim %}</p>
+      <ul class="temas">
+        <li data-revelar><h3 class="titulo-3">{% pt %}Surf e mar{% en %}Surf and sea{% fim %}</h3><p>{% pt %}Conhecida internacionalmente como um dos grandes destinos de surf e desportos aquáticos, Peniche oferece condições privilegiadas para surf, bodyboard, mergulho, pesca e outras experiências ligadas ao mar.{% en %}Known internationally as one of the great destinations for surfing and water sports, Peniche offers excellent conditions for surfing, bodyboarding, diving, fishing and other experiences at sea.{% fim %}</p></li>
+        <li data-revelar><h3 class="titulo-3">{% pt %}Berlengas{% en %}Berlengas{% fim %}</h3><p>{% pt %}A Reserva Natural das Berlengas acrescenta uma dimensão única à paisagem, com águas cristalinas, natureza preservada e uma extraordinária riqueza marinha.{% en %}The Berlengas Nature Reserve adds another dimension to the landscape, with crystal-clear waters, unspoilt nature and remarkable marine life.{% fim %}</p></li>
+        <li data-revelar><h3 class="titulo-3">{% pt %}História e cultura{% en %}History and culture{% fim %}</h3><p>{% pt %}Visíveis na Fortaleza de Peniche, nas tradições piscatórias, nas rendas de bilros e nas memórias de uma comunidade profundamente ligada ao oceano. Uma terra de pessoas genuínas e acolhedoras.{% en %}Visible in the Peniche Fortress, the fishing traditions, the bobbin lace and the memories of a community deeply tied to the ocean. A place of genuine, welcoming people.{% fim %}</p></li>
+        <li data-revelar><h3 class="titulo-3">{% pt %}Gastronomia{% en %}Food{% fim %}</h3><p>{% pt %}Peixe fresco, marisco, polvo, caldeiradas e sabores tradicionais fazem da gastronomia de Peniche uma verdadeira celebração do Atlântico.{% en %}Fresh fish, seafood, octopus, fish stews and traditional flavours make Peniche's cooking a true celebration of the Atlantic.{% fim %}</p></li>
+        <li data-revelar><h3 class="titulo-3">{% pt %}Golfe{% en %}Golf{% fim %}</h3><p>{% pt %}A poucos minutos, os campos de golfe da região Oeste permitem combinar praia, natureza, desporto e lazer durante todo o ano.{% en %}A few minutes away, the golf courses of the Oeste region let you combine beach, nature, sport and leisure all year round.{% fim %}</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="mosaico" aria-label="{% pt %}Fotografias{% en %}Photographs{% fim %}">
+  <div class="contentor mosaico__grelha">
+    <figure class="mosaico__alto" data-revelar>{% imagem nome="foto-4" classe="imagem-cobrir" sizes="(max-width: 900px) 100vw, 33vw" alt_pt="Areal e rebentação vistos de cima" alt_en="Sand and breaking waves seen from above" %}</figure>
+    <figure data-revelar>{% imagem nome="foto-7" classe="imagem-cobrir" sizes="(max-width: 900px) 100vw, 66vw" alt_pt="Ponta rochosa e praia, com a vila ao fundo" alt_en="A rocky point and beach, with the town behind" %}</figure>
+    <figure data-revelar>{% imagem nome="foto-2" classe="imagem-cobrir" sizes="(max-width: 900px) 100vw, 66vw" alt_pt="Vista aérea da Consolação e da baía de Peniche" alt_en="Aerial view of Consolação and the bay of Peniche" %}</figure>
+  </div>
+  <p class="contentor legenda">{% pt %}Fotografias aéreas, Peniche.{% en %}Aerial photographs, Peniche.{% fim %}</p>
+  <div class="contentor acoes mosaico__acoes">
+    <p class="titulo-3">{% pt %}Peniche é viver com o mar como cenário, a história como identidade e a liberdade como estilo de vida.{% en %}In Peniche, the sea is the setting, history is the identity and freedom is a way of life.{% fim %}</p>
+    <a class="botao" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %} <span class="seta" aria-hidden="true">↗</span></a>
+  </div>
+</section>

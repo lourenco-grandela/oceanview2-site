@@ -2,7 +2,7 @@
   <div class="cabecalho__barra">
     <a class="marca" href="{% pt %}{{ url:/ }}{% en %}{{ url:/en/ }}{% fim %}" aria-label="{{ t.nav.marca_inicio }}">{% incluir marca %}</a>
     <div class="cabecalho__acoes">
-      <a class="cabecalho__lingua" href="{{ url_outra }}" hreflang="{% pt %}en{% en %}pt{% fim %}" lang="{% pt %}en{% en %}pt{% fim %}" aria-label="{{ t.nav.lingua_outra }}">{{ lang_outra }}</a>
+      <a class="cabecalho__lingua" href="{{ url_outra }}" hreflang="{% pt %}en{% en %}pt{% fim %}" lang="{% pt %}en{% en %}pt{% fim %}">{{ lang_outra }}<span class="visualmente-escondido"> — {{ t.nav.lingua_outra }}</span></a>
       <a class="botao botao--linha botao--pequeno cabecalho__contactar" href="#contacto">{{ t.nav.contactar }}</a>
       <button class="cabecalho__menu" type="button" aria-expanded="false" aria-controls="menu-ecra" aria-label="{{ t.nav.abrir_menu }}" data-menu-abrir>
         <span class="hamburguer" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -15,7 +15,7 @@
   <div class="cabecalho__barra menu-ecra__topo">
     <a class="marca" href="{% pt %}{{ url:/ }}{% en %}{{ url:/en/ }}{% fim %}" aria-label="{{ t.nav.marca_inicio }}">{% incluir marca %}</a>
     <div class="cabecalho__acoes">
-      <a class="cabecalho__lingua" href="{{ url_outra }}" hreflang="{% pt %}en{% en %}pt{% fim %}" lang="{% pt %}en{% en %}pt{% fim %}" aria-label="{{ t.nav.lingua_outra }}">{{ lang_outra }}</a>
+      <a class="cabecalho__lingua" href="{{ url_outra }}" hreflang="{% pt %}en{% en %}pt{% fim %}" lang="{% pt %}en{% en %}pt{% fim %}">{{ lang_outra }}<span class="visualmente-escondido"> — {{ t.nav.lingua_outra }}</span></a>
       <a class="botao botao--linha-clara botao--pequeno cabecalho__contactar" href="#contacto">{{ t.nav.contactar }}</a>
       <button class="cabecalho__menu" type="button" aria-label="{{ t.nav.fechar_menu }}" data-menu-fechar>
         <span class="cruz" aria-hidden="true"><span></span><span></span></span>

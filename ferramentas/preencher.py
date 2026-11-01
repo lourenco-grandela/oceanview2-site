@@ -2,6 +2,14 @@
 # -*- coding: utf-8 -*-
 """Preenche o site com os dados do lançamento (dados-lancamento.json).
 
+SITE v3 (01/11/2026): as páginas são geradas por ferramentas/construir.py a
+partir de src/ e já não têm marcadores data-dado. Este script continua a ser o
+caminho para os dados que vêm do dados-lancamento.json (que não vai para o
+git): escreve o config.js (WhatsApp, GA4, Meta), os tempos e o Google Maps em
+data/site.json, o CNAME e os QR codes, e mostra a linha AVISAR para o Apps
+Script. O robots.txt e o sitemap.xml passaram a ser gerados pelo construir.py.
+Se ainda existirem páginas da v2 (index.html…), também as preenche.
+
     .venv/bin/python ferramentas/preencher.py --verificar   # só diz o que falta
     .venv/bin/python ferramentas/preencher.py               # preenche
 
@@ -345,6 +353,12 @@ def preencher_pagina(texto, lingua, valores):
 
 
 def dominio_atual(raiz):
+    cname = os.path.join(raiz, "CNAME")
+    if os.path.exists(cname):
+        with open(cname, encoding="utf-8") as f:
+            return f.read().strip() or DOMINIO_PROVISORIO
+    if not os.path.exists(os.path.join(raiz, "index.html")):
+        return DOMINIO_PROVISORIO
     with open(os.path.join(raiz, "index.html"), encoding="utf-8") as f:
         m = re.search(r'<link rel="canonical" href="https://([^/"]+)/">', f.read())
     return m.group(1) if m else DOMINIO_PROVISORIO
@@ -372,6 +386,30 @@ def escrever_config(raiz, valores):
             raise SystemExit("config.js: não encontrei a linha whatsappContactos")
     with open(caminho, "w", encoding="utf-8") as f:
         f.write(s)
+
+
+def escrever_site_json(raiz, valores):
+    """Site v3: tempos e Google Maps em data/site.json (o construir.py lê daí)."""
+    caminho = os.path.join(raiz, "data", "site.json")
+    if not os.path.exists(caminho):
+        return
+    with open(caminho, encoding="utf-8") as f:
+        site = json.load(f)
+    chaves = {"Praia da Consolação": "praia_a_pe_min", "Centro de Peniche": "peniche_carro_min",
+              "Óbidos": "obidos_carro_min", "Lisboa": "lisboa_carro_min"}
+    mudou = []
+    for t in site.get("tempos", []):
+        chave = chaves.get(t.get("pt"))
+        if chave in valores and t.get("minutos") != valores[chave]:
+            t["minutos"] = valores[chave]
+            mudou.append(t["pt"])
+    if "google_maps" in valores and site.get("google_maps") != valores["google_maps"]:
+        site["google_maps"] = valores["google_maps"]
+        mudou.append("google_maps")
+    with open(caminho, "w", encoding="utf-8") as f:
+        json.dump(site, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print("  data/site.json       " + (", ".join(mudou) + " atualizados" if mudou else "tempos e Google Maps já certos"))
 
 
 def escrever_robots_sitemap(raiz, dominio):
@@ -508,6 +546,8 @@ def main():
 
     for pagina, lingua in PAGINAS.items():
         caminho = os.path.join(raiz, pagina)
+        if not os.path.exists(caminho):
+            continue  # site v3: as páginas saem de src/ (construir.py)
         with open(caminho, encoding="utf-8") as f:
             texto = f.read()
         texto, feitos, falta = preencher_pagina(texto, lingua, valores)
@@ -524,9 +564,12 @@ def main():
     no_config = [k for k in ("whatsapp", "whatsapp_contactos", "ga4", "meta_pixel") if k in valores]
     print("  config.js            " + (", ".join(no_config) if no_config else "nada por preencher ainda"))
 
+    escrever_site_json(raiz, valores)
+
     if "dominio" in valores:
-        escrever_robots_sitemap(raiz, valores["dominio"])
-        print("  robots.txt e sitemap.xml para https://%s/" % valores["dominio"])
+        if os.path.exists(os.path.join(raiz, "index.html")):
+            escrever_robots_sitemap(raiz, valores["dominio"])
+            print("  robots.txt e sitemap.xml para https://%s/" % valores["dominio"])
         for nome, url in gerar_qr(raiz, valores["dominio"]):
             print("  qr/%s.svg/.png   %s" % (nome, url))
 

@@ -8,6 +8,41 @@ Brief: `referencia-v3/REFERENCIA.md` (linguagem Bellevue Cascais com a marca
 OceanView 2). O site publicado em oceanview2.pt (ramo `main`) não mexe até
 aprovação.
 
+### Feito (2026-11-01) — terceira entrega: resto do site
+
+- **Projeto** (`/projeto/`): conceito e interiores com os textos da Inês,
+  arquitetura («Linhas simples. Maré de luz.») com o esboço, sala, quarto e
+  casa de banho, promoção NS RMA, construção NS Construções, comercialização
+  IAD Portugal (logótipos quando chegarem).
+- **Localização** (`/localizacao/`): texto aprovado, tempos e Google Maps,
+  Consolação e Peniche com os textos da Inês (Peniche em 5 temas: surf,
+  Berlengas, história e cultura, gastronomia, golfe), fotografias foto-1 a
+  foto-7.
+- **Galeria** (`/galeria/`): 12 imagens (renders e fotografias) com
+  visualizador (setas, teclado, deslizar no telemóvel).
+- **Formulário em 4 passos** em todas as páginas (`#contacto`), mesmo Apps
+  Script. Envia mais `fracao` e `lingua`; «Pedir informação» no explorador
+  preenche a fração e a tipologia. Testado no browser com o script simulado
+  (validação por passo, origem UTM, sucesso). `formulario/Codigo.gs` atualizado
+  (2 colunas no fim, fração no assunto do email) e testado com simulações; os
+  pedidos da v2 continuam a funcionar. **Falta publicar a nova versão no Apps
+  Script** (`docs/FORMULARIO.md`).
+- **Cookies**: banner e definições com os textos da v2 e a mesma chave de
+  consentimento; GA4 e Meta só depois de aceitar.
+- **Rodapé** com IAD Portugal · AMI 11220, classe energética A+, imagem
+  ilustrativa, privacidade e definições de cookies. **Privacidade** com o texto
+  aprovado, igual ao publicado.
+- **SEO**: title/description/canonical/OG por página, hreflang PT/EN e
+  x-default, sitemap com hreflang, robots, 404, dados estruturados no Início.
+  Fora do workflow tudo leva noindex.
+- **Publicação**: workflow novo (constrói com `construir.py --publicar` e
+  publica `_site/`; só corre no `main`). Ficheiros da v2 retirados deste ramo.
+  `preencher.py` adaptado (config.js, tempos em `data/site.json`, CNAME,
+  AVISAR). README, CLAUDE.md, DESIGN.md e LANCAMENTO.md atualizados.
+- **Lighthouse** (telemóvel, local): Início 96/100/100/100, Apartamentos
+  93/100/100/100, Projeto 96/100/100/100, Galeria 90/100/100/100. Contraste AA
+  em todos os pares da paleta. Sem barra horizontal a 390 px.
+
 ### Feito (2026-11-01) — segunda entrega: Início e Apartamentos
 
 - **Letras escolhidas**: par 01, Italiana + Archivo Light, em todo o site. As
@@ -77,16 +112,23 @@ aprovação.
 
 ### Falta (v3)
 
-- Aprovação do Início e do Apartamentos → depois Projeto, Localização,
-  Galeria.
-- Formulário em 4 passos (mesmo Apps Script; atualizar `formulario/Codigo.gs`
-  com o campo da fração e pedir nova versão publicada), banner de cookies,
-  política de privacidade, OG/sitemap/hreflang por página, workflow de
-  publicação a partir de `_site/`.
-- Projeto, Localização, Galeria, EN completo; atualizar CLAUDE.md e
-  `docs/DESIGN.md` com o sistema v3.
+- Lourenço: rever o site completo; publicar a nova versão do Apps Script;
+  teste de ponta a ponta do formulário (folha e email); teste num telemóvel
+  real; juntar `v3` ao `main` (ver `docs/LANCAMENTO.md`, «Site v3»).
+- Logótipos de NS RMA, NS Construções e IAD (vetor) para Projeto e rodapé.
+- Vídeo institucional (hero e página Vídeo, hoje escondida).
 
 ### Perguntas (v3)
+
+- Política de privacidade: o formulário passou a perguntar a fração de
+  interesse. O texto aprovado fala em «tipologia de interesse»; os clientes
+  querem acrescentar «fração»? (O texto não foi mexido.)
+- Textos da Inês: usei-os tal como estão, só com «OceanView 2» junto (no
+  original «Ocean View 2») e Peniche dividido em 5 temas com cortes mínimos.
+  Traduções inglesas destes textos a validar.
+- O `formulario/Codigo.gs` do repositório tem um email na linha AVISAR (já
+  estava antes da v3). O repositório pode ser público: tirar e deixar só na
+  versão do Apps Script?
 
 - Que fachada da axonometria corresponde a que lado das plantas? Com isso
   ligam-se os polígonos por fração na axonometria.

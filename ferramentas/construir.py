@@ -48,8 +48,14 @@ SRC = RAIZ / "src"
 SAIDA = RAIZ / "_site"
 LINGUAS = ("pt", "en")
 
-# Enquanto a v3 não estiver aprovada, nenhuma página é indexada.
+# Só se indexa com --publicar (workflow) e com CNAME: enquanto a v3 não for
+# aprovada e publicada, todas as páginas levam noindex.
 INDEXAR = False
+
+
+def dominio() -> str:
+    cname = RAIZ / "CNAME"
+    return cname.read_text(encoding="utf-8").strip() if cname.exists() else ""
 
 RE_CABECALHO = re.compile(r"\A---\n(.*?)\n---\n", re.S)
 RE_INCLUIR = re.compile(r"{%\s*incluir\s+([\w\-/]+)\s*%}")
@@ -146,6 +152,11 @@ def preencher(texto: str, lang: str, ctx: dict, origem: str) -> str:
 
     def sub(m):
         expr = m.group(1)
+        if expr.startswith("maior:"):
+            nome = expr[6:].strip()
+            ls = [int(f.stem.rsplit("-", 1)[1]) for f in (RAIZ / "assets" / "img").glob(f"{nome}-*.webp")
+                  if f.stem.rsplit("-", 1)[1].isdigit()]
+            return str(max(ls))
         if expr.startswith("url:"):
             return ligacao(ctx["base"], expr[4:].strip())
         try:
@@ -205,7 +216,11 @@ def copiar(origem: Path, destino: Path):
         shutil.copy2(origem, destino)
 
 
-def construir(base: str = "/") -> int:
+def construir(base: str = "/", publicar: bool = False) -> int:
+    dom = dominio()
+    indexar = publicar and bool(dom)
+    raiz_abs = f"https://{dom}/" if dom else base
+    absoluto = lambda url: raiz_abs + url.lstrip("/") if dom else ligacao(base, url)
     textos = {l: json.loads((SRC / "i18n" / f"{l}.json").read_text(encoding="utf-8")) for l in LINGUAS}
     menu = json.loads((SRC / "i18n" / "menu.json").read_text(encoding="utf-8"))
     documento = (SRC / "parciais" / "_documento.html").read_text(encoding="utf-8")
@@ -228,6 +243,7 @@ def construir(base: str = "/") -> int:
             lista.append((SRC / "paginas" / "_em-preparacao.html", meta, corpo_eb))
 
     dados = {l: dados_site.calcular(RAIZ, l, base) for l in LINGUAS}
+    mapa = []
     n = 0
     for caminho, meta, corpo in lista:
         for lang in LINGUAS:
@@ -256,7 +272,11 @@ def construir(base: str = "/") -> int:
                     f'<script src="{base}assets/js/{j}.js" defer></script>'
                     for j in meta.get("js", "").split() if j),
                 "robots": '<meta name="robots" content="noindex, nofollow">'
-                if (not INDEXAR or meta.get("noindex")) else "",
+                if (not indexar or meta.get("noindex")) else "",
+                "abs_raiz": raiz_abs,
+                "abs_atual": absoluto(url),
+                "abs_pt": absoluto(meta.get("url_pt", "/")),
+                "abs_en": absoluto(meta.get("url_en", "/en/")),
                 "menu_links": menu_html(menu, lang, meta.get("menu", ""), base),
                 "menu_atalhos": atalhos_html(menu, lang, base),
                 "ano": time.strftime("%Y"),
@@ -267,6 +287,8 @@ def construir(base: str = "/") -> int:
             html = preencher(incluir(documento.replace("{{ conteudo }}", "§CONTEUDO§")), lang, ctx, "_documento")
             escrever(url, html.replace("§CONTEUDO§", conteudo))
             n += 1
+            if not meta.get("noindex") and url.endswith("/"):
+                mapa.append((absoluto(url), absoluto(meta.get("url_pt", "/")), absoluto(meta.get("url_en", "/en/"))))
 
     copiar(SRC / "assets", SAIDA / "assets")
     for pasta in ("img", "docs"):
@@ -274,6 +296,22 @@ def construir(base: str = "/") -> int:
     copiar(RAIZ / "data", SAIDA / "data")
     copiar(RAIZ / "config.js", SAIDA / "config.js")
     (SAIDA / ".nojekyll").write_text("")
+    if dom:
+        copiar(RAIZ / "CNAME", SAIDA / "CNAME")
+    # robots.txt e sitemap.xml (com hreflang)
+    if indexar:
+        (SAIDA / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {raiz_abs}sitemap.xml\n", encoding="utf-8")
+    else:
+        (SAIDA / "robots.txt").write_text("User-agent: *\nDisallow: /\n", encoding="utf-8")
+    hoje = time.strftime("%Y-%m-%d")
+    linhas = ['<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
+    for loc, pt, en in mapa:
+        linhas.append(f"  <url><loc>{loc}</loc><lastmod>{hoje}</lastmod>"
+                      f'<xhtml:link rel="alternate" hreflang="pt-PT" href="{pt}"/>'
+                      f'<xhtml:link rel="alternate" hreflang="en-GB" href="{en}"/></url>')
+    linhas.append("</urlset>")
+    (SAIDA / "sitemap.xml").write_text("\n".join(linhas) + "\n", encoding="utf-8")
     return n
 
 
@@ -320,9 +358,11 @@ def main():
     ap.add_argument("--servir", action="store_true", help="servir em localhost e reconstruir ao gravar")
     ap.add_argument("--porta", type=int, default=8000)
     ap.add_argument("--base", default=os.environ.get("BASE", "/"), help="caminho base (por omissão /)")
+    ap.add_argument("--publicar", action="store_true",
+                    help="para o workflow: sem noindex quando há CNAME (robots e sitemap a sério)")
     args = ap.parse_args()
 
-    n = construir(args.base)
+    n = construir(args.base, args.publicar)
     print(f"Site construído em _site/ ({n} páginas).")
     if not args.servir:
         return

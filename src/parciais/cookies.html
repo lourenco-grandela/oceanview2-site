@@ -1,0 +1,33 @@
+<aside class="cookies" id="banner-cookies" hidden aria-label="Cookies" data-cookies-banner>
+  <p>{% pt %}Usamos cookies para medir as visitas e para publicidade. Só são ativados depois de aceitar. <a href="{{ url:/privacidade/ }}">Política de privacidade</a>.{% en %}We use cookies to measure visits and for advertising. They are only switched on once you accept. <a href="{{ url:/en/privacy/ }}">Privacy policy</a>.{% fim %}</p>
+  <div class="cookies__botoes">
+    <button class="botao botao--pequeno" type="button" data-cookies-aceitar>{% pt %}Aceitar{% en %}Accept{% fim %}</button>
+    <button class="botao botao--linha botao--pequeno" type="button" data-cookies-recusar>{% pt %}Recusar{% en %}Decline{% fim %}</button>
+    <button class="botao botao--linha botao--pequeno" type="button" data-cookies-abrir>{% pt %}Definições{% en %}Settings{% fim %}</button>
+  </div>
+</aside>
+
+<dialog class="definicoes" aria-labelledby="titulo-definicoes" data-cookies-dialogo>
+  <form method="dialog" class="definicoes__interior" data-cookies-form>
+    <h2 class="titulo-3" id="titulo-definicoes">{% pt %}Definições de cookies{% en %}Cookie settings{% fim %}</h2>
+    <p class="legenda">{% pt %}Os cookies necessários ao funcionamento do site estão sempre ativos.{% en %}Cookies needed for the site to work are always on.{% fim %}</p>
+    <div class="definicoes__opcao">
+      <input type="checkbox" id="cookie-medicao" name="medicao">
+      <div>
+        <label for="cookie-medicao">{% pt %}Medição{% en %}Measurement{% fim %}</label>
+        <p>{% pt %}Google Analytics 4: páginas vistas e origem das visitas, para perceber o que funciona.{% en %}Google Analytics 4: pages viewed and where visits come from, so we can see what works.{% fim %}</p>
+      </div>
+    </div>
+    <div class="definicoes__opcao">
+      <input type="checkbox" id="cookie-marketing" name="marketing">
+      <div>
+        <label for="cookie-marketing">Marketing</label>
+        <p>{% pt %}Píxel da Meta: medir os anúncios no Instagram e no Facebook.{% en %}Meta pixel: measuring our adverts on Instagram and Facebook.{% fim %}</p>
+      </div>
+    </div>
+    <div class="definicoes__acoes">
+      <button class="botao botao--linha botao--pequeno" type="button" data-cookies-fechar>{% pt %}Fechar{% en %}Close{% fim %}</button>
+      <button class="botao botao--pequeno" type="submit">{% pt %}Guardar definições{% en %}Save settings{% fim %}</button>
+    </div>
+  </form>
+</dialog>

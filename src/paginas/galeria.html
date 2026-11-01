@@ -1,0 +1,102 @@
+---
+url_pt: /galeria/
+url_en: /en/gallery/
+titulo_pt: Galeria
+titulo_en: Gallery
+descricao_pt: Imagens do OceanView 2 (fachada, interiores) e fotografias da Consolação e de Peniche.
+descricao_en: Images of OceanView 2 (façade, interiors) and photographs of Consolação and Peniche.
+menu: galeria
+css: paginas
+js: galeria
+---
+<section class="galeria" aria-labelledby="galeria-titulo">
+  <div class="contentor">
+    <span class="etiqueta">{% pt %}Galeria{% en %}Gallery{% fim %}</span>
+    <h1 class="titulo-1" id="galeria-titulo">{% pt %}Galeria{% en %}Gallery{% fim %}</h1>
+    <ul class="galeria__grelha">
+    <li class="galeria__item galeria__item--1" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="0" data-maior="{{ base }}assets/img/fachada-dia-{{ maior:fachada-dia }}.webp" data-legenda="{{ t.legal.ilustrativa }}">
+        {% imagem nome="fachada-dia" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Fachada do OceanView 2 de dia" alt_en="OceanView 2 façade by day" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--2" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="1" data-maior="{{ base }}assets/img/foto-3-{{ maior:foto-3 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-3" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Vista aérea da Consolação, com a baía e o areal até Peniche" alt_en="Aerial view of Consolação, with the bay and the long beach towards Peniche" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--3" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="2" data-maior="{{ base }}assets/img/sala-{{ maior:sala }}.webp" data-legenda="{{ t.legal.ilustrativa }}">
+        {% imagem nome="sala" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Sala e cozinha em open space" alt_en="Open-plan living room and kitchen" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--4" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="3" data-maior="{{ base }}assets/img/foto-5-{{ maior:foto-5 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-5" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Praia da Consolação vista do ar, com o forte sobre as rochas" alt_en="Aerial view of Consolação beach, with the fort on the rocks" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--5" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="4" data-maior="{{ base }}assets/img/quarto-{{ maior:quarto }}.webp" data-legenda="{{ t.legal.ilustrativa }}">
+        {% imagem nome="quarto" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Quarto com cama de casal e janela para a varanda" alt_en="Double bedroom with a window onto the balcony" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--6" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="5" data-maior="{{ base }}assets/img/foto-4-{{ maior:foto-4 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-4" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Areal e rebentação vistos de cima" alt_en="Sand and breaking waves seen from above" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--1" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="6" data-maior="{{ base }}assets/img/fachada-noite-{{ maior:fachada-noite }}.webp" data-legenda="{{ t.legal.ilustrativa }}">
+        {% imagem nome="fachada-noite" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="OceanView 2 ao anoitecer, com as janelas iluminadas" alt_en="OceanView 2 at dusk, with lit windows" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--2" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="7" data-maior="{{ base }}assets/img/foto-1-{{ maior:foto-1 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-1" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Vista aérea da Consolação, com o mar ao fundo" alt_en="Aerial view of Consolação, with the sea behind" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--3" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="8" data-maior="{{ base }}assets/img/wc-{{ maior:wc }}.webp" data-legenda="{{ t.legal.ilustrativa }}">
+        {% imagem nome="wc" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Casa de banho com base de duche e móvel suspenso" alt_en="Bathroom with a walk-in shower and floating vanity" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--4" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="9" data-maior="{{ base }}assets/img/foto-6-{{ maior:foto-6 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-6" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Forte sobre uma ponta rochosa, rodeado pelo Atlântico" alt_en="A fort on a rocky point, surrounded by the Atlantic" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--5" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="10" data-maior="{{ base }}assets/img/foto-2-{{ maior:foto-2 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-2" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Vista aérea da Consolação e da baía de Peniche" alt_en="Aerial view of Consolação and the bay of Peniche" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    <li class="galeria__item galeria__item--6" data-revelar>
+      <button type="button" class="galeria__abrir" data-galeria-abrir="11" data-maior="{{ base }}assets/img/foto-7-{{ maior:foto-7 }}.webp" data-legenda="{% pt %}Fotografia aérea, Peniche{% en %}Aerial photograph, Peniche{% fim %}">
+        {% imagem nome="foto-7" classe="imagem-cobrir" sizes="(max-width: 700px) 100vw, 50vw" alt_pt="Ponta rochosa e praia, com a vila ao fundo" alt_en="A rocky point and beach, with the town behind" %}
+        <span class="visualmente-escondido">{% pt %}Ampliar{% en %}Enlarge{% fim %}</span>
+      </button>
+    </li>
+    </ul>
+    <p class="legenda">{% pt %}Renders: imagens ilustrativas, não contratuais. Fotografias aéreas de Peniche.{% en %}Renders: illustrative images, not contractual. Aerial photographs of Peniche.{% fim %}</p>
+  </div>
+  <dialog class="visualizador" aria-label="{% pt %}Visualizador de imagens{% en %}Image viewer{% fim %}" data-visualizador>
+    <figure class="visualizador__figura">
+      <img src="data:," alt="" data-visualizador-img>
+      <figcaption class="legenda" data-visualizador-legenda></figcaption>
+    </figure>
+    <p class="visualizador__contagem" data-visualizador-contagem aria-live="polite"></p>
+    <button type="button" class="visualizador__seta visualizador__seta--ant" data-visualizador-ant aria-label="{% pt %}Imagem anterior{% en %}Previous image{% fim %}">←</button>
+    <button type="button" class="visualizador__seta visualizador__seta--seg" data-visualizador-seg aria-label="{% pt %}Imagem seguinte{% en %}Next image{% fim %}">→</button>
+    <button type="button" class="cabecalho__menu visualizador__fechar" data-visualizador-fechar aria-label="{% pt %}Fechar{% en %}Close{% fim %}"><span class="cruz" aria-hidden="true"><span></span><span></span></span></button>
+  </dialog>
+</section>

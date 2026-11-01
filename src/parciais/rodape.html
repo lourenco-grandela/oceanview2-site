@@ -1,16 +1,4 @@
-<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
-  <div class="contentor contacto__grelha">
-    <div>
-      <span class="etiqueta">{% pt %}Contacto{% en %}Contact{% fim %}</span>
-      <h2 class="titulo-1" id="contacto-titulo">{% pt %}Registar<br>interesse{% en %}Register<br>interest{% fim %}</h2>
-      <!-- TODO (próxima entrega): formulário em 4 passos ligado ao mesmo Apps Script (FORM_URL em config.js). -->
-    </div>
-    <div class="contacto__agentes">
-      <p><span class="etiqueta">{{ t.agentes.ines }}</span><a href="tel:+351918559623">+351 918 559 623</a><a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a></p>
-      <p><span class="etiqueta">{{ t.agentes.carlos }}</span><a href="tel:+351934915924">+351 934 915 924</a><a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></p>
-    </div>
-  </div>
-</section>
+{% incluir contacto %}
 <footer class="rodape">
   <div class="contentor">
     <div class="rodape__grelha">

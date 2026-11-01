@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://oceanview2.pt/sitemap.xml

@@ -1,0 +1,138 @@
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contentor contacto__grelha">
+    <div class="contacto__intro">
+      <span class="etiqueta">{% pt %}Contacto{% en %}Contact{% fim %}</span>
+      <h2 class="titulo-1" id="contacto-titulo">{% pt %}Registar<br>interesse{% en %}Register<br>interest{% fim %}</h2>
+      <p class="contacto__texto">{% pt %}Diga-nos o que procura. A Inês e o Carlos respondem em português e inglês.{% en %}Tell us what you are looking for. Inês and Carlos reply in Portuguese and English.{% fim %}</p>
+      <div class="contacto__agentes">
+        <p><span class="etiqueta">{{ t.agentes.ines }}</span><a href="tel:+351918559623">+351 918 559 623</a><a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a></p>
+        <p><span class="etiqueta">{{ t.agentes.carlos }}</span><a href="tel:+351934915924">+351 934 915 924</a><a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></p>
+      </div>
+      <div class="contacto__whatsapp" data-whatsapp-lista></div>
+    </div>
+
+    <div class="contacto__form-caixa">
+      <noscript><p class="contacto__aviso">{% pt %}O formulário precisa de JavaScript. Pode ligar ou escrever à Inês ou ao Carlos.{% en %}The form needs JavaScript. You can call or email Inês or Carlos.{% fim %}</p></noscript>
+      <form class="passos" id="form-registo" novalidate data-form-registo>
+        <ol class="passos__barra" aria-hidden="true">
+          <li class="is-atual"><span>01</span>{% pt %}Sobre si{% en %}About you{% fim %}</li>
+          <li><span>02</span>{% pt %}O seu contacto{% en %}Your details{% fim %}</li>
+          <li><span>03</span>{% pt %}A sua casa ideal{% en %}Your ideal home{% fim %}</li>
+          <li><span>04</span>{% pt %}Uma nota pessoal{% en %}A personal note{% fim %}</li>
+        </ol>
+        <p class="passos__contagem" data-contagem aria-live="polite">{% pt %}Passo <span data-n>01</span> de 04{% en %}Step <span data-n>01</span> of 04{% fim %}</p>
+
+        <fieldset class="passo" data-passo="1">
+          <legend class="titulo-3">{% pt %}Como se chama?{% en %}What is your name?{% fim %}</legend>
+          <div class="campo" data-campo="nome">
+            <label for="f-nome">{% pt %}Nome{% en %}Name{% fim %} <span aria-hidden="true">*</span></label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" required maxlength="120" aria-describedby="e-nome">
+            <p class="campo__erro" id="e-nome"></p>
+          </div>
+          <div class="campo">
+            <span class="campo__rotulo" id="r-finalidade">{% pt %}Finalidade{% en %}Purpose{% fim %}</span>
+            <div class="pilulas" role="radiogroup" aria-labelledby="r-finalidade">
+              <label><input type="radio" name="finalidade" value="Habitação própria"><span>{% pt %}Habitação própria{% en %}To live in{% fim %}</span></label>
+              <label><input type="radio" name="finalidade" value="Segunda habitação"><span>{% pt %}Segunda habitação{% en %}Second home{% fim %}</span></label>
+              <label><input type="radio" name="finalidade" value="Investimento"><span>{% pt %}Investimento{% en %}Investment{% fim %}</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="2">
+          <legend class="titulo-3">{% pt %}Como o contactamos?{% en %}How can we reach you?{% fim %}</legend>
+          <div class="campo" data-campo="email">
+            <label for="f-email">Email <span aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160" aria-describedby="e-email">
+            <p class="campo__erro" id="e-email"></p>
+          </div>
+          <div class="campo" data-campo="telemovel">
+            <label for="f-telemovel">{% pt %}Telemóvel{% en %}Mobile{% fim %} <span aria-hidden="true">*</span></label>
+            <input id="f-telemovel" name="telemovel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="30" aria-describedby="e-telemovel">
+            <p class="campo__erro" id="e-telemovel"></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="3">
+          <legend class="titulo-3">{% pt %}Que casa procura?{% en %}What kind of home?{% fim %}</legend>
+          <div class="campo">
+            <span class="campo__rotulo" id="r-tipologia">{% pt %}Tipologia{% en %}Type{% fim %}</span>
+            <div class="pilulas" role="radiogroup" aria-labelledby="r-tipologia">
+              <label><input type="radio" name="tipologia" value="T1"><span>T1</span></label>
+              <label><input type="radio" name="tipologia" value="T2"><span>T2</span></label>
+              <label><input type="radio" name="tipologia" value="T2+2"><span>T2+2</span></label>
+              <label><input type="radio" name="tipologia" value="Ainda não sei"><span>{% pt %}Ainda não sei{% en %}Not sure yet{% fim %}</span></label>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="f-fracao">{% pt %}Fração{% en %}Apartment{% fim %}</label>
+            <select id="f-fracao" name="fracao">
+              <option value="">{% pt %}Sem preferência{% en %}No preference{% fim %}</option>
+              {{ d.opcoes_fracao }}
+            </select>
+          </div>
+          <div class="campo">
+            <span class="campo__rotulo" id="r-prazo">{% pt %}Prazo de compra{% en %}When are you looking to buy?{% fim %}</span>
+            <div class="pilulas" role="radiogroup" aria-labelledby="r-prazo">
+              <label><input type="radio" name="prazo" value="Até 3 meses"><span>{% pt %}Até 3 meses{% en %}Within 3 months{% fim %}</span></label>
+              <label><input type="radio" name="prazo" value="3 a 12 meses"><span>{% pt %}3 a 12 meses{% en %}3 to 12 months{% fim %}</span></label>
+              <label><input type="radio" name="prazo" value="Mais de 12 meses"><span>{% pt %}Mais de 12 meses{% en %}More than 12 months{% fim %}</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="4">
+          <legend class="titulo-3">{% pt %}Quer deixar uma nota?{% en %}Would you like to add a note?{% fim %}</legend>
+          <div class="campo">
+            <label for="f-mensagem">{% pt %}Mensagem{% en %}Message{% fim %}</label>
+            <textarea id="f-mensagem" name="mensagem" rows="4" maxlength="500" aria-describedby="c-mensagem"></textarea>
+            <p class="campo__ajuda" id="c-mensagem" data-contador></p>
+          </div>
+          <div class="campo campo--caixa" data-campo="consentimento">
+            <input id="f-consentimento" name="consentimento" type="checkbox" required aria-describedby="e-consentimento">
+            <label for="f-consentimento">{% pt %}Autorizo o contacto sobre o OceanView 2 e o tratamento dos meus dados nos termos da <a href="{{ url:/privacidade/ }}">política de privacidade</a>. <span aria-hidden="true">*</span>{% en %}I agree to be contacted about OceanView 2 and to the processing of my data under the <a href="{{ url:/en/privacy/ }}">privacy policy</a>. <span aria-hidden="true">*</span>{% fim %}</label>
+            <p class="campo__erro" id="e-consentimento"></p>
+          </div>
+          <div class="campo-armadilha" aria-hidden="true">
+            <label for="f-empresa">Empresa</label>
+            <input id="f-empresa" name="empresa" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="pagina">
+        </fieldset>
+
+        <div class="passos__acoes">
+          <button class="botao botao--linha-clara" type="button" data-voltar hidden>{% pt %}Voltar{% en %}Back{% fim %}</button>
+          <button class="botao botao--claro" type="button" data-seguinte>{% pt %}Continuar{% en %}Continue{% fim %} <span class="seta" aria-hidden="true">↗</span></button>
+          <button class="botao botao--claro" type="submit" data-enviar hidden>{% pt %}Registar interesse{% en %}Register interest{% fim %} <span class="seta" aria-hidden="true">↗</span></button>
+        </div>
+        <p class="legenda passos__obrigatorio">{% pt %}* Campos obrigatórios.{% en %}* Required fields.{% fim %}</p>
+        <div class="passos__estado" role="status" aria-live="polite" data-estado></div>
+      </form>
+
+      <div class="passos__sucesso" data-sucesso hidden tabindex="-1">
+        <p class="titulo-2">{% pt %}Obrigado.{% en %}Thank you.{% fim %}</p>
+        <p>{% pt %}Recebemos o seu registo. Entramos em contacto em breve.{% en %}We have received your details and will be in touch soon.{% fim %}</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-form-textos>
+  {% pt %}{
+    "nome": "Indique o seu nome.", "email": "Indique um email válido.",
+    "telefone": "Indique um telemóvel com pelo menos 9 dígitos.",
+    "consentimento": "É preciso autorizar o contacto para podermos responder.",
+    "aEnviar": "A enviar…", "erro": "Não foi possível enviar. Tente outra vez ou fale connosco pelo WhatsApp:",
+    "semLigacao": "O envio ainda não está ligado. Fale connosco pelo WhatsApp:",
+    "faltam": "Faltam {n} caracteres.", "limite": "Chegou ao limite de 500 caracteres.",
+    "whatsapp": "WhatsApp", "mensagemFracao": "Olá, gostava de receber informação sobre a fração {f} do OceanView 2."
+  }{% en %}{
+    "nome": "Please enter your name.", "email": "Please enter a valid email address.",
+    "telefone": "Please enter a phone number with at least 9 digits.",
+    "consentimento": "We need your permission to get in touch.",
+    "aEnviar": "Sending…", "erro": "We could not send your details. Please try again or message us on WhatsApp:",
+    "semLigacao": "The form is not connected yet. Message us on WhatsApp:",
+    "faltam": "{n} characters left.", "limite": "You have reached the 500-character limit.",
+    "whatsapp": "WhatsApp", "mensagemFracao": "Hello, I would like to receive information about unit {f} at OceanView 2."
+  }{% fim %}
+  </script>
+</section>

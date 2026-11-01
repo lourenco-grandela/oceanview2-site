@@ -142,4 +142,9 @@ def calcular(raiz: Path, lang: str, base: str) -> dict:
         f'<span class="tempos__sitio">{esc(x[lang])}</span><span class="tempos__modo">{t[x["modo"]]}</span></li>'
         for x in tempos)
     d["maps"] = site.get("google_maps", "")
+
+    # Opções da fração no formulário (valor enviado: só a letra)
+    d["opcoes_fracao"] = "".join(
+        f'<option value="{f["fracao"]}">{f["fracao"]} · {f["tipologia"]} · {_piso(f, lang)}</option>'
+        for f in fracoes if f["estado"] != "vendida")
     return d

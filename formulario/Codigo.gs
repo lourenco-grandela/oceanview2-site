@@ -5,6 +5,12 @@
  * Instalação: folha nova no Google Sheets → Extensões → Apps Script → colar
  * este ficheiro → executar «preparar» uma vez → Implementar como aplicação web.
  * Passos com detalhe em docs/FORMULARIO.md.
+ *
+ * Versão 2 (site v3, 01/11/2026): duas colunas novas no fim, «Fração» e
+ * «Língua». Ficam no fim para não desalinhar as linhas que já estão na folha.
+ * Depois de colar esta versão: executar «preparar» uma vez (só reescreve o
+ * cabeçalho e a lista de estados) e publicar uma nova versão da implementação
+ * (o URL /exec não muda).
  */
 
 var FOLHA = 'Contactos';
@@ -14,7 +20,7 @@ var AVISAR = ['grandelalourenco@gmail.com'];
 
 var CABECALHO = ['Data e hora', 'Nome', 'Email', 'Telemóvel', 'Tipologia', 'Finalidade',
                  'Prazo de compra', 'Mensagem', 'Consentimento', 'Origem', 'Meio', 'Campanha',
-                 'Página', 'Estado', 'Responsável', 'Próxima ação', 'Notas'];
+                 'Página', 'Estado', 'Responsável', 'Próxima ação', 'Notas', 'Fração', 'Língua'];
 
 var ESTADOS = ['Novo', 'Contactado', 'Qualificado', 'Visita marcada', 'Proposta', 'CPCV',
                'Escritura', 'Perdido'];
@@ -57,7 +63,8 @@ function doPost(e) {
     folha.appendRow([new Date(), limpar(d.nome), limpar(d.email), limpar(d.telefone),
                      limpar(d.tipologia), limpar(d.finalidade), limpar(d.prazo),
                      limpar(d.mensagem), 'Sim', limpar(d.origem), limpar(d.meio),
-                     limpar(d.campanha), limpar(d.pagina), 'Novo', '', '', '']);
+                     limpar(d.campanha), limpar(d.pagina), 'Novo', '', '', '',
+                     fracao(d.fracao), limpar(d.lingua)]);
     avisar(d);
     return resposta({ ok: true });
   } catch (erro) {
@@ -70,21 +77,29 @@ function doGet() {
   return resposta({ ok: true, servico: 'OceanView 2' });
 }
 
+/** Só aceita uma letra de A a L (ou nada). */
+function fracao(valor) {
+  var v = String(valor || '').trim().toUpperCase();
+  return /^[A-L]$/.test(v) ? v : '';
+}
+
 function limpar(valor) {
   return String(valor === undefined || valor === null ? '' : valor).substring(0, 500);
 }
 
 function avisar(d) {
-  var assunto = 'OceanView 2: novo contacto de ' + limpar(d.nome);
+  var assunto = 'OceanView 2: novo contacto de ' + limpar(d.nome) + (fracao(d.fracao) ? ' (fração ' + fracao(d.fracao) + ')' : '');
   var corpo = ['Nome: ' + limpar(d.nome),
                'Email: ' + limpar(d.email),
                'Telemóvel: ' + limpar(d.telefone),
                'Tipologia: ' + limpar(d.tipologia),
+               'Fração: ' + (fracao(d.fracao) || '—'),
                'Finalidade: ' + limpar(d.finalidade),
                'Prazo: ' + limpar(d.prazo),
                'Mensagem: ' + limpar(d.mensagem),
                'Origem: ' + limpar(d.origem) + ' / ' + limpar(d.meio) + ' / ' + limpar(d.campanha),
-               'Página: ' + limpar(d.pagina)].join('\n');
+               'Página: ' + limpar(d.pagina),
+               'Língua do site: ' + limpar(d.lingua)].join('\n');
   for (var i = 0; i < AVISAR.length; i++) {
     if (AVISAR[i]) {
       MailApp.sendEmail(AVISAR[i], assunto, corpo);

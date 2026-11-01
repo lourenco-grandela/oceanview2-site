@@ -9,6 +9,29 @@ minutos a algumas horas). Não fazer à sexta à tarde.
 
 ---
 
+## Site v3: publicar no lugar da v2
+
+O domínio e o DNS não mudam (passos 6 e 8 já feitos). Quando a v3 estiver
+aprovada:
+
+1. **Apps Script**: atualizar o código para a versão 2 do formulário (fração
+   e língua) seguindo `docs/FORMULARIO.md`, «Atualização para o site v3».
+   Manter a linha `AVISAR` que já lá está. Publicar uma nova versão.
+2. **Dados**: `python3 ferramentas/preencher.py --verificar` e depois sem
+   `--verificar` (escreve `config.js`, tempos em `data/site.json` e `CNAME`).
+3. **Rever em local**: `python3 ferramentas/construir.py --servir` e percorrer
+   Início, Projeto, Apartamentos (explorador, tabela, PDFs), Localização,
+   Galeria e Privacidade, em PT e EN, no computador e no telemóvel.
+4. **Testar o formulário de ponta a ponta** (passo 10), com uma fração
+   escolhida: a linha chega à folha com «Fração» e o email traz a fração.
+5. **Juntar o ramo `v3` ao `main`** (pull request). O workflow constrói o site
+   com `--publicar` e publica `_site/` no domínio, sem noindex, com
+   `robots.txt` e `sitemap.xml` novos. Reenviar o sitemap na Search Console.
+
+Os passos abaixo são os do lançamento da v2 (20/10/2026); os que falam de
+`index.html`, marcadores `.todo` e `python3 -m http.server` já não se aplicam
+à v3.
+
 ## 0. Antes do dia
 
 - [ ] O domínio está registado **em nome dos clientes** e tu tens acesso à

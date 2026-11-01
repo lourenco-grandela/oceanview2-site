@@ -6,8 +6,20 @@
 <title>{{ titulo }} · OceanView 2</title>
 <meta name="description" content="{{ descricao }}">
 {{ robots }}
-<link rel="alternate" hreflang="pt-PT" href="{{ url_pt }}">
-<link rel="alternate" hreflang="en-GB" href="{{ url_en }}">
+<link rel="canonical" href="{{ abs_atual }}">
+<link rel="alternate" hreflang="pt-PT" href="{{ abs_pt }}">
+<link rel="alternate" hreflang="en-GB" href="{{ abs_en }}">
+<link rel="alternate" hreflang="x-default" href="{{ abs_pt }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OceanView 2">
+<meta property="og:title" content="{{ titulo }} · OceanView 2">
+<meta property="og:description" content="{{ descricao }}">
+<meta property="og:url" content="{{ abs_atual }}">
+<meta property="og:image" content="{{ abs_raiz }}assets/img/{% pt %}og-oceanview2.jpg{% en %}og-oceanview2-en.jpg{% fim %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="{% pt %}pt_PT{% en %}en_GB{% fim %}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F2E4C">
 <link rel="icon" href="{{ base }}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="{{ base }}assets/img/favicon-32.png" sizes="32x32">
@@ -19,6 +31,8 @@
 {{ css_extra }}
 <script src="{{ base }}config.js" defer></script>
 <script src="{{ base }}assets/js/cabecalho.js" defer></script>
+<script src="{{ base }}assets/js/formulario.js" defer></script>
+<script src="{{ base }}assets/js/cookies.js" defer></script>
 {{ js_extra }}
 </head>
 <body class="{{ classe }}" data-lang="{{ lang }}" data-base="{{ base }}">
@@ -28,5 +42,6 @@
 {{ conteudo }}
 </main>
 {% incluir rodape %}
+{% incluir cookies %}
 </body>
 </html>

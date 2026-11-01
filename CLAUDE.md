@@ -12,93 +12,62 @@ Este ficheiro é a memória do projeto para o Claude Code: lê-o no início de c
 
 ## Fases e prazos
 
-1. **Landing page com o novo design (versão 2), em português e inglês.** Reconstrução a partir de 15/10/2026. Publica-se assim que chegarem os dados obrigatórios (alvo: semana de 19/10/2026). É a prioridade do projeto: os clientes querem divulgá-la já nas redes.
-2. Site completo (seletor e páginas de fração, acabamentos, evolução da obra): quando chegar a tabela das frações.
+1. Landing page v2/v2.1: publicada em oceanview2.pt a 20/10/2026 (ramo `main`).
+2. **Site v3 (01/11/2026), ramo `v3`**: site completo com a linguagem do Bellevue Cascais (brief em `referencia-v3/REFERENCIA.md`, que substitui as partes deste ficheiro sobre o sistema visual). Início, Projeto, Apartamentos com explorador de frações, Localização, Galeria, PT/EN, formulário em 4 passos. O site publicado não mexe até o Lourenço aprovar e o `v3` ser juntado ao `main`.
 
 ## Stack e alojamento
 
-- Site estático, sem mensalidade: HTML, CSS e JavaScript. No site completo pode usar-se um gerador estático (por exemplo Astro) para criar as páginas de fração a partir de `data/fracoes.json`.
-- Alojamento: GitHub Pages, com domínio próprio registado em nome dos clientes (ficheiro `CNAME` no repositório e registos DNS no registador).
-- Formulário: envia por `fetch` para uma Web App do Google Apps Script, que grava numa Google Sheet de contactos e envia um email de alerta. O URL da Web App fica em `config.js`; o script valida os campos e rejeita pedidos sem consentimento.
-- Analytics: Google Analytics 4 e píxel da Meta, carregados só depois do consentimento no banner de cookies.
+- Site estático, sem mensalidade. **v3**: gerador próprio em Python, sem dependências (`ferramentas/construir.py`): fontes em `src/` (páginas PT/EN no mesmo ficheiro, partes comuns, textos), dados em `data/`, site gerado em `_site/` (fora do git). Ver local: `python3 ferramentas/construir.py --servir`. Sintaxe em `src/LEIA-ME.md`.
+- Alojamento: GitHub Pages, domínio oceanview2.pt (`CNAME`). O workflow corre só no `main`, constrói com `--publicar` e publica `_site/` (com CNAME: sem noindex, com robots e sitemap; sem CNAME: noindex).
+- Formulário: envia por `fetch` para a Web App do Google Apps Script (`FORM_URL` em `config.js`), que grava na Google Sheet e envia o alerta. Na v3 manda também `fracao` e `lingua` (colunas novas no fim da folha; ver `docs/FORMULARIO.md`).
+- Analytics: GA4 e píxel da Meta, carregados só depois do consentimento no banner de cookies.
 
 ## Sistema visual
 
-**Desde 14/10/2026 vale o `docs/DESIGN.md` (versão 2).** O alvo visual é `material/design/referencia.html`, com capturas em `material/design/captura-*.jpg`. Resumo:
+**Desde 01/11/2026 vale o `docs/DESIGN.md` (versão 3).** Resumo:
 
-- Uma só família, Archivo (pesos 400–800, larguras 96–125), alojada no site. O Newsreader sai.
-- Fundo `#F5F5F1`, cartões brancos, títulos Atlântico `#14303A`, texto `#5F6C70`. `#C98E45` só no botão do formulário e no sol do símbolo.
-- Cantos arredondados (24 / 18 / 12 px) e botões em pílula. Sem sombras.
-- Título do hero enorme, em maiúsculas; o resto em frase.
-- Marca provisória: símbolo «Vigia» + «OCEANVIEW 2» (código no `docs/DESIGN.md`), até os clientes escolherem o logótipo.
-- Esboço de arquiteto do edifício na secção Arquitetura.
-- Sem ripas de madeira em nenhum elemento: o edifício terá acrílico.
+- Creme `#F2EEE7`, areia `#E6DED0`, pedra `#CFC2AA`, azul oceano `#0F2E4C` (secções escuras, botões cheios, texto forte); dourado `#C98E45` só em pormenores (sol, piso ativo, «Reservada»).
+- Letras alojadas: Italiana (títulos enormes em maiúsculas) e Archivo Light (texto). Números nos títulos em `<span class="alg">` para ficarem à altura das maiúsculas.
+- Botões retangulares de linha fina, maiúsculas espaçadas e ↗. Sem cantos arredondados, sem sombras, linhas finas, muito espaço.
+- Logótipo oficial em `referencia-v3/logo/` (cópias limpas em `src/assets/img/logo-*.svg`): símbolo Vigia + OCEANVIEW 2 em azul oceano; branco sobre fotografia.
+- Sem ripas de madeira em nenhum elemento desenhado: o edifício terá acrílico.
 
-O sistema anterior (arestas vivas, Newsreader, temas Dia e Hora azul) está **substituído**: não o reutilizar.
+Os sistemas anteriores (v1 e v2: arestas vivas, Newsreader, pílulas, `#F5F5F1`) estão **substituídos**: não os reutilizar.
 
 ## Regras de conteúdo
 
-- Português de Portugal e inglês britânico. Tom calmo e factual, sem «luxo», «exclusivo», «único» ou «paraíso».
-- Botões no infinitivo: «Registar interesse», «Ver frações», «Marcar visita», «Pedir plantas».
-- Distâncias só medidas, sempre com «a pé» ou «de carro». Até haver tabela final, «Preços sob consulta».
+- Português de Portugal e inglês britânico. Na v3 o tom pode ser mais evocativo, como nos textos aprovados da Inês (que usam «exclusivo»), mas sem inventar dados nem afirmações.
+- Botões no infinitivo: «Registar interesse», «Ver apartamentos», «Marcar visita», «Pedir plantas». Exceção: «Contacte-nos» no cabeçalho (Lourenço, 01/11/2026).
+- Distâncias: as indicadas pelos clientes (21/10, em `data/site.json`), sempre com «a pé» ou «de carro». Valores do `data/fracoes.json` («Sob consulta» quando o preço for `null`).
 - Obrigatório no rodapé e junto das imagens: denominação da mediadora, n.º AMI, classe energética e «Imagem ilustrativa, não contratual» nas imagens que não sejam fotografia final.
 - Não inventar dados: o que faltar fica marcado com `TODO:` e entra nas perguntas de `docs/ESTADO.md`.
 - Os textos chegam do chat de projeto em `content/`; não os reescrever sem pedido.
 
-## Landing page (versão 2)
+## Páginas (v3)
 
-Textos em `content/landing.pt.md` e `content/landing.en.md`; ordem e aspeto em `material/design/referencia.html`.
+Textos aprovados em `content/landing.*.md` (21/10) e textos da Inês em `referencia-v3/textos-cliente.md` (Projeto e Localização; as listas de divisões e áreas desse documento têm erros: não usar). Números e tabela sempre de `data/fracoes.json`; tempos e Google Maps de `data/site.json`.
 
-1. Hero sobre fotografia: marca, «UMA NOVA FORMA DE CHEGAR A CASA.», subtítulo, «Registar interesse» e WhatsApp.
-2. O projeto: imagem, título, texto e quatro números.
-3. Imagem grande da sala.
-4. Tipologias: três cartões (T1, T2, T2+2), cada um leva ao formulário com a tipologia escolhida.
-5. Frações: seletor de A a L e ficha. **Só aparece quando o `data/fracoes.json` tiver tipologia nas 12 frações**; até lá fica escondido (o código fica pronto).
-6. Arquitetura: título centrado e esboço de arquiteto.
-7. Localização: texto, tempos medidos e fotografia de drone (ou bloco de espera) com ligação ao Google Maps. Sem mapas incorporados: o site não faz pedidos a outros servidores.
-8. Próximos passos: três cartões (plantas, visita, WhatsApp).
-9. Registo de interesse: bloco escuro com o formulário e uma imagem.
-10. Rodapé legal, política de privacidade e definições de cookies.
+- **Início**, **Projeto**, **Apartamentos** (tipologias, explorador, tabela, PDFs), **Localização**, **Galeria**, **Privacidade** (texto aprovado, não muda), 404. Contacto (`#contacto`) no fim de todas.
+- **Explorador**: axonometria branca com polígonos por piso + planta do piso com a fração (`data/explorador/`). Polígonos por fração na axonometria só depois de confirmada a correspondência fachada ↔ plantas.
 
 ### Formulário
 
-- Campos obrigatórios: nome, email, telemóvel e consentimento (com ligação à política de privacidade).
-- Campos de qualificação: tipologia de interesse (T1, T2, T2+2, ainda não sei), finalidade (habitação própria, segunda habitação, investimento), prazo de compra (até 3 meses, 3 a 12 meses, mais de 12 meses) e mensagem.
-- Campos escondidos: `utm_source`, `utm_medium`, `utm_campaign`, página, data e hora.
-- Mensagem de sucesso na mesma página; em caso de erro, alternativa pelo WhatsApp.
+- 4 passos: Sobre si (nome, finalidade) · O seu contacto (email, telemóvel) · A sua casa ideal (tipologia, fração, prazo) · Uma nota pessoal (mensagem, consentimento).
+- Obrigatórios: nome, email, telemóvel e consentimento (com ligação à política de privacidade). Escondidos: `utm_source`, `utm_medium`, `utm_campaign`, página; armadilha `empresa`.
+- «Pedir informação» no explorador preenche a fração e a tipologia. Sucesso na mesma página; em erro, WhatsApp com a Inês ou o Carlos.
 
 ### WhatsApp
 
-Ligação `https://wa.me/<número>?text=` com mensagem pré-preenchida: «Olá, gostava de receber informação sobre o OceanView 2.» No site completo, a mensagem inclui a fração.
+Ligação `https://wa.me/<número>?text=` com escolha entre a Inês e o Carlos (`whatsappContactos` no `config.js`). Mensagem geral: «Olá, gostava de receber informação sobre o OceanView 2.»; no explorador, com a fração.
 
 ### Ligações com origem
 
 `utm_campaign=lancamento-2026-09`; `utm_source`: instagram, facebook, lona, brochura, whatsapp; `utm_medium`: bio, stories, anuncio, qr.
 
-## Site completo (fase 2)
+## Tabela única: `data/fracoes.json`
 
-Início, Localização, Frações (seletor de A a L com o estado de cada uma e legenda em palavras), página por fração (planta, áreas, piso, exposição solar, ficha PDF e WhatsApp com a fração), Acabamentos, Evolução da obra e Contactos. Português em `/` e inglês em `/en/`.
-
-### Tabela única: `data/fracoes.json`
-
-```json
-[
-  {
-    "fracao": "A",
-    "tipologia": null,
-    "piso": null,
-    "area_privativa_m2": null,
-    "area_exterior_m2": null,
-    "estacionamento": null,
-    "preco": null,
-    "estado": "disponivel",
-    "planta": null,
-    "ficha_pdf": null
-  }
-]
-```
-
-- `preco: null` mostra «Sob consulta». `estado` é `disponivel`, `reservada` ou `vendida`.
+- Uma entrada por fração (A a L): tipologia, piso, áreas (`area_privativa_m2`, `area_sotao_m2`, `area_exterior_m2`, `area_total_m2`), estacionamento, preço, estado (`disponivel`, `reservada` ou `vendida`), `planta_pdf` e `planta_img`.
+- `preco: null` mostra «Sob consulta»; `mostrar_precos: false` em `data/site.json` esconde todos.
 - Os valores só mudam a partir da tabela dos clientes; o site lê daqui e nada fica escrito à mão nas páginas.
 
 ## Qualidade antes de publicar
@@ -139,7 +108,9 @@ Início, Localização, Frações (seletor de A a L com o estado de cada uma e l
 
 ## Pastas
 
-- `material/`: originais, referência de design e fotografias. **Não se publica** (está no `.gitignore`). O site usa só as versões otimizadas em `assets/img/`.
+- `material/`: originais no computador do Lourenço (no `.gitignore`, não vai para o GitHub).
+- `referencia-v3/` (só no ramo `v3`, não se publica): brief, plantas do arquiteto, logótipo, fotografias editadas (foto-1 a foto-7, as únicas que se podem usar), renders, axonometria e textos da Inês.
+- O site usa só as versões otimizadas em `assets/img/` (geradas por `ferramentas/imagens_v3.py`) e `data/explorador/` (`ferramentas/otimizar_plantas.py`).
 
 ## Fim de cada sessão
 

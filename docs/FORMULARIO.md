@@ -40,14 +40,37 @@ Campos do objeto `dados`:
 | `telefone` | sim | texto |
 | `consentimento` | sim | `true` (a caixa tem de estar marcada) |
 | `tipologia` | não | T1, T2, T2+2, Ainda não sei |
+| `fracao` | não | letra de A a L (site v3: escolhida no passo 3 ou vinda de «Pedir informação» no explorador) |
 | `finalidade` | não | Habitação própria, Segunda habitação, Investimento |
 | `prazo` | não | Até 3 meses, 3 a 12 meses, Mais de 12 meses |
 | `mensagem` | não | texto |
 | `origem`, `meio`, `campanha` | não | `utm_source`, `utm_medium`, `utm_campaign` lidos do endereço |
 | `pagina` | não | `location.pathname` |
+| `lingua` | não | `pt` ou `en` (site v3) |
 | `empresa` | não | campo escondido (armadilha para robôs): se vier preenchido, o registo é ignorado |
 
 Se o browser bloquear a leitura da resposta, mudar para `mode: 'no-cors'` e dar o envio por bom quando o `fetch` não falha: o registo fica na folha na mesma. Em qualquer erro, mostrar a alternativa do WhatsApp.
+
+## Atualização para o site v3 (01/11/2026)
+
+O formulário passou a ter 4 passos (Sobre si · O seu contacto · A sua casa
+ideal · Uma nota pessoal) e envia mais dois campos: `fracao` e `lingua`. O
+`formulario/Codigo.gs` grava-os em duas colunas novas no fim da folha
+(«Fração» e «Língua»), para não desalinhar as linhas que já lá estão, e põe a
+fração no assunto e no corpo do email. Pedidos sem estes campos (o site v2)
+continuam a funcionar.
+
+O que fazer **antes de publicar a v3** (5 minutos; o URL não muda):
+
+1. Abrir a folha «OceanView 2 — Contactos» → **Extensões → Apps Script**.
+2. Substituir o código pelo novo `formulario/Codigo.gs`, **mantendo a linha
+   `AVISAR`** com os emails que lá estão.
+3. Escolher a função **preparar** → **Executar** (só reescreve o cabeçalho,
+   agora com «Fração» e «Língua», e a lista de estados).
+4. **Implementar → Gerir implementações → editar (lápis) → Versão: nova
+   versão → Implementar.**
+5. Testar: enviar um registo pelo site v3 com uma fração escolhida e
+   confirmar a linha na folha e o email.
 
 ## Regras
 

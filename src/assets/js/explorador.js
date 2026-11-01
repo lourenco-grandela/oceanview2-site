@@ -205,10 +205,9 @@
   function desenharBotoesFracoes() {
     el.fracoes.innerHTML = letrasDoPiso(estado.piso).map(function (l) {
       var f = dados[l];
-      return '<button type="button" class="exp-res exp-res--' + f.estado + '" data-fracao="' + l + '" aria-pressed="false" ' +
-        'aria-label="' + T.selecionarFracao.replace('{f}', l) + ', ' + f.tipologia + ', ' + textoEstado(f) + '">' +
-        '<span class="exp-res__letra" aria-hidden="true">' + l + '</span>' +
-        '<span class="exp-res__info" aria-hidden="true"><span>' + f.tipologia + '</span><span>' + textoEstado(f) + '</span></span>' +
+      return '<button type="button" class="exp-res exp-res--' + f.estado + '" data-fracao="' + l + '" aria-pressed="false">' +
+        '<span class="exp-res__letra"><span class="visualmente-escondido">' + T.fracao + ' </span>' + l + '</span>' +
+        '<span class="exp-res__info"><span>' + f.tipologia + '</span><span>' + textoEstado(f) + '</span></span>' +
         '</button>';
     }).join('');
   }
@@ -241,9 +240,18 @@
     });
   }
 
+  function guardarNaMorada(l) {
+    try {
+      var u = new URL(location.href);
+      u.searchParams.set('fracao', l);
+      history.replaceState(null, '', u);
+    } catch (e) {}
+  }
+
   function selecionar(l, pelaInterface) {
     var f = dados[l];
     if (!f) return;
+    if (pelaInterface) guardarNaMorada(l);
     if (letrasDoPiso(estado.piso).indexOf(l) === -1) {
       estado.fracao = l;
       mudarPiso('piso-' + f.piso);
@@ -259,13 +267,6 @@
     el.marcador.className = 'explorador__marcador exp-marcador--' + f.estado;
     el.marcador.innerHTML = '<span class="exp-marcador__letra">' + l + '</span><span aria-hidden="true">·</span><span>' + textoEstado(f) + '</span>';
     painel(f);
-    if (pelaInterface) {
-      try {
-        var u = new URL(location.href);
-        u.searchParams.set('fracao', l);
-        history.replaceState(null, '', u);
-      } catch (e) {}
-    }
   }
 
   function painel(f) {
@@ -374,6 +375,9 @@
   }
 
   /* ---------- Arranque ---------- */
+  // O explorador fica abaixo da primeira dobra: só arranca quando se aproxima
+  // (ou logo, se a morada pedir uma fração), para não pesar no carregamento.
+  function arrancar() {
   Promise.all([
     obter('data/explorador/explorador.json'),
     obter('data/fracoes.json'),
@@ -397,4 +401,14 @@
     console.error('Explorador:', erro);
     raiz.classList.add('is-erro');
   });
+  }
+
+  if (/[?&]fracao=|#fracao-|#explorador/.test(location.search + location.hash) || !('IntersectionObserver' in window)) {
+    arrancar();
+  } else {
+    var obs = new IntersectionObserver(function (entradas) {
+      if (entradas.some(function (e) { return e.isIntersecting; })) { obs.disconnect(); arrancar(); }
+    }, { rootMargin: '800px 0px' });
+    obs.observe(raiz);
+  }
 })();

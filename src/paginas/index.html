@@ -102,3 +102,17 @@ css: paginas
     <figcaption class="legenda">{% pt %}Praia da Consolação, Peniche{% en %}Consolação beach, Peniche{% fim %}</figcaption>
   </figure>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ApartmentComplex",
+  "name": "OceanView 2",
+  "url": "{{ abs_atual }}",
+  "description": "{{ descricao }}",
+  "numberOfAccommodationUnits": {{ d.n_fracoes }},
+  "image": "{{ abs_raiz }}assets/img/fachada-dia-1536.webp",
+  "address": { "@type": "PostalAddress", "addressLocality": "Consolação, Peniche", "addressCountry": "PT" },
+  "hasMap": "{{ d.maps }}"
+}
+</script>
