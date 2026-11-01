@@ -13,3 +13,4 @@ material/
 # Dados do lançamento: tem os emails AVISAR (dados pessoais dos clientes)
 dados-lancamento.json
 _site/
+__pycache__/
