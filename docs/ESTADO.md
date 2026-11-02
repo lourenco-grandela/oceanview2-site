@@ -1,12 +1,38 @@
 # Estado do site OceanView 2
 
-Última atualização: 2026-11-01
+Última atualização: 2026-11-02
 
-## Site v3 (ramo `v3`, não publicado)
+## Domínio: novo registo (02/11/2026)
+
+- O oceanview2.pt foi **removido pelo .PT** por falha da PTisp na validação
+  do registo. O Lourenço registou-o de novo na **Dinahosting** a
+  **02/11/2026**, com os mesmos registos DNS para o GitHub Pages (os quatro A
+  `185.199.108–111.153` e, recomendado, os quatro AAAA).
+- O ficheiro `CNAME` continua `oceanview2.pt`: no GitHub nada muda.
+- Até o .PT ativar o novo registo e o DNS propagar, o domínio pode não
+  responder. Depois: confirmar em Settings › Pages que o domínio fica
+  verificado e o HTTPS ativo («Enforce HTTPS»), e reenviar o sitemap na
+  Search Console.
+
+## Site v3 — lançamento (02/11/2026)
+
+- `formulario/Codigo.gs`: o Lourenço publicou a versão 2 no Apps Script (o
+  URL não mudou). No repositório, a linha `AVISAR` ficou com um marcador
+  (`EMAILS-REAIS-SO-NO-APPS-SCRIPT`): os emails reais só existem no Apps
+  Script. O código ignora valores sem «@», por isso o marcador nunca causa
+  erro. O email antigo continua no histórico do git (commits anteriores).
+- **Envio real de teste: por fazer.** A sessão do Claude não chega a
+  `script.google.com` (a rede do ambiente bloqueia esse domínio). Fazer o
+  teste a partir do site publicado ou de `construir.py --servir`, com uma
+  fração escolhida, e confirmar a linha (colunas «Fração» e «Língua») e o
+  email.
+- O ramo `v3` foi juntado ao `main` e publicado pelo workflow (modo
+  DOMÍNIO).
+
+## Site v3 (ramo `v3`)
 
 Brief: `referencia-v3/REFERENCIA.md` (linguagem Bellevue Cascais com a marca
-OceanView 2). O site publicado em oceanview2.pt (ramo `main`) não mexe até
-aprovação.
+OceanView 2).
 
 ### Feito (2026-11-01) — terceira entrega: resto do site
 
@@ -126,9 +152,6 @@ aprovação.
 - Textos da Inês: usei-os tal como estão, só com «OceanView 2» junto (no
   original «Ocean View 2») e Peniche dividido em 5 temas com cortes mínimos.
   Traduções inglesas destes textos a validar.
-- O `formulario/Codigo.gs` do repositório tem um email na linha AVISAR (já
-  estava antes da v3). O repositório pode ser público: tirar e deixar só na
-  versão do Apps Script?
 
 - Que fachada da axonometria corresponde a que lado das plantas? Com isso
   ligam-se os polígonos por fração na axonometria.
@@ -226,7 +249,7 @@ aprovação.
 - Commit «Lançamento: dados finais e domínio» (`3efcd54`). Actions: run
   [39445047302](https://github.com/lourenco-grandela/oceanview2-site/actions/runs/39445047302),
   «Modo: DOMÍNIO (oceanview2.pt)», verde.
-- **DNS** (PTisp, `ns5`/`ns6.mydnspt.net`): os quatro A `185.199.108–111.153`
+- **DNS** (na altura na PTisp, `ns5`/`ns6.mydnspt.net`; desde 02/11/2026 na Dinahosting): os quatro A `185.199.108–111.153`
   e `www` CNAME `lourenco-grandela.github.io.`. **Sem registos AAAA** (IPv6):
   o site funciona, mas o `docs/LANCAMENTO.md` recomenda os quatro.
 - **GitHub Pages**: Custom domain `oceanview2.pt` definido pela API,
@@ -524,8 +547,8 @@ Lighthouse 12, servido em local num subcaminho, com as imagens verdadeiras:
 
 **Onde isto vive, e a quem chega.** A folha «OceanView 2 — Contactos» e a
 aplicação web estão na **conta Google do Lourenço**. No
-`formulario/Codigo.gs`, a linha `AVISAR` tem só
-`grandelalourenco@gmail.com`: **os avisos de cada registo vão só para ele**
+`formulario/Codigo.gs`, a linha `AVISAR` tinha só
+o email do Lourenço: **os avisos de cada registo iam só para ele**
 enquanto os emails da Inês e do Carlos não entrarem ali (passo 6 do
 `docs/FORMULARIO.md`). Duas consequências, enquanto isto for assim:
 

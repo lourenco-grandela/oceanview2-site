@@ -16,7 +16,12 @@
 var FOLHA = 'Contactos';
 
 // Emails que recebem o aviso de cada novo contacto.
-var AVISAR = ['grandelalourenco@gmail.com'];
+// MARCADOR: os emails reais (Inês, Carlos e Lourenço) só existem na cópia
+// deste código que está no Apps Script da folha. O repositório pode ser
+// público, por isso aqui fica só este marcador. Ao colar uma versão nova no
+// Apps Script, manter a linha AVISAR que lá está (ou colar a que o
+// ferramentas/preencher.py mostra). Valores sem «@» são ignorados.
+var AVISAR = ['EMAILS-REAIS-SO-NO-APPS-SCRIPT'];
 
 var CABECALHO = ['Data e hora', 'Nome', 'Email', 'Telemóvel', 'Tipologia', 'Finalidade',
                  'Prazo de compra', 'Mensagem', 'Consentimento', 'Origem', 'Meio', 'Campanha',
@@ -101,7 +106,7 @@ function avisar(d) {
                'Página: ' + limpar(d.pagina),
                'Língua do site: ' + limpar(d.lingua)].join('\n');
   for (var i = 0; i < AVISAR.length; i++) {
-    if (AVISAR[i]) {
+    if (AVISAR[i] && AVISAR[i].indexOf('@') > 0) {
       MailApp.sendEmail(AVISAR[i], assunto, corpo);
     }
   }

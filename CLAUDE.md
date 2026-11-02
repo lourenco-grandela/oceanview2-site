@@ -98,7 +98,7 @@ Ligação `https://wa.me/<número>?text=` com escolha entre a Inês e o Carlos (
 - **Política de privacidade**: os responsáveis pelos dados são a Inês Caiado e o Carlos Lopes (são eles que guardam e tratam os contactos). Texto em `content/privacidade.pt.md` e `.en.md`, **aprovado pelos clientes** (20/10/2026). NIF e morada não entram (basta identidade e contactos). Prazo de conservação: 24 meses.
 - **Frase da Arquitetura validada** pelos clientes (19/10).
 - **Logótipo**: opção 2, «Azul oceano» **#0F2E4C**, para o símbolo Vigia e a palavra OCEANVIEW 2 (rodapé, favicon, imagem de partilha). O sol mantém #C98E45. Sobre fotografia continua branco. O resto da paleta do site não muda.
-- **Domínio**: oceanview2.pt **registado e ativo** (20/10/2026), na PTisp; DNS para o GitHub Pages e `dominio` no `dados-lancamento.json`. O site publica-se no domínio (ficheiro `CNAME`, sem `noindex`).
+- **Domínio**: oceanview2.pt registado a 20/10/2026 na PTisp, removido pelo .PT por falha da PTisp na validação e **registado de novo na Dinahosting a 02/11/2026**, com os mesmos registos DNS; DNS para o GitHub Pages e `dominio` no `dados-lancamento.json`. O site publica-se no domínio (ficheiro `CNAME`, sem `noindex`).
 - **Ainda em falta**: IDs do GA4 e do píxel da Meta (recomendado).
 
 ## Alterações dos clientes (21/10/2026)
