@@ -1,7 +1,7 @@
 /* OceanView 2 (v3) — explorador de frações.
  *
  * Imagem principal: axonometria branca do edifício com um polígono por piso
- * (data/explorador/explorador.json → axonometrica.pisos). Escolher um piso ou
+ * (data/explorador/explorador.json, axonometrica.pisos). Escolher um piso ou
  * uma fração acende o piso. Polígonos por fração na axonometria são opcionais
  * (axonometrica.fracoes): só se desenham quando estiver confirmado que
  * fachada corresponde a que lado das plantas.
@@ -284,7 +284,7 @@
     var mensagem = encodeURIComponent(T.whatsappMensagem.replace('{f}', l));
     var whats = contactos.map(function (c) {
       return '<a class="ligacao-seta" href="https://wa.me/' + c.numero + '?text=' + mensagem + '" target="_blank" rel="noopener">' +
-        T.whatsapp + ' · ' + c.nome.split(' ')[0] + ' <span class="seta" aria-hidden="true">↗</span></a>';
+        T.whatsapp + ' · ' + c.nome.split(' ')[0] + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>';
     }).join('');
 
     el.selecionada.innerHTML =
@@ -295,12 +295,12 @@
         return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>';
       }).join('') + '</dl>' +
       '<div class="exp-sel__acoes">' +
-        (f.planta_pdf ? '<a class="botao botao--linha" href="' + base + f.planta_pdf + '" target="_blank" rel="noopener">' + T.verPlanta + ' <span class="seta" aria-hidden="true">↗</span></a>' : '') +
-        '<a class="botao" href="#contacto" data-pedir="' + l + '">' + T.pedirInfo + ' <span class="seta" aria-hidden="true">↗</span></a>' +
+        (f.planta_pdf ? '<a class="botao botao--linha" href="' + base + f.planta_pdf + '" target="_blank" rel="noopener">' + T.verPlanta + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>' : '') +
+        '<a class="botao" href="#contacto" data-pedir="' + l + '">' + T.pedirInfo + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>' +
       '</div>' +
       (f.planta_img ? '<button type="button" class="exp-sel__planta" data-ver-planta="' + l + '">' +
         '<img src="' + base + f.planta_img + '" alt="" width="1075" height="1521" decoding="async">' +
-        '<span class="ligacao-seta">' + T.verPlantaImagem + ' <span class="seta" aria-hidden="true">↗</span></span></button>' : '') +
+        '<span class="ligacao-seta">' + T.verPlantaImagem + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span></button>' : '') +
       (whats ? '<div class="exp-sel__whatsapp">' + whats + '</div>' : '');
   }
 

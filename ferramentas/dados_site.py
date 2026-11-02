@@ -114,7 +114,7 @@ def calcular(raiz: Path, lang: str, base: str) -> dict:
         estado = t["estados"].get(f["estado"], f["estado"])
         estac = _area(f["estacionamento"], lang, 0) if f["estacionamento"] else "—"
         planta = (f'<a class="tabela__ver" href="{base}{esc(f["planta_pdf"])}" target="_blank" rel="noopener" '
-                  f'aria-label="{esc(t["ver_planta_de"].format(f=l))}">{t["ver"]} <span class="seta" aria-hidden="true">↗</span></a>'
+                  f'aria-label="{esc(t["ver_planta_de"].format(f=l))}">{t["ver"]} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>'
                   if f.get("planta_pdf") else "—")
         letra = (f'<a class="tabela__letra" href="?fracao={l}#explorador" '
                  f'aria-label="{esc(t["ver_explorador"].format(f=l))}">{l}</a>')

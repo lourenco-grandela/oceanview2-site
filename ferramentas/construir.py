@@ -187,7 +187,7 @@ def atalhos_html(menu: list, lang: str, base: str) -> str:
     itens = sorted((m for m in menu if m.get("atalho")), key=lambda m: m["atalho"])
     return "\n".join(
         f'<li><a href="{ligacao(base, m[lang]["url"])}">{m[lang]["nome"]}'
-        f' <span aria-hidden="true">↗</span></a></li>' for m in itens)
+        f' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>' for m in itens)
 
 
 def paginas():

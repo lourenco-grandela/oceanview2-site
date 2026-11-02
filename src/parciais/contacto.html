@@ -1,9 +1,12 @@
-<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+<section class="contacto" id="contacto-secao" aria-labelledby="contacto-titulo">
   <div class="contentor contacto__grelha">
     <div class="contacto__intro">
       <span class="etiqueta">{% pt %}Contacto{% en %}Contact{% fim %}</span>
-      <h2 class="titulo-1" id="contacto-titulo">{% pt %}Registar<br>interesse{% en %}Register<br>interest{% fim %}</h2>
-      <p class="contacto__texto">{% pt %}Diga-nos o que procura. A Inês e o Carlos respondem em português e inglês.{% en %}Tell us what you are looking for. Inês and Carlos reply in Portuguese and English.{% fim %}</p>
+      <p class="titulo-1 contacto__frase">{% pt %}Uma nova forma<br>de chegar a casa.{% en %}A new way<br>of coming home.{% fim %}</p>
+    </div>
+
+    <div class="contacto__direto">
+      <span class="etiqueta">{{ t.nav.contactos }} · IAD Portugal</span>
       <div class="contacto__agentes">
         <p><span class="etiqueta">{{ t.agentes.ines }}</span><a href="tel:+351918559623">+351 918 559 623</a><a href="mailto:ines.caiado@iadportugal.pt">ines.caiado@iadportugal.pt</a></p>
         <p><span class="etiqueta">{{ t.agentes.carlos }}</span><a href="tel:+351934915924">+351 934 915 924</a><a href="mailto:c.lopes@iadportugal.pt">c.lopes@iadportugal.pt</a></p>
@@ -11,14 +14,16 @@
       <div class="contacto__whatsapp" data-whatsapp-lista></div>
     </div>
 
-    <div class="contacto__form-caixa">
+    <div class="contacto__painel" id="contacto" tabindex="-1">
+      <h2 class="titulo-2 painel__titulo" id="contacto-titulo">{% pt %}Registar interesse{% en %}Register interest{% fim %}</h2>
+      <p class="painel__lead">{% pt %}Responda a 4 perguntas rápidas e a Inês ou o Carlos entram em contacto consigo.{% en %}Answer 4 quick questions and Inês or Carlos will get in touch with you.{% fim %}</p>
       <noscript><p class="contacto__aviso">{% pt %}O formulário precisa de JavaScript. Pode ligar ou escrever à Inês ou ao Carlos.{% en %}The form needs JavaScript. You can call or email Inês or Carlos.{% fim %}</p></noscript>
       <form class="passos" id="form-registo" novalidate data-form-registo>
         <ol class="passos__barra" aria-hidden="true">
-          <li class="is-atual"><span>01</span>{% pt %}Sobre si{% en %}About you{% fim %}</li>
-          <li><span>02</span>{% pt %}O seu contacto{% en %}Your details{% fim %}</li>
-          <li><span>03</span>{% pt %}A sua casa ideal{% en %}Your ideal home{% fim %}</li>
-          <li><span>04</span>{% pt %}Uma nota pessoal{% en %}A personal note{% fim %}</li>
+          <li class="is-atual"><span>01</span><span class="passos__nome">{% pt %}Sobre si{% en %}About you{% fim %}</span></li>
+          <li><span>02</span><span class="passos__nome">{% pt %}O seu contacto{% en %}Your details{% fim %}</span></li>
+          <li><span>03</span><span class="passos__nome">{% pt %}A sua casa ideal{% en %}Your ideal home{% fim %}</span></li>
+          <li><span>04</span><span class="passos__nome">{% pt %}Uma nota pessoal{% en %}A personal note{% fim %}</span></li>
         </ol>
         <p class="passos__contagem" data-contagem aria-live="polite">{% pt %}Passo <span data-n>01</span> de 04{% en %}Step <span data-n>01</span> of 04{% fim %}</p>
 
@@ -32,9 +37,9 @@
           <div class="campo">
             <span class="campo__rotulo" id="r-finalidade">{% pt %}Finalidade{% en %}Purpose{% fim %}</span>
             <div class="pilulas" role="radiogroup" aria-labelledby="r-finalidade">
-              <label><input type="radio" name="finalidade" value="Habitação própria"><span>{% pt %}Habitação própria{% en %}To live in{% fim %}</span></label>
-              <label><input type="radio" name="finalidade" value="Segunda habitação"><span>{% pt %}Segunda habitação{% en %}Second home{% fim %}</span></label>
-              <label><input type="radio" name="finalidade" value="Investimento"><span>{% pt %}Investimento{% en %}Investment{% fim %}</span></label>
+              <label><input type="radio" name="finalidade" value="Habitação própria"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}Habitação própria{% en %}To live in{% fim %}</span></label>
+              <label><input type="radio" name="finalidade" value="Segunda habitação"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}Segunda habitação{% en %}Second home{% fim %}</span></label>
+              <label><input type="radio" name="finalidade" value="Investimento"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}Investimento{% en %}Investment{% fim %}</span></label>
             </div>
           </div>
         </fieldset>
@@ -58,10 +63,10 @@
           <div class="campo">
             <span class="campo__rotulo" id="r-tipologia">{% pt %}Tipologia{% en %}Type{% fim %}</span>
             <div class="pilulas" role="radiogroup" aria-labelledby="r-tipologia">
-              <label><input type="radio" name="tipologia" value="T1"><span>T1</span></label>
-              <label><input type="radio" name="tipologia" value="T2"><span>T2</span></label>
-              <label><input type="radio" name="tipologia" value="T2+2"><span>T2+2</span></label>
-              <label><input type="radio" name="tipologia" value="Ainda não sei"><span>{% pt %}Ainda não sei{% en %}Not sure yet{% fim %}</span></label>
+              <label><input type="radio" name="tipologia" value="T1"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>T1</span></label>
+              <label><input type="radio" name="tipologia" value="T2"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>T2</span></label>
+              <label><input type="radio" name="tipologia" value="T2+2"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>T2+2</span></label>
+              <label><input type="radio" name="tipologia" value="Ainda não sei"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}Ainda não sei{% en %}Not sure yet{% fim %}</span></label>
             </div>
           </div>
           <div class="campo">
@@ -74,9 +79,9 @@
           <div class="campo">
             <span class="campo__rotulo" id="r-prazo">{% pt %}Prazo de compra{% en %}When are you looking to buy?{% fim %}</span>
             <div class="pilulas" role="radiogroup" aria-labelledby="r-prazo">
-              <label><input type="radio" name="prazo" value="Até 3 meses"><span>{% pt %}Até 3 meses{% en %}Within 3 months{% fim %}</span></label>
-              <label><input type="radio" name="prazo" value="3 a 12 meses"><span>{% pt %}3 a 12 meses{% en %}3 to 12 months{% fim %}</span></label>
-              <label><input type="radio" name="prazo" value="Mais de 12 meses"><span>{% pt %}Mais de 12 meses{% en %}More than 12 months{% fim %}</span></label>
+              <label><input type="radio" name="prazo" value="Até 3 meses"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}Até 3 meses{% en %}Within 3 months{% fim %}</span></label>
+              <label><input type="radio" name="prazo" value="3 a 12 meses"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}3 a 12 meses{% en %}3 to 12 months{% fim %}</span></label>
+              <label><input type="radio" name="prazo" value="Mais de 12 meses"><span><svg class="visto" aria-hidden="true" focusable="false"><use href="#i-visto"></use></svg>{% pt %}Mais de 12 meses{% en %}More than 12 months{% fim %}</span></label>
             </div>
           </div>
         </fieldset>
@@ -101,9 +106,9 @@
         </fieldset>
 
         <div class="passos__acoes">
-          <button class="botao botao--linha-clara" type="button" data-voltar hidden>{% pt %}Voltar{% en %}Back{% fim %}</button>
-          <button class="botao botao--claro" type="button" data-seguinte>{% pt %}Continuar{% en %}Continue{% fim %} <span class="seta" aria-hidden="true">↗</span></button>
-          <button class="botao botao--claro" type="submit" data-enviar hidden>{% pt %}Registar interesse{% en %}Register interest{% fim %} <span class="seta" aria-hidden="true">↗</span></button>
+          <button class="botao botao--linha" type="button" data-voltar hidden>{% pt %}Voltar{% en %}Back{% fim %}</button>
+          <button class="botao" type="button" data-seguinte>{% pt %}Seguinte{% en %}Next{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></button>
+          <button class="botao" type="submit" data-enviar hidden>{% pt %}Enviar{% en %}Send{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></button>
         </div>
         <p class="legenda passos__obrigatorio">{% pt %}* Campos obrigatórios.{% en %}* Required fields.{% fim %}</p>
         <div class="passos__estado" role="status" aria-live="polite" data-estado></div>

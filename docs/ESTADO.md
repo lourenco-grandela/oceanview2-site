@@ -2,6 +2,30 @@
 
 Última atualização: 2026-11-02
 
+## Correções do iPhone (02/11/2026)
+
+- **Setas**: o iOS mostrava o carácter da seta diagonal como emoji. Todas as
+  setas de texto (botões, ligações, menu, tabela, explorador, formulário e as
+  setas da galeria) passaram a ícones SVG com uma só definição
+  (`<symbol id="i-seta">`, `i-seta-esq`, `i-seta-dir` e `i-visto` no
+  `src/parciais/_documento.html`, usados com `<use>`), traço `currentColor`,
+  altura das maiúsculas (0,72 em) e traço proporcional ao texto; a animação
+  de hover mantém-se. O ponto da página atual no menu passou a CSS.
+  Verificado: nenhum carácter que o iOS transforma em emoji no `_site/`
+  (HTML, JS, CSS e JSON), em PT e EN.
+- **Formulário**: dentro de um painel creme sobre o azul, com «Registar
+  interesse» e a linha «Responda a 4 perguntas rápidas…» no topo, barra dos 4
+  passos, campos com contorno azul oceano e 52 px de altura (texto a 17 px,
+  sem zoom no iOS), opções como botões retangulares (selecionada a azul
+  oceano com visto), «Seguinte» e «Enviar» cheios e a toda a largura no
+  telemóvel, erros a vermelho escuro (6,4:1) com marca lateral, foco azul
+  oceano. No telemóvel o painel vem logo a seguir ao título da secção; os
+  contactos da Inês e do Carlos ficam depois. A âncora `#contacto` (botão
+  «Contacte-nos», menu e CTAs) leva ao início do painel.
+- Testado a 375, 390 e 1440 px (envio completo com o Apps Script simulado,
+  sem barra horizontal). Lighthouse (telemóvel): Início e Apartamentos
+  95/100/100/100.
+
 ## Domínio: novo registo (02/11/2026)
 
 - O oceanview2.pt foi **removido pelo .PT** por falha da PTisp na validação

@@ -32,7 +32,7 @@
     return contactos.map(function (c) {
       return '<a class="ligacao-seta" href="https://wa.me/' + c.numero + '?text=' + encodeURIComponent(mensagem) +
         '" target="_blank" rel="noopener">' + T.whatsapp + ' · ' + c.nome.split(' ')[0] +
-        ' <span class="seta" aria-hidden="true">↗</span></a>';
+        ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>';
     }).join('');
   }
   var lista = document.querySelector('[data-whatsapp-lista]');
@@ -120,8 +120,9 @@
       var legenda = passos[i].querySelector('legend');
       var primeiro = passos[i].querySelector('input:not([type="hidden"]):not([tabindex="-1"]), textarea, select');
       (primeiro || legenda).focus({ preventScroll: true });
-      var topo = form.getBoundingClientRect().top;
-      if (topo < 0 || topo > innerHeight * 0.6) form.scrollIntoView({ block: 'start' });
+      var painel = document.getElementById('contacto') || form;
+      var topo = painel.getBoundingClientRect().top;
+      if (topo < 0 || topo > innerHeight * 0.6) painel.scrollIntoView({ block: 'start' });
     }
   }
   btn.seguinte.addEventListener('click', function () {

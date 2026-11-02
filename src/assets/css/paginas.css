@@ -277,8 +277,9 @@ figure .legenda { margin: 10px 0 0; }
 .visualizador__seta {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 56px; height: 56px; border: 1px solid rgba(242, 238, 231, .4); background: transparent; color: var(--creme);
-  font-size: 20px; cursor: pointer; transition: background-color .3s, color .3s;
+  display: grid; place-items: center; cursor: pointer; transition: background-color .3s, color .3s;
 }
+.visualizador__seta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.2; }
 .visualizador__seta:hover { background: var(--creme); color: var(--oceano); }
 .visualizador__seta--ant { left: 24px; }
 .visualizador__seta--seg { right: 24px; }
