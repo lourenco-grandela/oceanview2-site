@@ -13,12 +13,12 @@ css: paginas
 <section class="entrada" aria-labelledby="entrada-titulo">
   <div class="contentor">
     <span class="etiqueta">{% pt %}Localização{% en %}Location{% fim %}</span>
-    <h1 class="titulo-1" id="entrada-titulo">{% pt %}O mar a <span class="alg">5</span><br>minutos a pé.{% en %}The sea, a <span class="alg">5</span>-minute<br>walk away.{% fim %}</h1>
+    <h1 class="titulo-1" id="entrada-titulo">{% pt %}O mar a <span class="alg">5</span> <br>minutos a pé.{% en %}The sea, a <span class="alg">5</span>-minute <br>walk away.{% fim %}</h1>
     <div class="entrada__grelha">
       <p class="paragrafo">{% pt %}O OceanView 2 situa-se na Consolação, em Peniche, a apenas 5 minutos a pé da praia e a 10 minutos de carro do centro da cidade. A praia da Consolação é reconhecida pelas características das suas águas, tradicionalmente associadas à riqueza em iodo. Para norte, estende-se um vasto areal em direção a Peniche, região muito apreciada pelos amantes do surf e da natureza. Um lugar onde viver perto do mar faz parte de todos os dias.{% en %}OceanView 2 is in Consolação, Peniche, just a 5-minute walk from the beach and 10 minutes by car from the town centre. Consolação beach is known for the qualities of its waters, traditionally associated with a high iodine content. To the north, a long stretch of sand runs towards Peniche, an area much loved by surfers and nature lovers. A place where living by the sea is part of every day.{% fim %}</p>
       <div>
         <ul class="tempos">{{ d.tempos }}</ul>
-        <a class="botao botao--linha" href="{{ d.maps }}" target="_blank" rel="noopener">{% pt %}Abrir no Google Maps{% en %}Open in Google Maps{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+        <a class="botao botao--linha" href="{{ d.maps }}" target="_blank" rel="noopener">{% pt %}Abrir no Google Maps{% en %}Open in Google Maps{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@ css: paginas
   <div class="contentor">
     <div class="lugar__cabeca" data-revelar>
       <span class="etiqueta">Peniche</span>
-      <h2 class="titulo-1" id="peniche-titulo">{% pt %}Onde o Atlântico<br>conta histórias.{% en %}Where the Atlantic<br>tells stories.{% fim %}</h2>
+      <h2 class="titulo-1" id="peniche-titulo">{% pt %}Onde o Atlântico <br>conta histórias.{% en %}Where the Atlantic <br>tells stories.{% fim %}</h2>
     </div>
     <div class="peniche__grelha">
       <p class="paragrafo--grande" data-revelar>{% pt %}Entre o oceano e a terra, Peniche é um território de paisagens extraordinárias, onde a força do Atlântico se cruza com séculos de história, tradição e cultura. Uma península moldada pelo mar, com praias de areia dourada, falésias, enseadas e horizontes que parecem não ter fim.{% en %}Between ocean and land, Peniche is a place of extraordinary landscapes, where the strength of the Atlantic meets centuries of history, tradition and culture. A peninsula shaped by the sea, with golden beaches, cliffs, coves and horizons that seem to go on forever.{% fim %}</p>
@@ -79,6 +79,6 @@ css: paginas
   <p class="contentor legenda">{% pt %}Fotografias aéreas, Peniche.{% en %}Aerial photographs, Peniche.{% fim %}</p>
   <div class="contentor acoes mosaico__acoes">
     <p class="titulo-3">{% pt %}Peniche é viver com o mar como cenário, a história como identidade e a liberdade como estilo de vida.{% en %}In Peniche, the sea is the setting, history is the identity and freedom is a way of life.{% fim %}</p>
-    <a class="botao" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+    <a class="botao" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
   </div>
 </section>

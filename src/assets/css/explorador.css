@@ -115,8 +115,8 @@
 .exp-sel__dados dt { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--texto-2); margin-bottom: 4px; }
 .exp-sel__dados dd { margin: 0; font-size: 17px; font-weight: var(--l-texto-forte); color: var(--oceano); font-variant-numeric: tabular-nums; }
 .exp-sel__dados small { font-size: 12px; font-weight: var(--l-texto-peso); color: var(--texto-2); }
-.exp-sel__acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.exp-sel__acoes .botao { padding: 0 16px; }
+.exp-sel__acoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px; }
+.exp-sel__acoes .botao { padding-left: 16px; padding-right: 16px; }
 .exp-sel__planta {
   display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 20px;
   width: 100%; margin-top: 24px; padding: 12px; text-align: left;

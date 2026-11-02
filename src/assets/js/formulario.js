@@ -32,7 +32,7 @@
     return contactos.map(function (c) {
       return '<a class="ligacao-seta" href="https://wa.me/' + c.numero + '?text=' + encodeURIComponent(mensagem) +
         '" target="_blank" rel="noopener">' + T.whatsapp + ' · ' + c.nome.split(' ')[0] +
-        ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>';
+        '&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>';
     }).join('');
   }
   var lista = document.querySelector('[data-whatsapp-lista]');

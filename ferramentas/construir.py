@@ -61,6 +61,7 @@ RE_CABECALHO = re.compile(r"\A---\n(.*?)\n---\n", re.S)
 RE_INCLUIR = re.compile(r"{%\s*incluir\s+([\w\-/]+)\s*%}")
 RE_LINGUA = re.compile(r"{%\s*pt\s*%}(.*?){%\s*en\s*%}(.*?){%\s*fim\s*%}", re.S)
 RE_VAR = re.compile(r"{{\s*([^{}]+?)\s*}}")
+RE_SETA_FIM = re.compile(r'([^\s<>;]+)&nbsp;(<svg class="seta"[^>]*><use href="#i-seta"></use></svg>)')
 RE_IMAGEM = re.compile(r"{%\s*imagem\s+(.*?)%}", re.S)
 RE_ATRIB = re.compile(r'([\w\-]+)(?:="([^"]*)")?')
 
@@ -187,7 +188,7 @@ def atalhos_html(menu: list, lang: str, base: str) -> str:
     itens = sorted((m for m in menu if m.get("atalho")), key=lambda m: m["atalho"])
     return "\n".join(
         f'<li><a href="{ligacao(base, m[lang]["url"])}">{m[lang]["nome"]}'
-        f' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>' for m in itens)
+        f'&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>' for m in itens)
 
 
 def paginas():
@@ -285,7 +286,11 @@ def construir(base: str = "/", publicar: bool = False) -> int:
             conteudo = preencher(incluir(corpo), lang, ctx, caminho.name)
             ctx["conteudo"] = conteudo
             html = preencher(incluir(documento.replace("{{ conteudo }}", "§CONTEUDO§")), lang, ctx, "_documento")
-            escrever(url, html.replace("§CONTEUDO§", conteudo))
+            html = html.replace("§CONTEUDO§", conteudo)
+            # A seta nunca fica sozinha numa linha: a última palavra e a seta
+            # vão juntas num span que não parte (só atua no telemóvel; ver base.css).
+            html = RE_SETA_FIM.sub(r'<span class="sem-quebra">\1&nbsp;\2</span>', html)
+            escrever(url, html)
             n += 1
             if not meta.get("noindex") and url.endswith("/"):
                 mapa.append((absoluto(url), absoluto(meta.get("url_pt", "/")), absoluto(meta.get("url_en", "/en/"))))

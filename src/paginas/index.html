@@ -21,13 +21,13 @@ css: paginas
 
 <section class="abertura" id="abertura" aria-labelledby="abertura-titulo">
   <div class="contentor">
-    <h2 class="titulo-1 abertura__titulo" id="abertura-titulo" data-revelar>{% pt %}Uma nova forma<br>de chegar a casa.{% en %}A new way<br>of coming home.{% fim %}</h2>
+    <h2 class="titulo-1 abertura__titulo" id="abertura-titulo" data-revelar>{% pt %}Uma nova forma <br>de chegar a casa.{% en %}A new way <br>of coming home.{% fim %}</h2>
     <div class="abertura__grelha">
       <div class="abertura__texto" data-revelar>
         <p class="paragrafo--grande">{% pt %}Doze apartamentos a 5 minutos a pé da praia, com varandas, terraços e garagem.{% en %}Twelve apartments a 5-minute walk from the beach, with balconies, terraces and garage parking.{% fim %}</p>
         <div class="acoes">
-          <a class="ligacao-seta" href="{% pt %}{{ url:/projeto/ }}{% en %}{{ url:/en/project/ }}{% fim %}">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
-          <a class="botao" href="#contacto">{% pt %}Registar interesse{% en %}Register interest{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+          <a class="ligacao-seta" href="{% pt %}{{ url:/projeto/ }}{% en %}{{ url:/en/project/ }}{% fim %}">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+          <a class="botao" href="#contacto">{% pt %}Registar interesse{% en %}Register interest{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
         </div>
       </div>
       <figure class="abertura__figura" data-revelar>
@@ -40,11 +40,11 @@ css: paginas
 
 <section class="faixa" aria-labelledby="faixa-titulo">
   <div class="contentor">
-    <h2 class="titulo-2 faixa__titulo" id="faixa-titulo" data-revelar>{% pt %}Elegância em<br>cada detalhe.{% en %}Elegance in<br>every detail.{% fim %}</h2>
+    <h2 class="titulo-2 faixa__titulo" id="faixa-titulo" data-revelar>{% pt %}Elegância em <br>cada detalhe.{% en %}Elegance in <br>every detail.{% fim %}</h2>
     <ul class="caracteristicas" data-revelar>
       <li>{% incluir icones/edificio %}<span class="caracteristicas__valor"><span class="alg">{{ d.n_fracoes }}</span></span><span>{% pt %}Apartamentos{% en %}Apartments{% fim %}</span></li>
       <li>{% incluir icones/planta %}<span class="caracteristicas__valor">T<span class="alg">1</span> · T<span class="alg">2</span> · T<span class="alg">2</span>+<span class="alg">2</span></span><span>{% pt %}Tipologias{% en %}Types{% fim %}</span></li>
-      <li>{% incluir icones/carro %}<span class="caracteristicas__valor">{% pt %}Cave{% en %}Basement{% fim %}</span><span>{% pt %}Estacionamento{% en %}Parking{% fim %}</span></li>
+      <li>{% incluir icones/carro %}<span class="caracteristicas__valor">{% pt %}Privado{% en %}Private{% fim %}</span><span>{% pt %}Estacionamento interior{% en %}Indoor parking{% fim %}</span></li>
       <li>{% incluir icones/folha %}<span class="caracteristicas__valor">A+</span><span>{% pt %}Classe energética{% en %}Energy rating{% fim %}</span></li>
       <li>{% incluir icones/onda %}<span class="caracteristicas__valor"><span class="alg">5</span> min</span><span>{% pt %}A pé da praia{% en %}On foot to the beach{% fim %}</span></li>
     </ul>
@@ -61,8 +61,8 @@ css: paginas
     <h2 class="titulo-2">{% pt %}Uma casa para viver junto ao mar, todo o ano.{% en %}A home by the sea, all year round.{% fim %}</h2>
     <p class="paragrafo">{% pt %}O OceanView 2, situado na Consolação, em Peniche, é um empreendimento exclusivo composto por 12 apartamentos: um T1, sete T2 e quatro T2+2. Varandas e terraços, consoante a tipologia, e lugar de estacionamento na cave, a apenas 5 minutos a pé da praia.{% en %}OceanView 2, in Consolação, Peniche, is an exclusive development of 12 apartments: one T1, seven T2 and four T2+2. Balconies and terraces depending on the apartment type, and a parking space in the basement, just a 5-minute walk from the beach.{% fim %}</p>
     <div class="acoes">
-      <a class="botao botao--linha" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
-      <a class="ligacao-seta" href="{% pt %}{{ url:/projeto/ }}{% en %}{{ url:/en/project/ }}{% fim %}">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+      <a class="botao botao--linha" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}">{% pt %}Ver apartamentos{% en %}See apartments{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+      <a class="ligacao-seta" href="{% pt %}{{ url:/projeto/ }}{% en %}{{ url:/en/project/ }}{% fim %}">{% pt %}Explorar o projeto{% en %}Explore the project{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
     </div>
   </div>
 </section>
@@ -75,13 +75,13 @@ css: paginas
     </div>
     <ul class="resumo__lista" data-revelar>
       <li><a href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}?fracao=D#explorador">
-        <span class="resumo__tip">T<span class="alg">1</span></span><span>{{ d.tip.T1.contagem }}</span><span>{{ d.tip.T1.area }}</span><span class="resumo__preco">{{ d.tip.T1.preco }}</span><svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>
+        <span class="resumo__tip">T<span class="alg">1</span></span><span class="resumo__info"><span>{{ d.tip.T1.contagem }}</span><span class="resumo__sep" aria-hidden="true"> · </span><span>{{ d.tip.T1.area }}</span></span><span class="resumo__preco">{{ d.tip.T1.preco }}</span><svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>
       <li><a href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}?fracao=A#explorador">
-        <span class="resumo__tip">T<span class="alg">2</span></span><span>{{ d.tip.T2.contagem }}</span><span>{{ d.tip.T2.area }}</span><span class="resumo__preco">{{ d.tip.T2.preco }}</span><svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>
+        <span class="resumo__tip">T<span class="alg">2</span></span><span class="resumo__info"><span>{{ d.tip.T2.contagem }}</span><span class="resumo__sep" aria-hidden="true"> · </span><span>{{ d.tip.T2.area }}</span></span><span class="resumo__preco">{{ d.tip.T2.preco }}</span><svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>
       <li><a href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}?fracao=I#explorador">
-        <span class="resumo__tip">T<span class="alg">2</span>+<span class="alg">2</span></span><span>{{ d.tip.T22.contagem }}</span><span>{{ d.tip.T22.area }}</span><span class="resumo__preco">{{ d.tip.T22.preco }}</span><svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>
+        <span class="resumo__tip">T<span class="alg">2</span>+<span class="alg">2</span></span><span class="resumo__info"><span>{{ d.tip.T22.contagem }}</span><span class="resumo__sep" aria-hidden="true"> · </span><span>{{ d.tip.T22.area }}</span></span><span class="resumo__preco">{{ d.tip.T22.preco }}</span><svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a></li>
     </ul>
-    <a class="botao" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}#explorador">{% pt %}Ver as {{ d.n_fracoes }} frações{% en %}See all {{ d.n_fracoes }} apartments{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+    <a class="botao" href="{% pt %}{{ url:/apartamentos/ }}{% en %}{{ url:/en/apartments/ }}{% fim %}#explorador">{% pt %}Ver as {{ d.n_fracoes }} frações{% en %}See all {{ d.n_fracoes }} apartments{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
   </div>
 </section>
 
@@ -94,7 +94,7 @@ css: paginas
       <span class="etiqueta">{% pt %}Localização{% en %}Location{% fim %}</span>
       <p class="paragrafo">{% pt %}O OceanView 2 situa-se na Consolação, em Peniche, a apenas 5 minutos a pé da praia e a 10 minutos de carro do centro da cidade. A praia da Consolação é reconhecida pelas características das suas águas, tradicionalmente associadas à riqueza em iodo. Para norte, estende-se um vasto areal em direção a Peniche, região muito apreciada pelos amantes do surf e da natureza. Um lugar onde viver perto do mar faz parte de todos os dias.{% en %}OceanView 2 is in Consolação, Peniche, just a 5-minute walk from the beach and 10 minutes by car from the town centre. Consolação beach is known for the qualities of its waters, traditionally associated with a high iodine content. To the north, a long stretch of sand runs towards Peniche, an area much loved by surfers and nature lovers. A place where living by the sea is part of every day.{% fim %}</p>
       <ul class="tempos">{{ d.tempos }}</ul>
-      <a class="ligacao-seta" href="{% pt %}{{ url:/localizacao/ }}{% en %}{{ url:/en/location/ }}{% fim %}">{% pt %}Explorar a localização{% en %}Explore the location{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+      <a class="ligacao-seta" href="{% pt %}{{ url:/localizacao/ }}{% en %}{{ url:/en/location/ }}{% fim %}">{% pt %}Explorar a localização{% en %}Explore the location{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
     </div>
   </div>
   <figure class="local__figura">

@@ -284,7 +284,7 @@
     var mensagem = encodeURIComponent(T.whatsappMensagem.replace('{f}', l));
     var whats = contactos.map(function (c) {
       return '<a class="ligacao-seta" href="https://wa.me/' + c.numero + '?text=' + mensagem + '" target="_blank" rel="noopener">' +
-        T.whatsapp + ' · ' + c.nome.split(' ')[0] + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>';
+        T.whatsapp + ' · ' + c.nome.split(' ')[0] + '&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>';
     }).join('');
 
     el.selecionada.innerHTML =
@@ -295,12 +295,12 @@
         return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>';
       }).join('') + '</dl>' +
       '<div class="exp-sel__acoes">' +
-        (f.planta_pdf ? '<a class="botao botao--linha" href="' + base + f.planta_pdf + '" target="_blank" rel="noopener">' + T.verPlanta + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>' : '') +
-        '<a class="botao" href="#contacto" data-pedir="' + l + '">' + T.pedirInfo + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>' +
+        (f.planta_pdf ? '<a class="botao botao--linha" href="' + base + f.planta_pdf + '" target="_blank" rel="noopener">' + T.verPlanta + '&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>' : '') +
+        '<a class="botao" href="#contacto" data-pedir="' + l + '">' + T.pedirInfo + '&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>' +
       '</div>' +
       (f.planta_img ? '<button type="button" class="exp-sel__planta" data-ver-planta="' + l + '">' +
         '<img src="' + base + f.planta_img + '" alt="" width="1075" height="1521" decoding="async">' +
-        '<span class="ligacao-seta">' + T.verPlantaImagem + ' <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span></button>' : '') +
+        '<span class="ligacao-seta">' + T.verPlantaImagem + '&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span></button>' : '') +
       (whats ? '<div class="exp-sel__whatsapp">' + whats + '</div>' : '');
   }
 

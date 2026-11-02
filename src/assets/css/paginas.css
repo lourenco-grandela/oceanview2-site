@@ -100,13 +100,24 @@ figure .legenda { margin: 10px 0 0; }
 }
 .resumo__lista a:hover { background: var(--areia); padding-left: 24px; padding-right: 24px; }
 .resumo__tip { font-family: var(--l-titulo); font-size: clamp(36px, 3.6vw, 60px); line-height: 1; }
+.resumo__info { display: contents; }
+.resumo__sep { display: none; }
 .resumo__preco { font-weight: var(--l-texto-forte); }
 @media (max-width: 760px) {
-  .resumo__lista a { grid-template-columns: 1fr auto; gap: 4px 16px; }
-  .resumo__tip { grid-row: span 3; }
-  .resumo__lista a .seta { grid-column: 2; grid-row: 1; justify-self: end; }
-  .resumo__lista a > span:not(.resumo__tip):not(.seta) { grid-column: 2; }
+  /* Telemóvel: tipologia e seta na 1.ª linha, «contagem · área» na 2.ª, preço na 3.ª. */
+  .resumo__lista a {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "tip seta" "info info" "preco preco";
+    gap: 14px 16px; padding: 26px 0;
+  }
+  .resumo__lista a:hover { padding-left: 0; padding-right: 0; }
+  .resumo__tip { grid-area: tip; align-self: center; }
+  .resumo__lista a .seta { grid-area: seta; align-self: center; justify-self: end; width: 14px; height: 14px; }
+  .resumo__info { grid-area: info; display: block; color: var(--texto-2); font-size: 15px; line-height: 1.5; overflow-wrap: break-word; }
+  .resumo__sep { display: inline; }
+  .resumo__preco { grid-area: preco; color: var(--oceano); font-size: 16px; line-height: 1.3; }
 }
+
 
 /* ---------- Localização (Início) ---------- */
 .local { padding: clamp(96px, 12vw, 184px) 0 clamp(64px, 8vw, 120px); }

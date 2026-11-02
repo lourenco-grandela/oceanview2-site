@@ -12,7 +12,7 @@ js: explorador
 <section class="entrada" aria-labelledby="entrada-titulo">
   <div class="contentor">
     <span class="etiqueta">{% pt %}Apartamentos{% en %}Apartments{% fim %}</span>
-    <h1 class="titulo-1" id="entrada-titulo">{% pt %}Doze casas,<br>três formas de viver.{% en %}Twelve homes,<br>three ways to live.{% fim %}</h1>
+    <h1 class="titulo-1" id="entrada-titulo">{% pt %}Doze casas, <br>três formas de viver.{% en %}Twelve homes, <br>three ways to live.{% fim %}</h1>
     <div class="entrada__grelha">
       <p class="paragrafo--grande">{% pt %}Conheça as 12 frações do OceanView 2, identificadas de A a L, com informação detalhada sobre as áreas e os respetivos preços.{% en %}Discover the 12 apartments at OceanView 2, labelled A to L, with detailed information on their areas and prices.{% fim %}</p>
       <dl class="numeros">
@@ -42,7 +42,7 @@ js: explorador
           <h3 class="titulo-2 cartao-tip__nome">T<span class="alg">1</span></h3>
           <p class="cartao-tip__linha">{{ d.tip.T1.contagem }} · {{ d.tip.T1.area }}</p>
           <p class="cartao-tip__preco">{{ d.tip.T1.preco }}</p>
-          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span>
+          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span>
         </a>
       </li>
       <li class="cartao-tip" data-revelar>
@@ -52,7 +52,7 @@ js: explorador
           <h3 class="titulo-2 cartao-tip__nome">T<span class="alg">2</span></h3>
           <p class="cartao-tip__linha">{{ d.tip.T2.contagem }} · {{ d.tip.T2.area }}</p>
           <p class="cartao-tip__preco">{{ d.tip.T2.preco }}</p>
-          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span>
+          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span>
         </a>
       </li>
       <li class="cartao-tip" data-revelar>
@@ -62,7 +62,7 @@ js: explorador
           <h3 class="titulo-2 cartao-tip__nome">T<span class="alg">2</span>+<span class="alg">2</span></h3>
           <p class="cartao-tip__linha">{{ d.tip.T22.contagem }} · {{ d.tip.T22.area }}</p>
           <p class="cartao-tip__preco">{{ d.tip.T22.preco }}</p>
-          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span>
+          <span class="ligacao-seta">{% pt %}Ver no explorador{% en %}See in the explorer{% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></span>
         </a>
       </li>
     </ul>
@@ -90,8 +90,8 @@ js: explorador
         <h2 class="titulo-2" id="valores-titulo">{% pt %}As <span class="alg">{{ d.n_fracoes }}</span> frações.{% en %}All <span class="alg">{{ d.n_fracoes }}</span> apartments.{% fim %}</h2>
       </div>
       <div class="acoes">
-        <a class="botao botao--linha" href="{{ base }}assets/docs/OceanView2_Tabela_de_Valores.pdf" target="_blank" rel="noopener">{% pt %}Tabela de valores (PDF){% en %}Price list (PDF, in Portuguese){% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
-        <a class="botao botao--linha" href="{{ base }}assets/docs/OceanView2_Fracoes_e_Plantas.pdf" target="_blank" rel="noopener">{% pt %}Plantas (PDF){% en %}Floor plans (PDF, in Portuguese){% fim %} <svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+        <a class="botao botao--linha" href="{{ base }}assets/docs/OceanView2_Tabela_de_Valores.pdf" target="_blank" rel="noopener">{% pt %}Tabela de valores (PDF){% en %}Price list (PDF, in Portuguese){% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
+        <a class="botao botao--linha" href="{{ base }}assets/docs/OceanView2_Fracoes_e_Plantas.pdf" target="_blank" rel="noopener">{% pt %}Plantas (PDF){% en %}Floor plans (PDF, in Portuguese){% fim %}&nbsp;<svg class="seta" aria-hidden="true" focusable="false"><use href="#i-seta"></use></svg></a>
       </div>
     </div>
     <div class="valores__tabela">{{ d.tabela }}</div>

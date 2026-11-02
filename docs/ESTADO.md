@@ -2,6 +2,26 @@
 
 Última atualização: 2026-11-02
 
+## Correções do telemóvel, 2.ª ronda (02/11/2026)
+
+- **Palavras coladas** nos títulos no telemóvel («TORNAPARTE», «5MINUTOS»):
+  todos os `<br>` do `src/` têm agora um espaço antes (43 casos, PT e EN), por
+  isso, quando o `<br>` se esconde, fica sempre um espaço.
+- **Faixa do Início**: estacionamento passa a «Privado» / «Estacionamento
+  interior» (EN «Private» / «Indoor parking»), com o mesmo ícone.
+- **Resumo das tipologias** no telemóvel: tipologia e seta na 1.ª linha,
+  «contagem · área» na 2.ª, preço na 3.ª, alinhado à esquerda. No computador,
+  as colunas ficam como estavam (`.resumo__info` com `display: contents`).
+- **Galeria**: etiqueta «OceanView 2 · Consolação» e título «Galeria» /
+  «Gallery». Mais nenhuma página repete a etiqueta no título.
+- **Revisão a 360, 375, 390 e 1440 px**, PT e EN, com um script que procura
+  palavras coladas, texto fora do ecrã ou cortado, setas desalinhadas e
+  emojis: 0 problemas. Corrigido pelo caminho: seta centrada entre duas linhas
+  quando o texto partia (agora assenta na linha de base da última linha), seta
+  sozinha numa linha (o gerador junta a última palavra e a seta num
+  `.sem-quebra`), e «Pedir informação» cortado na coluna do explorador a
+  1440 px (os dois botões passam a empilhar quando não cabem).
+
 ## Correções do iPhone (02/11/2026)
 
 - **Setas**: o iOS mostrava o carácter da seta diagonal como emoji. Todas as
